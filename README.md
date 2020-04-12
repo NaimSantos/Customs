@@ -8,17 +8,15 @@ Contains ideias, scripts, cdbs and pictures for cards that I script.
 
 ### Artifacts
 
-Artifact  Caliburn 
-Monster/Effect/Pendulum
-Light
-Fairy
-Lv 5 ATK 2200/1300
-Scale 3
-Pendulum effect:
+#### Artifact Caliburn
+
+Monster/Effect/Pendulum/Light/Fairy/LV 5 ATK 2200/DEF 1300/Scale 3-3
+
+**[Pendulum effect]**
 (Quick effect): target 1 set card you control; destroy it, and if you do, set 1 "Artifact" monster from your deck in your S/T Zone.
 If this card would be destroyed, you can destroy 1 face-down card you control instead.
 You can only use each effect of "Artifact  Caliburn " once per turn.
-Monster effect:
+**z[Monster effect]**
 You can Set this card from your hand to your Spell & Trap Zone as a Spell Card.
 If this Set card in the Spell & Trap Zone is destroyed: Special Summon it.
 If this card is Special Summoned during your opponent's turn: Your opponent banish 1 random card from your opponent's hand.
