@@ -12,13 +12,13 @@ Contains ideias, scripts, cdbs and pictures for cards that I script.
 
 Monster/Effect/Pendulum/Light/Fairy/LV 5/ATK 2200/DEF 1300/Scale 3-3
 
-**[Pendulum effect]**
+[Pendulum effect]
 
 (Quick effect): target 1 set card you control; destroy it, and if you do, set 1 "Artifact" monster from your deck in your S/T Zone.
 If this card would be destroyed, you can destroy 1 face-down card you control instead.
 You can only use each effect of "Artifact  Caliburn" once per turn.
 
-**[Monster effect]**
+[Monster effect]
 
 You can Set this card from your hand to your Spell & Trap Zone as a Spell Card.
 If this Set card in the Spell & Trap Zone is destroyed: Special Summon it.
@@ -30,14 +30,14 @@ You can only use this effect of "Artifact Caliburn" once per turn.
 
 Monster/Effect/Pendulum/Light/Fairy/LV 5/ATK 1700/DEF 2500/Scale 7
 
-**[Pendulum effect]**
+[Pendulum effect]
 
 (Quick effect): target 1 set card you control;
-destroy it, and if you do, add 1 artifcat monster from your graveyard or that is face-up in your extra deck to your hand.
+destroy it, and if you do, add 1 artifcat monster from your Graveyard or that is face-up in your extra deck to your hand.
 If this card would be destroyed, you can destroy 1 face-down card you control instead.
 You can only use each effect of "Artifact Excalibur" once per turn.
 
-**[Monster effect]**
+[Monster effect]
 
 You can Set this card from your hand to your Spell & Trap Zone as a Spell Card.
 If this Set card in the Spell & Trap Zone is destroyed: Special Summon it.
@@ -104,11 +104,11 @@ During the end phase of the turn that you activated this effect, draw 1 card.
 #### Chemicritter X
 Monster/Gemini/Effect/EARTH/Rock/Level 2/ATK 1000/DEF 500/Scale 9
 
-**[Pendulum Effect]**
+[Pendulum Effect]
 
 Once per turn: you can target 1 Gemini monster you control; Normal Summon it.
 
-**[Monster effect]**
+[Monster effect]
 This card is treated as a Normal Monster while face-up on the field or in the GY
 While this card is a Normal Monster on the field, you can Normal Summon it to have it become an Effect Monster with this effect
 ● Once per turn: You can discard 1 card; Add 1 Gemini Monster from your deck to your hand
@@ -118,11 +118,11 @@ If this card in the Pendulum Zone is destroyed: You can target 1 Normal monster 
 #### Chemicritter Y
 Monster/Gemini/Effect/LIGHT/Reptile/Level 8/ATK 2600/DEF 1900/Scale 1
 
-**[Pendulum Effect]**
+[Pendulum Effect]
 
 Once per turn: you can target 1 Gemini monster you control; Normal Summon it.
 
-**[Monster effect]**
+[Monster effect]
 This card is treated as a Normal Monster while face-up on the field or in the GY.
 While this card is a Normal Monster on the field, you can Normal Summon it to have it become an Effect Monster with this effect
 ● Once per turn: You can discard 1 card, then target 1 Gemini monster in your GY, Special summon it.
@@ -176,21 +176,21 @@ Normal Spell
 
 Apply 1 of the following effects. If you control 2 or more "Ice Barrier" Synchro monsters, you can apply both effects in sequence
 ● Discard 1 "Ice Barrier" monster; draw 2 cards.
-● Special Summon 1 "Ice Barrier" monster from your graveyard.
+● Special Summon 1 "Ice Barrier" monster from your Graveyard.
 
 #### Gates of Ice Barrier
 
 You can only use each effect of "Gates of Ice Barrier" once per turn.
 "Ice Barrier" monster you control gain 200 ATK and DEF for each Water monster on the field.
-If a Water Synchro monster is Special Summoned: add 1 "Ice Barrier" card from your graveyard to your hand. 
-Discard 1 card; Special Summon 1 "Ice Barrier" monster from your graveyard.
+If a Water Synchro monster is Special Summoned: add 1 "Ice Barrier" card from your Graveyard to your hand. 
+Discard 1 card; Special Summon 1 "Ice Barrier" monster from your Graveyard.
 
 #### The Ice Barrier
 
 Field Spell
 
 Once per turn, you can discard 1 card; add 1 "Ice Barrier" monster from your deck to your hand.
-Once per turn, you can tribute 1 monster; special summon 1 "Ice Barrier" monster from your graveyard.
+Once per turn, you can tribute 1 monster; Special Summon 1 "Ice Barrier" monster from your Graveyard.
 While you control a Water Synchro-type monster, "Ice Barrier" monsters you control cannot be destroyed by card effects.
 
 #### Prism of the Ice Barrier
@@ -198,7 +198,7 @@ While you control a Water Synchro-type monster, "Ice Barrier" monsters you contr
 Continuous Trap
 
 Once per turn, target 1 "Ice Barrier" monster you control; it gains 500 ATK/DEF also your opponent can only attack that monster for the rest of this turn.
-You can send this face-up card to the graveyard; special summon 1 Water monster from your graveyard in Defense position.
+You can send this face-up card to the Graveyard; Special Summon 1 Water monster from your Graveyard in Defense position.
 
 
 ### Deskbots
@@ -208,22 +208,22 @@ You can send this face-up card to the graveyard; special summon 1 Water monster 
 Normal Spell
 
 Add 1 "Deskbot" monster from your deck or that is face-up in your extra deck to your hand.
-If a Machine monster(s) you control would be destroyed, you can banish this card from your graveyard instead.
+If a Machine monster(s) you control would be destroyed, you can banish this card from your Graveyard instead.
 You can only activate 1 "Deskbot Assemble" per turn.
 
 #### Deskboost
 
 Continuous Spell
 
-Once per turn, you can target 1 "Deskbot" monster you control; it's treated as tuner until the end phase of this turn.
-If a Deskbot is sent to the graveyard as Synchro material: target 1 monster on the field; it gains 1000 ATK and DEF until the end of your opponent's turn.
+Once per turn, you can target 1 "Deskbot" monster you control; it's treated as tuner until the End Phase of this turn.
+If a Deskbot is sent to the Graveyard as Synchro material: target 1 monster on the field; it gains 1000 ATK and DEF until the End of your opponent's turn.
 
 #### Deskbomb
 
 Continuous Spell
 
 Once per turn, you can activate this effect: Normal Summon "Desbot" monster from your hand as an additional Normal Summon.
-If a "Deskbot" monster is sent to the graveyard as Synchro material: target 1 monster on the field; it cannot be destroyed by effects until the end of your opponent's turn.
+If a "Deskbot" monster is sent to the Graveyard as Synchro material: target 1 monster on the field; it cannot be destroyed by effects until the end of your opponent's turn.
 
 
 #### Deskbot Tank
@@ -252,8 +252,8 @@ to
 
 Continuous Spell
 Xyz Monsters you control with Xyz Materials that are originally Insects cannot be targeted by opponent's card or effects.
-Once per turn, if you control an Xyz Monster: you can target 1 "Digital Bug" card in your graveyard; attach it to a Xyz monster you control
-If this card leaves the field: you can special Summon 2 "Digital Bug" monsters from your hand and/or graveyard, then change their battle position.
+Once per turn, if you control an Xyz Monster: you can target 1 "Digital Bug" card in your Graveyard; attach it to a Xyz monster you control
+If this card leaves the field: you can special Summon 2 "Digital Bug" monsters from your hand and/or Graveyard, then change their battle position.
 
 
 #### Digital Web
@@ -261,7 +261,7 @@ If this card leaves the field: you can special Summon 2 "Digital Bug" monsters f
 Continuous Trap Card
 
 Xyz Monsters you control with Xyz Materials that are originally Insects cannot be destroyed by opponent's effects.
-Once per turn: you can special summon 1 "Digital Bug" monster from your hand or GY, then change its battle position.
+Once per turn: you can Special Summon 1 "Digital Bug" monster from your hand or GY, then change its battle position.
 If this card leaves the field: You can special Summon 1 Insect Xyz monster from your GY, then attach 1 monster from your opponent's GY to it.
 
 
@@ -270,7 +270,7 @@ If this card leaves the field: You can special Summon 1 Insect Xyz monster from 
 Quick-Play Spell Card
 
 Activate only if you control a "Digital Bug": Special summon 1 Digital Bug" monster from your deck, then you can change the battle position of a monster on the field
-If a "Digital Bug" monster(s) you control would be destroyed, you can banish this card from your graveyard instead.
+If a "Digital Bug" monster(s) you control would be destroyed, you can banish this card from your Graveyard instead.
 You can only activate 1 "Second Bug Signal" per turn
 
 #### Bug Network
@@ -291,7 +291,7 @@ You can also Xyz Summon this card by detaching 1 Xyz Material from a Rank 6 or h
 When this card is Summoned: you can discard 1 card; attach any number of Xyz monsters from either player's GY to this card.
 During your opponent's Standby Phase (Quick effect): you can detach 1 Xyz material from this card;
 non-"Digital Bug" monsters cannot activate their effects, except monsters on the field that change their batlle position this turn.
-If this card leaves the field: you can special summon 1 Insect Xyz monster from your GY, except "Digital Bug XORoach/TORoach" then attach 1 random card from your opponent's hand to it
+If this card leaves the field: you can Special Summon 1 Insect Xyz monster from your GY, except "Digital Bug XORoach/TORoach" then attach 1 random card from your opponent's hand to it
 
 ### Laval
 
@@ -299,28 +299,29 @@ If this card leaves the field: you can special summon 1 Insect Xyz monster from 
 
 Field Spell
 
-(1) If you have 3 or more "Laval" monster in your GY: you can add 1 "Laval" card from your deck to your hand.
-(2) If a "Laval" monster is sent from your deck to your GY: draw 1 card.
-(3) If this card would leave the field because of an opponent's effec, you can shuffle 2 "Laval" monsters from your GY to your deck, instead.
+If you have 3 or more "Laval" monster in your GY: you can add 1 "Laval" card from your deck to your hand.
+If a "Laval" monster is sent from your deck to your GY: draw 1 card.
+If this card would leave the field because of an opponent's effec, you can shuffle 2 "Laval" monsters from your GY to your deck, instead.
 You can only use each effect of "Laval Meltdown Mountain" once per turn.
 
 
 #### Laval Pit
 
-(1) If a "Laval" monster is sent from your deck to the GY: you can special summon 1 of those monsters in face-up defense position.
-(2) If you have 3 or more "Laval" monster in your GY: you can add 1 of your banished "Laval" card to your hand.
-(3) If this card leaves the field because of an opponent's effect: you can Special summon any number of your banished "Laval" monsters, up to the number of monsters you opponent controls.
+If a "Laval" monster is sent from your deck to the GY: you can Special Summon 1 of those monsters in face-up defense position.
+If you have 3 or more "Laval" monster in your GY: you can add 1 of your banished "Laval" card to your hand.
+If this card leaves the field because of an opponent's effect: you can Special summon any number of your banished "Laval" monsters, up to the number of monsters you opponent controls.
 You can only use each effect of "Laval Pit" once per turn.
 
 
 #### Lavalval Burner
 
-ATK 1700
+Monster/Link/Effect/FIRE/Pyro/ATK 1700 / Link Markers: Bottom Left, Bottom Right
+
 2 Pyro and/or "Laval" monsters 
-BL, BR
-(1) While this card points to a Fire monster, this card, and monster this card points to cannot be destroyed by battle
-(2) If a Fire monster is summoned to a zone this card points to: you can target 1 of your banished Fire monsters; special summon it
-(3) If this card leaves the field: add 1 "Laval" card from your GY to your hand
+
+While this card points to a Fire monster, this card, and monster this card points to cannot be destroyed by battle
+If a Fire monster is summoned to a zone this card points to: you can target 1 of your banished Fire monsters; Special Summon it
+If this card leaves the field: add 1 "Laval" card from your GY to your hand
 You can only use each effect of "Lavalval Burner" once per turn.
 
 
@@ -330,39 +331,38 @@ You can only use each effect of "Lavalval Burner" once per turn.
 
 Field Spell
 
-(1) Fusion Monsters that list "Elemental HERO Neos" as a Fusion Material Monster do not have to activate their effects during the End Phase that shuffle them into the Extra Deck and they cannot be targeted or destroyed by opponent's cards and effects.
-(2) Once per turn, if you Special Summon an "Elemental HERO" fusion monster: you can special summon any number of "Neo-Spacian" monsters from your deck or GY, up to the number of monsters your opponent controls.
-(2) If this card leaves the field: you can Special summon 1 "Elemental HERO Neos" and 1 "Neo-Spacian" monster from your deck or GY.
+Fusion Monsters that list "Elemental HERO Neos" as a Fusion Material Monster do not have to activate their effects during the End Phase that shuffle them into the Extra Deck and they cannot be targeted or destroyed by opponent's cards and effects.
+Once per turn, if you Special Summon an "Elemental HERO" fusion monster: you can Special Summon any number of "Neo-Spacian" monsters from your deck or GY, up to the number of monsters your opponent controls.
+If this card leaves the field: you can Special summon 1 "Elemental HERO Neos" and 1 "Neo-Spacian" monster from your deck or GY.
 
 #### Neo Reunion
 
 Continuous Spell
 
-(1) You can send 1 card from your hand or field to the GY: Add 1 "Neo-Spacian" monster and 1 S/T that lists "Neo-Spacian" in its text from your deck to your hand.
-(2) You can pay 500 LP: this turn you can Normal Summon 1 Normal Monster in addtitional to your Normal Summon (you can only gain this effect once).
+You can send 1 card from your hand or field to the GY: Add 1 "Neo-Spacian" monster and 1 S/T that lists "Neo-Spacian" in its text from your deck to your hand.
+You can pay 500 LP: this turn you can Normal Summon 1 Normal Monster in addtitional to your Normal Summon (you can only gain this effect once).
 If you would Normal Summon "Elemental HERO Neos" with this effect, you don't have to tribute monsters
-(3) If this card leaves the field: you can special summon in defense posirion any number of "Neo-Spacian" monsters from your hand or GY, up to the number of monsters your opponent controls.
+If this card leaves the field: you can Special Summon in defense posirion any number of "Neo-Spacian" monsters from your hand or GY, up to the number of monsters your opponent controls.
 Monsters summoned by this effect cannot be destroyed by battle.
 
 #### Neo Power
 
 Continuous Trap
 
-The (1) and (2) effect of this card can only be used once per turn.
-(1) If you control a "Elemental HERO Neos" or a Fusion Monster that lists "Elemental HERO Neos" as a Fusion Material: you can destroy 1 card on the field.
-(2) Special Summon 1 "Elemental HERO Neos" from your hand, deck or GY.
-(3) You can banish this card from your GY and reveal 1 "Elemental HERO" Fusion monster from your extra deck;
-special summon from your deck, hand  and/or GY 1 of each fusion material specifically listed in that card, but halve all damage your opponent takes from the rest of this turn.
+
+If you control a "Elemental HERO Neos" or a Fusion Monster that lists "Elemental HERO Neos" as a Fusion Material: you can destroy 1 card on the field.
+Special Summon 1 "Elemental HERO Neos" from your hand, deck or GY.
+You can banish this card from your GY and reveal 1 "Elemental HERO" Fusion monster from your extra deck;
+Special Summon from your deck, hand  and/or GY 1 of each fusion material specifically listed in that card, but halve all damage your opponent takes from the rest of this turn.
 Monsters summoned this way have their effetcs negated and cannot attack.
 
 #### Elemental HERO Justice Neos
 
-"Elemental HERO Neos" + 2 "Neo-Spacian" monsters with different names
-LV 8
-ATK 3000/DEF 2500
+Monster/Fusion/Effect/LIGHT/Warrior/Level 8 ATK 3000/DEF 2500
 
-Must first be Special Summoned (from your Extra Deck) by shuffling the above cards you control or from you GY into the Deck.
-(You do not use "Polymerization".)
+"Elemental HERO Neos" + 2 "Neo-Spacian" monsters with different names
+
+Must first be Special Summoned (from your Extra Deck) by shuffling the above cards you control or from you GY into the Deck. (You do not use "Polymerization".)
 Cannot be destroyed by effects the turn is is summoned.
 When your opponent activates a card: you can discard 1 "Neo-Spacian" monster; negate its activation, and if you do, destroy it.
 During the End Phase: Shuffle this card into the Extra Deck, then you can Special Summon 1 "Elemental HERO Neos" from your deck
@@ -372,51 +372,45 @@ During the End Phase: Shuffle this card into the Extra Deck, then you can Specia
 
 #### The Nordic Star
 
-Monster/Tuner/Effect
-Level 4
-Fairy/LIGHT
+Monster/Tuner/Effect/Fairy/LIGHT/Level 4/ATK 400/DEF 2000
 
 For a Synchro Summon, you can substitute this card for any 1 "Nordic" Tuner monster.
 Once per turn: You can reveal 1 "Nordic" monster fin your hand; this card's Level becomes that monster's Level, until the end of this turn.
-If this card is sent to the graveyard for the Synchro Summon of a Nordic monster: you can draw 1 card and reveal it, then it if was a "Nordic" monster special summon both it and this card from your graveyard OR if it was a "Nordic" Spell/Trap, add it to your hand. Otherwise, shuffle it into the deck.
+If this card is sent to the Graveyard for the Synchro Summon of a Nordic monster: you can draw 1 card and reveal it, then it if was a "Nordic" monster Special Summon both it and this card from your Graveyard OR if it was a "Nordic" Spell/Trap, add it to your hand. Otherwise, shuffle it into the deck.
 
 
 ### Performapal
 
 #### Performapal Flare Juggler
 
-Lv3
-ATK 900 DEF 700
-FIRE Spellcaster
-(1) You can target 1 "Performapal" monster in your graveyard; add it to your hand. This effect can only be used once while this card is face-up.
-(2) You can send this card you control to the Graveyard; inflict 700 Damage to your opponent.
+Monster/Effect/FIRE/Spellcaster/Level 3/ATK 900 DEF 700
+
+You can target 1 "Performapal" monster in your Graveyard; add it to your hand. This effect can only be used once while this card is face-up.
+You can send this card you control to the Graveyard; inflict 700 Damage to your opponent.
 
 #### Performapal Visionary
 
-EARTH Spellcaster
-LV3
-ATK 1000 DEF 1000
-(1) You can Special Summon this card (from your hand) by Tributing 1 "Performapal" monster.
-(2) You can target another "Performapal" monster you control: this turn, it can attack twice, but this card cannot attack.
+Monster/Effect/EARTH/Spellcaster/Level 3/ATK 1000/DEF 1000
+You can Special Summon this card (from your hand) by Tributing 1 "Performapal" monster.
+You can target another "Performapal" monster you control: this turn, it can attack twice, but this card cannot attack.
 
 #### Performapal Quick Mind
 
-Dark Spellcaster
-LV3
-ATK 1200 DEF 1000
-(1) (Quick Effect): You can return 1 Level 5 or higher "Performapal" monster you control to the hand; Special Summon this card from your graveyard.
-(2) Once per turn (Quick Effect): gain 200 LP for each face-up Spell card you control.
+Monster/Effect/DARK/Spellcaster/Level 3/ATK 1200/DEF 1000
+
+(Quick Effect): You can return 1 Level 5 or higher "Performapal" monster you control to the hand; Special Summon this card from your Graveyard.
+Once per turn (Quick Effect): gain 200 LP for each face-up Spell card you control.
 
 
 #### Performapal Watch☆Witch
 
-Link 2, Bottom left, Bottom right
-Dark Spellcaster/Effect
+Monster/Link/Effect/DARK/Spellcaster/Link 2/ATK 2000/Link Markers: Bottom Left, Bottom Right
+
 2 "Performapal" monsters
-ATK 2000
-(1) If this card is Link Summoned: You can target 1 Continuous Spell card in your GY; add it to your hand.
-(2) You can target 1 other face-up card you control; destroy it, then add 1 "Performapal" monster from your GY to your hand.
-(3) If a Continuous Spell card(s) you control leaves the field: Draw 1 card.
+
+If this card is Link Summoned: You can target 1 Continuous Spell card in your GY; add it to your hand.
+You can target 1 other face-up card you control; destroy it, then add 1 "Performapal" monster from your GY to your hand.
+If a Continuous Spell card(s) you control leaves the field: Draw 1 card.
 You can only use each effect of "Performapal Watch☆Witch" once per turn.
 
 
@@ -424,84 +418,77 @@ You can only use each effect of "Performapal Watch☆Witch" once per turn.
 
 #### Qliphort Root
 
-Link 2
-Link Arrows: BL, BR
+Monster/Link/Effect/EARTH/Machine/Link 2/Link Markers: BL, BR
 2 "Qli" monsters
 
-(1) Once per turn: You can gain 800 LP for each "Qli" monster this card points to.
-(2) "Qli" monsters this card points to can be treated as 2 tributes for a Tribute Summon.
-(3) Once per turn, if a "Qli" monster this cards points to is tributed: add 1 "Qli" card from your deck to your hand.
-(4) If this card leaves the field because of your opponent's card, add 1 "Qli" card from your graveyard, banished or that is face-up in your extra deck to your hand.
+Once per turn: You can gain 800 LP for each "Qli" monster this card points to.
+"Qli" monsters this card points to can be treated as 2 tributes for a Tribute Summon.
+Once per turn, if a "Qli" monster this cards points to is tributed: add 1 "Qli" card from your deck to your hand.
+If this card leaves the field because of your opponent's card, add 1 "Qli" card from your Graveyard, banished or that is face-up in your extra deck to your hand.
 
 #### Qlimb
 
 Normal Spell
 
 Apply 1 of the following effects.
-(1) Add 1 "Qli" monster from your graveyard, face-up in your extra deck or that is banished to your hand.
-(2) Tribute 1 monster; add 1 "Qli" card from your deck to your hand, except "Qlimb".
+Add 1 "Qli" monster from your Graveyard, face-up in your extra deck or that is banished to your hand.
+Tribute 1 monster; add 1 "Qli" card from your deck to your hand, except "Qlimb".
 
 #### yet to be named
 
 Continuous Spell
 You can only use 1 effect of " " once per turn.
-(1) Once per turn: you can tribute 1 Normal Summoned "Qli" monster; draw 2 cards. You cannot Special Summon for the rest of the turn you activate this effect, except for "Qli" monsters.
-(2) Once per turn: you can add 1 face-up "Qli" monster from your extra deck to your hand.
+Once per turn: you can tribute 1 Normal Summoned "Qli" monster; draw 2 cards. You cannot Special Summon for the rest of the turn you activate this effect, except for "Qli" monsters.
+Once per turn: you can add 1 face-up "Qli" monster from your extra deck to your hand.
 
 
 ### Rokket
 
 #### Rokket R
 
-1 Dark Dragon monster
-Link 1
-B
-ATK-1000
+Monster/Link/Effect/DARK/Dragon/Link 1/ATK 1000/Link Marker: Bottom
 
-(1) Once per turn (Quick-effect): target 1 monster on the field; this turn this card cannot be destroyed by battle, also, during the end phase of this turn,
-if there is no monster with the same name as that target on the field, you can special summon 1 monster with that name from your deck or graveyard.
-(2) Once per turn, if this card is targeted by a card or effect while you control another "Rokket" monster you can activate this effect:
+Once per turn (Quick-effect): target 1 monster on the field; this turn this card cannot be destroyed by battle, also, during the end phase of this turn,
+if there is no monster with the same name as that target on the field, you can Special Summon 1 monster with that name from your deck or Graveyard.
+Once per turn, if this card is targeted by a card or effect while you control another "Rokket" monster you can activate this effect:
 negate that effect, then target 1 other monster you control; destroy it.
 
 
 ### Melodious 
 
 #### Idol, the Melodious Diva
-Link 1
-Bottom
-ATK 100
+
+Monster/Link/Effect/Fairy/LIGHT/Link 1/ATK 100/Link Marker: Bottom
+
 1 "Melodious" monster
 
-(1) Gains ATK equal to the ATK of the monster it points to.
-(2) Once per turn: you can special summon 1 "Melodious" monster from your hand in Defense position.
+Gains ATK equal to the ATK of the monster it points to.
+Once per turn: you can Special Summon 1 "Melodious" monster from your hand in Defense position.
 
 
 ### Invoked
 
 #### Ether Invoked
 
-Monster/Effect
-Psychic LIGHT
-Level 1
-ATK 100 DEF 100
-If you control "Aleister the Invoker" you can special summon this card (from hand or GY). You can only Special Summon "Ether Invoked" once per turn this way.
+Monster/Effect/Psychic LIGHT/Level 1/ATK 100/DEF 100
+
+If you control "Aleister the Invoker": you can Special Summon this card (from hand or GY).
 If this card is in the GY: You can declare 1 Attribute; this card in the GY becomes that Attribute until the end of this turn.
-If this card is banished from your field or GY: you can add this card to your hand. 
+If this card is banished from your field or GY: you can add this card to your hand, also, for the rest of this turn you cannot activate any effect of "Ether Invoked".
 You can only use each effect of "Ether Invoked once per turn.
 
 
 ### Kuriboh
 
 Kuribohther
-Fusion Dark Lv1
-ATK 600
-DEF 400
+Monster/Fusion/Effect/DARK/Fiend/Level 1/ ATK 600/DEF 400
+
 2 "Kuriboh" monsters with different names
 
-(1) Must first be summoned with "Dark Fusion".
-(2) Cannot be destroyed by battle while you control another "Kuriboh" monster
-(3) Once per turn (Quick effect): target any number of cards on the field, up to the number of "Kuriboh" monsters you control; negate their effects, until the end of this turn.
-(4) During each end phase: Gain 100 LP for each "Kuriboh" card in your GY or that is banished.
+Must first be summoned with "Dark Fusion".
+Cannot be destroyed by battle while you control another "Kuriboh" monster
+Once per turn (Quick effect): target any number of cards on the field, up to the number of "Kuriboh" monsters you control; negate their effects, until the end of this turn.
+During each end phase: Gain 100 LP for each "Kuriboh" card in your GY or that is banished.
 
 #### Kuriboh Recycle Plan
 
@@ -514,22 +501,24 @@ Once per turn, this card cannot be destroyed by card effects.
 ### Generic Fusion Support
 
 #### Fusion Savior
-2 monsters that are listed as materials for Fusion monster in your extra deck
-BL, BR
-ATK 1500
+
+Monster/Link/Effect/EARTH/Psychic/Link 2/ATK 1500/Link Markers: BL, BR
+
+2 monsters that are specifically listed as materials in a Fusion monster (s) in your Extra deck.
+
 When this card is Link Summoned: add 1 "Polymerization" or "Fusion" spell card from your GY or deck to your hand.
-If a Fusion monster is special summoned to a zone this card points to: you can target 1 monster in your GY that was used as fusion material this turn; special summon it.
-If this card leaves the field: you can special summon 1 fusion monster from your GY.
+If a Fusion monster is Special Summoned to a zone this card points to: you can target 1 monster in your GY that was used as fusion material this turn; Special Summon it.
+If this card leaves the field: you can Special Summon 1 fusion monster from your GY.
 
 
 ### Generic Flip Support
 
 #### The Silent Revolution
 
-(1) Flip monsters gain 500 ATK/DEF.
-(2) Once per turn (Quick effect): you can flip 1 face-down defense position monster to face-up attack position
-(3) Once per turn (Quick effect): you can flip 1 face-up attack position monster to face-down position
-(4) If this card would be destroyed, you can special summon 1 Flip monster from your deck instead.
+Flip monsters gain 500 ATK/DEF.
+Once per turn (Quick effect): you can flip 1 face-down defense position monster to face-up attack position
+Once per turn (Quick effect): you can flip 1 face-up attack position monster to face-down position
+If this card would be destroyed, you can Special Summon 1 Flip monster from your deck instead.
 
 
 ### Heraldic Beast
@@ -538,19 +527,17 @@ If this card leaves the field: you can special summon 1 fusion monster from your
 
 Normal Spell
 
-(1) Add 1 "Heraldic Beast" monster from your deck to your hand, then you can send 1 "Heraldic Beast" monster with a different from your deck to your GY.
-(2) You can banish this card from your GY; add 1 of banished "Heraldic Beast" monster to your hand
-You can only use the (1) and (2) effects of "Heraldry Genesis" once per turn.
+Add 1 "Heraldic Beast" monster from your deck to your hand, then you can send 1 "Heraldic Beast" monster with a different from your deck to your GY.
+You can banish this card from your GY; add 1 of banished "Heraldic Beast" monster to your hand
+You can only use each effect of "Heraldry Genesis" once per turn.
 
 #### Heraldric Beast Behemoth
 
-LV4 
-ATK 2100
-DEF 100
+Monster/Effect/Psychic/EARTH/Level 4/ATK 2100/DEF 100
 
-(1) Cannot attack directly
-(2) Once per turn: you can reveal 1 "Heraldic Beast" monster in your hand; special summon 1 banished "Heraldic Beast" monster, then send this card to the GY.
-(3) If this card is sent to the GY by a card effect: Special summon 1 "Heraldic Beast" from your hand or that is banished.
+Cannot attack directly
+Once per turn: you can reveal 1 "Heraldic Beast" monster in your hand; Special Summon 1 banished "Heraldic Beast" monster, then send this card to the GY.
+If this card is sent to the GY by a card effect: Special summon 1 "Heraldic Beast" from your hand or that is banished.
 You can only use each effect of "Heraldric Beast Behemoth" once per turn
 
 
@@ -558,12 +545,11 @@ You can only use each effect of "Heraldric Beast Behemoth" once per turn
 
 #### Inzektor Wasp
 
-Monster/Effect/Xyz/Union
-LIGHT/Insect
+Monster/Effect/Xyz/Union/LIGHT/Insect
 
 2 Level 3 Insect Monsters
 If this card is Xyz Summoned: you can target 1 Insect monster in your GY; equip it to this card.
-You can detach 1 Xyz Material from this card to target 1 Insect monster in your graveyard; shuffle it into the deck, and if you do, special summon 1 "Inzektor" monster from your deck
+You can detach 1 Xyz Material from this card to target 1 Insect monster in your Graveyard; shuffle it into the deck, and if you do, Special Summon 1 "Inzektor" monster from your deck
 Once per turn, you can either: Target 1 Insect monster you control; equip this card to that target, OR: Unequip this card and Special Summon it. 
 A monster equipped with this card is unaffected by your opponent's monster effects (except its own), also if the equipped monster would be destroyed by battle or card effect, destroy this card instead.
 If this card is sent from field to the GY: target 1 Insect monster in your GY; shuffle it into the deck, then draw 1 card.
@@ -572,8 +558,8 @@ You can only Xyz Summon "Inzektor Wasp" once per turn.
 
 ### Generic Pyschic Support
 
-LIGHT/Psychic
-Level 6
+Monster/Effect/LIGHT/Psychic/Level 6
+
 1 tuner + 1+ non-tuner monsters
 Each time you pay LP: gay 500 LP. Once per turn, you can pay 800 LP to target 1 Psychic monster in your gy or that is banished; Special summon it in defense position, also negate its effect.
 
@@ -581,14 +567,12 @@ Each time you pay LP: gay 500 LP. Once per turn, you can pay 800 LP to target 1 
 ### Six Samurai
 
 2 "Six Samurai" monsters
-Warrior/EARTH
-ATK 1700
-Link 2
-Arrows: Bottom Left, Bottom Right
 
-When this card is Link Summoned: you can banish 1 "Six Samurai" monster from your graveyard; add to your hand 1 card that you can place a Bushido Counter on, from your deck or graveyard.
+Monster/Warrior/EARTH/ATK 1700/Link 2/ Link Markers: Bottom Left, Bottom Right
+
+When this card is Link Summoned: you can banish 1 "Six Samurai" monster from your Graveyard; add to your hand 1 card that you can place a Bushido Counter on, from your deck or Graveyard.
 Once per turn, when a monster effect activates while you control another "Six Samurai" or "Shien" monster: you can negate the activation, and if you do, destroy it.
-When this card leaves the field because of an opponent's card: you can target 1 of your banished "Six Samurai" monsters; special summon it in defense position
+When this card leaves the field because of an opponent's card: you can target 1 of your banished "Six Samurai" monsters; Special Summon it in defense position
 You can only use each of this card's name effect once per turn.
 
 
@@ -596,13 +580,10 @@ You can only use each of this card's name effect once per turn.
 
 #### Vylon Gamma
 
-Monster/Effect/Link
-Machine/LIGHT
-ATK 1900
-Arrows: Down, Bottom left
+Monster/Effect/Link/Machine/LIGHT/ATK 1900/Link Markers: Down, Bottom left
 
 2 monsters, including a **"Vylon"** monster
-When this card is summoned: you can reveal 1 "Vylon" card from your hand to the graveyard; special summon 1 "Vylon" monster from your deck.
+When this card is summoned: you can reveal 1 "Vylon" card from your hand to the Graveyard; Special Summon 1 "Vylon" monster from your deck.
 Once per turn: you can target 1 "Vylon" monster you con
 
 
@@ -612,7 +593,7 @@ Once per turn: you can target 1 "Vylon" monster you con
 
 Normal Spell
 
-(1) Send 1 "Yang Zing" card from your deck to the graveyard; Special Summon 1 "Yang Zing" monster from your graveyard with a different name of the sent monster.
+Send 1 "Yang Zing" card from your deck to the Graveyard; Special Summon 1 "Yang Zing" monster from your Graveyard with a different name of the sent monster.
 It cannot attack and it is destroyed during the end phase.
 You can only activate 1 "Yang Zing Mirage" per turn.
 
@@ -620,47 +601,38 @@ You can only activate 1 "Yang Zing Mirage" per turn.
 
 #### Wattcat
 
-LIGHT / Thunder / Pendulum / Tuner / Effect
-Level 2
-ATK 300 DEF 200
-Pendulum Scale: 1
+Monster/Pendulum/Tuner/Effect/LIGHT/Thunder/Level 2/ATK 300/ DEF 200/ Pendulum Scale: 1
 
-**[Pendulum Effect]**
+[Pendulum Effect]
 
 Once per turn: you can target 1 "Watt" monster you control; It can attack twice this turn.
 
-**[Monster effect]**
+[Monster effect]
 
-You can only use the (3) effect of "Wattcat" once per turn
-(1) Can attack your opponent directly.
-(2) When this card inflicts Battle Damage to your opponent by a direct attack: target 1 card your opponent controls; banish it.
-(3) If this card on the field in destroyed: you can special summon this card.
+Can attack your opponent directly.
+When this card inflicts Battle Damage to your opponent by a direct attack: target 1 card your opponent controls; banish it.
+If this card on the field in destroyed: you can Special Summon this card.
 
 #### Wattapir
 
-LIGHT / Thunder / Pendulum / Effect
-Level 4
-ATK 1000 DEF 800
-Pendulum Scale: 5
+Monster/Pendulum/Effect/LIGHT/Thunder/Level 4/ATK 1000/DEF 800/Pendulum Scale: 5
 
-**[Pendulum Effect]**
+[Pendulum Effect]
 
-Once per turn: you can target 1 "Watt" monster in your graveyard; special summon it in DEF position.
+Once per turn: you can target 1 "Watt" monster in your Graveyard; Special Summon it in DEF position.
 
-**[Monster effect]**
+[Monster effect]
 
-(1) Can attack your opponent directly.
-(2) When this card inflicts Battle Damage to your opponent by a direct attack: target 1 Monster your opponent controls; take control of it until the end phase of this turn, but it cannot attack.
-(3) If this card on the field in destroyed: you can special summon 1 "Watt" monster from your graveyard.
+Can attack your opponent directly.
+When this card inflicts Battle Damage to your opponent by a direct attack: target 1 Monster your opponent controls; take control of it until the end phase of this turn, but it cannot attack.
+If this card on the field in destroyed: you can Special Summon 1 "Watt" monster from your Graveyard.
 
 #### Wattdog
 
-Monster/Effect/Tuner
-Level 2
-LIGHT Thunder
-ATK 300 DEF 300
+Monster/Effect/Tuner/Level 2/LIGHT Thunder/ATK 300 DEF 300
+
 If your "Watt" monster(s) would be destroyed (either by battle or effect) you can discard this card instead.
-When a "Watt" monster is summoned: you can special summon this card from your graveyard, also, you cannot special summon for the rest of this turn, except Thunder monsters.
+When a "Watt" monster is summoned: you can Special Summon this card from your Graveyard, also, you cannot Special Summon for the rest of this turn, except Thunder monsters.
 Once per turn: You can activate 1 of these effects.
 ● Increase this card's Level by 1, until the End Phase.
 ● Reduce this card's Level by 1, until the End Phase.
@@ -669,62 +641,59 @@ Once per turn: You can activate 1 of these effects.
 
 Field Spell
 
-(1) You can discard 1 card: special summon 1 "Watt" monster from your deck in DEF position.
-(2) If a "Watt" monster you control is destroyed by battle or card effect, you can special summon a "Watt" monster from your Graveyard with a different name.
-(3) While your opponent controls the monster with the highest ATK on the field, this card cannot be targeted by your opponent's effect.
-You can only use the (1) and (2) effects of "Watttower" once per turn.
+You can discard 1 card: Special Summon 1 "Watt" monster from your deck in DEF position.
+If a "Watt" monster you control is destroyed by battle or card effect, you can Special Summon a "Watt" monster from your Graveyard with a different name.
+While your opponent controls the monster with the highest ATK on the field, this card cannot be targeted by your opponent's effect.
+You can only activate each effect of "Watttower" once per turn.
 
 #### Wattcerberus
 
-Monster/Effect/Link
-Link 2
-ATK 1400
+Monster/Effect/Link/Link 2/ATK 1400
 
 2 Thunder monsters
-If this card is link summoned: you can add 2 Thunder monsters to your hand, 1 from graveyard and 1 from your deck, with a different name from each other.
-Once per turn you can target 1 "Watt" monster you control; each time it inflicts Battle Damage this turn special summon 1 "Watt" monster from your deck.
-If this card leaves the field because of your opponent's card: special summon 2 "Watt" monsters from your GY in defense position.
+If this card is link summoned: you can add 2 Thunder monsters to your hand, 1 from Graveyard and 1 from your deck, with a different name from each other.
+Once per turn you can target 1 "Watt" monster you control; each time it inflicts Battle Damage this turn Special Summon 1 "Watt" monster from your deck.
+If this card leaves the field because of your opponent's card: Special Summon 2 "Watt" monsters from your GY in defense position.
 
 
 ### Venom
 
 #### Vennominon the Overking of Venomous Snakes
-[Level 8/Dark/Reptile/Effect]
-ATK 0/ DEF 0
-(1) This card can be special summoned (from your hand or GY) by tributing 2 Reptile monsters from your field ( You can only Special Summon "Vennominon the Overking of Venomous Snakes" once per turn this way).
-(2) Cannot be targeted by your opponent's card effects.
-(3) Once per turn, you can send the top 5 cards your deck to the GY, and if you do this card gains 1000 ATK for each Reptile monster sent to the GY by this effect until the end of the next turn.
-(4) This card name is treated as "Vennominon the Overking of Venomous Snakes" while on the field or GY.
+Monster/Effect/Dark/Reptile/Level 8/ATK 0/ DEF 0
+This card can be Special Summoned (from your hand or GY) by tributing 2 Reptile monsters from your field ( You can only Special Summon "Vennominon the Overking of Venomous Snakes" once per turn this way).
+Cannot be targeted by your opponent's card effects.
+Once per turn, you can send the top 5 cards your deck to the GY, and if you do this card gains 1000 ATK for each Reptile monster sent to the GY by this effect until the end of the next turn.
+This card name is treated as "Vennominon the Overking of Venomous Snakes" while on the field or GY.
 
 #### Temple of the Venomous Snakes
 
 Field Spell
 
-(1) This card's name becomes  "Venom Swamp" while it is on the field
-(2) During each player's End Phase: Place 2 Venom Counter on each face-up monster on the field.
-(3) "Venom" monsters gains 100 ATK for each Venom Counter on the field
-(4) Monsters your opponent controls lose 500 ATK for each Venom Counter on them.
-(5) Once per turn, You can remove 4 Venom Counter from anywhere on the field: Special Summon 2 "Venom Tokens" ( Level 4/Dark/Reptile/ATK 1000/DEF 1000) .
-(6) During your End Phase: banish all monsters with 0 ATK on the field, except Reptile monsters.
+This card's name becomes  "Venom Swamp" while it is on the field
+During each player's End Phase: Place 2 Venom Counter on each face-up monster on the field.
+"Venom" monsters gains 100 ATK for each Venom Counter on the field
+Monsters your opponent controls lose 500 ATK for each Venom Counter on them.
+Once per turn, You can remove 4 Venom Counter from anywhere on the field: Special Summon 2 "Venom Tokens" ( Level 4/Dark/Reptile/ATK 1000/DEF 1000) .
+During your End Phase: banish all monsters with 0 ATK on the field, except Reptile monsters.
 
 #### Venom Naja
-Level 1/Dark/Reptile/Effect
-ATK 100 / DEF 100
 
-(1) You can Special Summon this card (from your hand or GY) by removing 2 Venom Counters from anywhere on the field (You can only Special Summon "Venom Naja" once per turn this way)
-(2) If this card is Special Summoned: add 1 "Venom" card from your deck to your hand your hand.
-(3) If this card is Normal Summon: Send 1 Reptile monster from your deck to your graveyard.
-(4) You can remove 4 Venom Counter from anywhere on the field: Special Summon 1 Level 5 or lower Reptile monster from your deck, but it cannot attack this turn. 
+Monster/Dark/Reptile/Effect/Level 1/ATK 100 / DEF 100
+
+You can Special Summon this card (from your hand or GY) by removing 2 Venom Counters from anywhere on the field (You can only Special Summon "Venom Naja" once per turn this way)
+If this card is Special Summoned: add 1 "Venom" card from your deck to your hand your hand.
+If this card is Normal Summon: Send 1 Reptile monster from your deck to your Graveyard.
+You can remove 4 Venom Counter from anywhere on the field: Special Summon 1 Level 5 or lower Reptile monster from your deck, but it cannot attack this turn. 
 You can only use each effect of "Venom Naja" once per turn
 
 #### Venom XXX
 
-Level 4/Dark/Reptile/Effect
+Monster/Level 4/Dark/Reptile/Effect
 
-(1) During the turn you normal summon this card, you can normal summon 1 Reptile monster in addition to your Normal Summon (You can only gain this effect once per turn).
-(2) Once per turn (Quick effect), place 1 Venom Counter on monsters on the field, up to number of reptile monsters you control.
-(3) Monsters with Venom counters cannot be used as material for a summon.
-(4) If this card is sent from to the graveyard: you can add 1 "Venom" card from your deck to your hand.
+During the turn you normal summon this card, you can normal summon 1 Reptile monster in addition to your Normal Summon (You can only gain this effect once per turn).
+Once per turn (Quick effect), place 1 Venom Counter on monsters on the field, up to number of reptile monsters you control.
+Monsters with Venom counters cannot be used as material for a summon.
+If this card is sent from to the Graveyard: you can add 1 "Venom" card from your deck to your hand.
 You can only use each effect of "Venom XXX" once per turn
 
 
@@ -732,24 +701,20 @@ You can only use each effect of "Venom XXX" once per turn
 
 #### U.A. Something that i don't know the name
 
-Level 1
-Earth/Warrior/Tuner/Effect
-ATK 0/DEF 0
+Monster/Earth/Warrior/Tuner/Effect/Level 1/ATK 0/DEF 0
 
-(1) You can Special Summon this card (from your hand) by returning 1 "U.A" card you control to your hand. You can only summon "U.A. Something that i don't know the name" once per turn this way
-(2) If this card is Summoned: you can reveal any number of "U.A." cards in your hand; shuffle them into your deck then draw cards equal to number of cards shuffled +1.
-(3) If this card is returned to your hand: you can special summon this card.
+You can Special Summon this card (from your hand) by returning 1 "U.A" card you control to your hand. You can only summon "U.A. Something that i don't know the name" once per turn this way
+If this card is Summoned: you can reveal any number of "U.A." cards in your hand; shuffle them into your deck then draw cards equal to number of cards shuffled +1.
+If this card is returned to your hand: you can Special Summon this card.
 You can only use the (2) and (3) effects of "U.A. Something that i don't know the name" once per turn.
 
 #### U.A. I dont know the name
 
-level 4
-Earth/Warrior/Effect
-ATK 0/DEF 2100
+Monster/Earth/Warrior/Effect/Level 4/ATK 0/DEF 2100
 
-(1) (Quick effect) You can reveal this card in your hand: target 1 "U.A." monster you control; return it to the hand, and if you do, Special Summon this card.
-(2) Cannot be destroyed by battle or cards effects the turn it is summoned.
-(3) (Quick effect) You can target 1 "U.A." monster you control (other than this card); return it you your hand, and if you do, Special Summon 1 "U.A." monster from your deck.
+(Quick effect) You can reveal this card in your hand: target 1 "U.A." monster you control; return it to the hand, and if you do, Special Summon this card.
+Cannot be destroyed by battle or cards effects the turn it is summoned.
+(Quick effect) You can target 1 "U.A." monster you control (other than this card); return it you your hand, and if you do, Special Summon 1 "U.A." monster from your deck.
 It cannot attack. For the rest of this turn, you cannot summon monsters with the same name as the monster returned to the hand by this effect.
 You can only use the (1) and (3) effects of "U.A. I dont know the name" once per turn.
 
@@ -758,22 +723,22 @@ You can only use the (1) and (3) effects of "U.A. I dont know the name" once per
 
 Normal Spell
 
-(1) Add 1 "U.A." monster from your deck to your hand. For the rest of this turn, each time an "U.A." monster is returned to your hand, take 300 Damage.
-(2) When an "U.A." monster is summoned: you can banish this card from your GY; during the end phase of this turn, add 1 "U.A." card from your deck to your hand
+Add 1 "U.A." monster from your deck to your hand. For the rest of this turn, each time an "U.A." monster is returned to your hand, take 300 Damage.
+When an "U.A." monster is summoned: you can banish this card from your GY; during the end phase of this turn, add 1 "U.A." card from your deck to your hand
 You can only use each effect of "U.A. Devil's Deal" once per turn
 
 #### U.A. Continuous Spell that i dont know the name
 
-(1) If an "U.A." monster is returne to your hand: you can discard 1 card; discard 1 random card from your opponent's hand.
-(2) If you control an "U.A." monster: you can target 1 "U.A." monster in your GY; send this card to your GY, and if you do, Special summon that target.
+If an "U.A." monster is returne to your hand: you can discard 1 card; discard 1 random card from your opponent's hand.
+If you control an "U.A." monster: you can target 1 "U.A." monster in your GY; send this card to your GY, and if you do, Special summon that target.
 You can only Control 1 "U.A. Continuous Spell that i dont know the name"
 
 #### Unknown
 
 Normal Trap
 
-(1) Target 1 "U.A." monster you control; this turn it is unnaffected by other cards effects. Return it to the hand during the end phase.
-(2) You can banish this card from your GY: target 1 "U.A." monster you control and reveal any number of "U.A." monsters in your hand;
+Target 1 "U.A." monster you control; this turn it is unnaffected by other cards effects. Return it to the hand during the end phase.
+You can banish this card from your GY: target 1 "U.A." monster you control and reveal any number of "U.A." monsters in your hand;
 this turn that target can attack a number of times up to the number of cards revealed.
 
 
@@ -781,27 +746,23 @@ this turn that target can attack a number of times up to the number of cards rev
 
 #### Tellark 1
 
-Link 1
-ATK 500
-Arrow: Bottom
+Monster/Link/Effect/Warrior/LIGHT/Link 1/ATK 500/Link Marker: Bottom
 
 1 "Tellarknight" monster
 
-(1) Unnafected by monsters effects while you control another "tellarknight" monster.
-(2) If this card is link summoned: you can discard 1 card; special summon 1 "tellarknight" monster from your GY, but its effects are negated
-(3) You can tribute this card card (Quick effect): your opponent discards 1 random card from his hand.
-You can only special summon "Tellark 1" once per turn.
+Unnafected by monsters effects while you control another "tellarknight" monster.
+If this card is link summoned: you can discard 1 card; Special Summon 1 "tellarknight" monster from your GY, but its effects are negated
+You can tribute this card card (Quick effect): your opponent discards 1 random card from his hand.
+You can only Special Summon "Tellark 1" once per turn.
 
 
 #### Tellark 2
 
-Link 1
-ATK 500
-Arrow: Bottom
+Monster/Link/Effect/Warrior/LIGHT/Link 1/ATK 500/Link Marker: Bottom
 
 1 "Tellarknight" monster
 
-(1) Unnafected by monsters effects while you control another "tellarknight" monster.
-(2) When this card is link summoned: target 1 lv4 "tellarknight" monster from your GY; apply that target's effect as this card's
-(3) You can tribute this card card (Quick effect): draw 1 card
-You can only special summon "Tellark 2" once per turn.
+Unnafected by monsters effects while you control another "tellarknight" monster.
+When this card is link summoned: target 1 lv4 "tellarknight" monster from your GY; apply that target's effect as this card's
+You can tribute this card card (Quick effect): draw 1 card
+You can only Special Summon "Tellark 2" once per turn.
