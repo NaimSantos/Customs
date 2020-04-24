@@ -349,7 +349,6 @@ Monsters summoned by this effect cannot be destroyed by battle.
 
 Continuous Trap
 
-
 If you control a "Elemental HERO Neos" or a Fusion Monster that lists "Elemental HERO Neos" as a Fusion Material: you can destroy 1 card on the field.
 Special Summon 1 "Elemental HERO Neos" from your hand, deck or GY.
 You can banish this card from your GY and reveal 1 "Elemental HERO" Fusion monster from your extra deck;
@@ -367,6 +366,14 @@ Cannot be destroyed by effects the turn is is summoned.
 When your opponent activates a card: you can discard 1 "Neo-Spacian" monster; negate its activation, and if you do, destroy it.
 During the End Phase: Shuffle this card into the Extra Deck, then you can Special Summon 1 "Elemental HERO Neos" from your deck
 
+
+#### Neo-Spacian Clone
+
+Monster/Effect/Warrior/LIGHT/Lv 1/ ATK 100/DEF 300
+
+If this card is Summoned: You can send 1 "Neo-Spacian" monster from your deck to the GY; until the end of this turn, this card's names become the sent monster's name.
+Once per turn: you can target 1 "Elemental Hero Neos" and 1 "Neo-Spacian" monster in your GY; your opponent picks 1 for you to Special Summon to your field, then shuffle the other into the deck.
+If a Fusion Monster you control that lists "Elemental Hero Neos" as material would be shuffled into the Extra Deck by its own effect, you can return this card you control to the hand, instead.
 
 ### Nordic
 
@@ -587,6 +594,89 @@ When this card is summoned: you can reveal 1 "Vylon" card from your hand to the 
 Once per turn: you can target 1 "Vylon" monster you con
 
 
+#### Vylon Omnicrom
+
+Monster/Effect/Synchro/Machine/Light/Level 8 ATK 2600 DEF 2400
+
+1 "Vylon" tuner  + 1+ non-tuner monster
+Gains 200 ATK/DEF per each Equip Spell equipped to it. Once per turn: you can destroy any number of Equip Spells you control, and if you do, look at your opponent's hand and Extra deck and banish the same number of cards. Up to twice per turn, when an attack is declared involving a "Vylon" monster you control that does not have a card equipped to it: you can negate the attack, then equip 1 "Vylon" Equip Spell from your deck or GY to it. If this card leaves the field because of an opponent's card: you can target 1 "Vylon" monster in your GY, except "Vylon Omnicron"; Special Summon it in Defense Position, then if it was not a Synchro monster, you can add 1 "Vylon" card from your GY to your hand.
+
+
+#### Vylon Diode
+Monster/Effect/Machine/Light/Union/Level 2 ATK 300 DEF 1000
+
+You can target 1 face-up Equip Spell you control OR, if you control a Synchro monster, 1 "Vylon" card instead; destroy it, and if you do Special Summon this card from your hand or GY.
+You can only use this effect of "Vylon Diode" once per turn. Once per turn, you can either: Target 1 face-up "Vylon" monster you control; equip this card to that target, OR: Unequip this card and Special Summon it in face-up Attack Position, and if you do, it is treated as a tuner.
+(If the equipped monster would be destroyed, destroy this card instead.)
+
+#### Vylon Amplification
+
+Normal Spell
+
+Target 1 "Vylon" monster in your GY; Special Summon it, then apply these effects, in sequence, depending on what the monster is on the field, if it is any of these.
+● Union: You can destroy 1 monster on the field.
+● Tuner: You can destroy 1 Spell/Trap on the field.
+● Synchro: You can draw 1 card.
+You can only activate 1 "Vylon Amplification" per turn.
+
+#### Vylon Connector
+
+Equip Spell
+
+Equip only to a monster you control. It gains the following effects, depending on what it is.
+● LIGHT: Gains 300 ATK/DEF.
+● Tuner: Once per turn: you can increase this card level by 1.
+● Union: Once per turn: you can Special Summon 1 Union monster from your GY with the same Level but a different name as this monster.
+● Fairy: It can make two attacks on monsters during each Battle Phase.
+● "Vylon" monster: Once per turn: you can target 1 card on the field; send it to the GY.
+If this face-up card on the field is sent to the Graveyard: You can add 1 "Vylon" Spell Card from your Deck to your hand.
+You can only control 1 "Vylon Connector".
+
+
+#### Vylon Psi
+
+Monster/Effect/Fairy/Light/Synchro/Level 6 ATK 2000 DEF 2000
+
+1 tuner + 1+ non-tuner Fairy monster
+When this card is Summoned: you can target 1 "Vylon" monster on the field; equip to it either 1 "Vylon" Equip Spell card from your deck OR 1 "Vylon" monster from your hand or GY with an effect that increases its ATK/DEF by 500.
+Once per turn (Quick Effect): you can send 1 face-up Equip Spell you control to the GY, then apply 1 of the following effects OR both if it was equipped to this card.
+● Destroy 1 card on the field.
+● Negate the effects of 1 face-up card on the field, until the End of this turn.
+You can only use this effect of "Vylon Psi" once per turn.
+
+
+#### Vylon Battery
+
+Monster/Effect/Fairy/Light/Level 3 ATK 1500 DEF 1300
+
+If this card is Summoned: you can add 1 "Vylon" Spell/Trap from your deck to your hand.
+Once per turn: you can target 1 "Vylon" monster on the field; equip 1 "Vylon" monster from your hand or GY to it as an Equip Spell with an effect that makes it gain 500 ATK/DEF.
+If this card is sent from field to the GY: you can target 1 face-up "Vylon" card you control; destroy it, and if you do, Special Summon this card, but banish it when it leaves the field.
+You can only use each effect of "Vylon Battery" once per turn.
+
+
+#### Vylon Hologram
+Monster/Effect/Fairy/Light/Level 4 ATK 1500 DEF 1300
+
+Once per turn, if this card has a "Vylon" card equipped to it: you can add 1 "Vylon" card from your deck to you hand.
+If this card is sent from the field to your GY, you can target 1 monster you control; equip this card to it.
+A monster equipped with this card gains the following effects, depending on what it is:
+● LIGHT: Gains 300 ATK/DEF.
+● Fairy: Once per turn: you can gain 500 LP.
+● "Vylon" monster: Once per turn: you can either increase or decrease this card's level by 1.
+
+
+#### Vylon Cylinder
+
+Monster/Effect/Fairy/Light/Union/Tuner/Level 1
+
+Once per turn, you can either: Target 1 face-up monster you control; equip this card (from your hand or Monster Zone) to that target, OR: Unequip this card and Special Summon it.
+A monster equipped with this card gains the following effects, depending on what it is:
+● LIGHT: Once per turn, it cannot be destroyed by battle.
+● Fairy: Once per turn, it cannot be destroyed by your opponent's effects.
+● "Vylon" monster: Cannot be targeted by your opponent's effects
+If this card is sent from the field to the GY: You can add 1 other "Vylon" monster from your GY to your hand.
+
 ### Yang Zing
 
 #### Yang Zing Mirage
@@ -766,3 +856,84 @@ Unnafected by monsters effects while you control another "tellarknight" monster.
 When this card is link summoned: target 1 lv4 "tellarknight" monster from your GY; apply that target's effect as this card's
 You can tribute this card card (Quick effect): draw 1 card
 You can only Special Summon "Tellark 2" once per turn.
+
+
+
+#### Alien Recruiter
+
+Monster/Effect/DARK/Reptile/Level 4 ATK 1600/DEF 1200
+
+If a monster with an A-Counter battles an "Alien" monster, it loses 300 ATK and DEF for each A-Counter during damage calculation only.
+If this card is Summoned while your opponent controls a monster: you can Special Summon 1 "Alien" monster from your hand or GY, but destroy it during the End Phase.
+Once per turn: you can place A-Counter counters on face-up monsters on the field, up to to the number of different "Alien" cards in your GY.
+You can only activate each of these effect of "Alien Recruiter" once per turn.
+
+
+
+#### Specimen Extinction
+
+Quick-Play Spell
+
+Tribute 1 "Fossil" Fusion monster then declare 1 Type; your opponent must send from his Deck/Extra Deck to the GY a number monsters with that type equal to the level of the tributed monster - or all monsters from that type if the number is lower than the level, then if your opponent did not send a number of monsters equal to the level, you can destroy cards on the field up to the difference.
+
+#### Fossilize
+
+Normal Spell
+
+Discard 1 card; Add 1 "Fossil Fusion" from your deck to your hand, then if your opponent has any monster in the GY they become Rock type until the End of the turn, also after that, if you discarded a Rock monster to activate this effect you can draw 1 card.
+
+
+#### Walking Fossil
+
+Monster/Rock/EARTH/Effect/Level 4
+
+If this card is Summoned: Add 1 "Fossil Fusion" from your GY to your hand.
+Once per turn: You can excavate cards from the top of your deck, up to the number of cards your opponent controls, then you can add 1 card that specifically lists "Fossil Fusion" among the excavated cards and place the others in the top of your deck in any order.
+If this card used as fusion material for the Fusion Summon of a "Fossil" monster is banished: you can increase the ATK/DEF of all fusion monsters you control by 300, until the End of your opponent's next turn.
+
+
+#### Ojamax Fusion
+
+Fusion summon 1 Fusion Monster from your Extra Deck using monsters from your field or hand, including 1 "Ojama" monster. If your opponent controls more monsters than you do, you can also use any number of "Ojama" monsters from your Deck as fusion material, up to the difference.
+
+#### Meklord Lockdown
+
+Continuous Trap
+
+Once per turn: you can target 1 "Meklord" monster you control; look at your opponent's Extra Deck and either equip 1 Synchro monster from there to that target with an effect that makes it gain 1000 ATK/DEF OR send 1 monster from your Opponent's extra Deck to the GY.
+If this card leaves the field: you can destroy cards on the field up to the name of "Meklord" monsters you control.
+
+#### Meklord Army of Mekanikle
+
+Machine/LIGHT/Effect/Level 4/ATK 2000/DEF 2000
+
+Cannot be selected as attack target or be targeted by effects while your opponent controls a Synchro monster.
+When this card is Summoned: Set "Meklord" S/T directly from your deck or GY.
+Once per turn: you can send 1 Synchro Monster from your Extra Deck to the GY; look at your opponent's Extra deck, then send up to 2 to the GY up to 2 monsters with the same attribute as the monster sent to activate this effect.
+If this card is destroyed by your opponent's card: you can target 1 Synchro monster in your opponent's GY; Special Summon it to your field, also, while it is face-up on the field, control of it cannot be changed and for the rest of the duel neither player can Special Summon monsters with the same name as that monster.
+
+#### Meklord Army of Asterisk
+
+Machine/DARK/Effect/Level 4/ATK 0/DEF 0
+
+When this card is Summoned: Add 1 "Meklord" card from your deck to your hand, then if your opponent has a Synchro monster on the GY or face-up on the field, you can add 1 "Meklord" card from your GY to your hand.
+Once per turn: You can Special Summon "Meklord Army" monsters with different names from your hand or GY, up to the number of monsters your opponent controls.
+If this card is destroyed by your opponent's card: you can look at your opponent's Extra deck, then you can send 1 Synchro monster from his Extra deck to the GY.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
