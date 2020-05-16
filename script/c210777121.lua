@@ -13,7 +13,7 @@ function s.initial_effect(c)
 	e1:SetCountLimit(1,id)
 	e1:SetCondition(s.thcond)
 	e1:SetCost(s.thcost)
-	e1:SetTarget(s.thfilter)
+	e1:SetTarget(s.thtg)
 	e1:SetOperation(s.thop)
 	c:RegisterEffect(e1)
 	--special summon itself
