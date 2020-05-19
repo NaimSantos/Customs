@@ -12,7 +12,7 @@ function s.initial_effect(c)
 	e1:SetTarget(s.pctg)
 	e1:SetOperation(s.pcop)
 	c:RegisterEffect(e1)
-	--change pendulum zone
+	--change pendulum scale
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(id,1))
 	e2:SetType(EFFECT_TYPE_IGNITION)
@@ -171,7 +171,7 @@ function s.copyop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.ptgfilter(c)
-	return c:IsLocation(LOCATION_MZONE) and c:IsFaceup() and c:IsType(TYPE_PENDULUM)
+	return c:IsFaceup() and c:IsType(TYPE_PENDULUM) and c:IsLocation(LOCATION_MZONE)
 end
 function s.psyncfilter(c)
 	return c:IsFaceup() and c:IsType(TYPE_PENDULUM) and c:IsType(TYPE_SYNCHRO)
@@ -189,7 +189,7 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.NegateActivation(ev) and re:IsHasType(EFFECT_TYPE_ACTIVATE) and re:GetHandler():IsRelateToEffect(re) then
-		Duel.SendtoGrave(eg,REASON_EFFECT)
+		Duel.Destroy(eg,REASON_EFFECT)
 	end
 end
 function s.pxyzfilter(c)
