@@ -13,7 +13,7 @@ function s.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE)
 	e2:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)
 	e2:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
-	e2:Setspcond(s.actcon)
+	e2:SetCondition(s.actcon)
 	c:RegisterEffect(e2)
 	--special summon
     local e3=Effect.CreateEffect(c)
