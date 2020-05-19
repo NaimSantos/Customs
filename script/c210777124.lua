@@ -16,7 +16,7 @@ function s.initial_effect(c)
 	e2:SetCondition(s.actcon)
 	c:RegisterEffect(e2)
 	--special summon
-    local e3=Effect.CreateEffect(c)
+	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(id,0))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
@@ -61,8 +61,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	local c=e:GetHandler()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local tc=Duel.SelectMatchingCard(tp,s.filter,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil,e,tp)
-	Debug.Message(tc:GetCode())
+	local tc=Duel.SelectMatchingCard(tp,s.filter,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil,e,tp):GetFirst()
 	if tc and Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP) then
 		local fid=c:GetFieldID()
 		tc:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD,0,1,fid)
@@ -107,7 +106,7 @@ function s.rectg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingTarget(s.tdfilter,tp,LOCATION_REMOVED,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
 	local g=Duel.SelectTarget(tp,s.tdfilter,tp,LOCATION_REMOVED,0,1,1,nil)
-	Duel.SetOperationInfo(0,CATEGORY_RECOVER,nil,0,tp,math.max(g:GetAttack(),g:GetDefense()))
+	Duel.SetOperationInfo(0,CATEGORY_RECOVER,nil,0,tp,math.max(g:GetFirst():GetAttack(),g:GetFirst():GetDefense()))
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,g,1,tp,LOCATION_REMOVED)
 end
 function s.recop(e,tp,eg,ep,ev,re,r,rp)
