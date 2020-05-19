@@ -1,5 +1,5 @@
 --Red Dragon Archfiend's Warrio
---deigned by CyberCatman, scripted by Naim
+--designed by CyberCatman, scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
 	c:EnableReviveLimit()
@@ -15,7 +15,7 @@ function s.initial_effect(c)
 	e1:SetTarget(s.remtg)
 	e1:SetOperation(s.remop)
 	c:RegisterEffect(e1)
-	--atk&def
+	--increase ATK
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetCode(EFFECT_UPDATE_ATTACK)
@@ -70,5 +70,5 @@ end
 function s.actcon(e)
 	local tp=e:GetHandlerPlayer()
 	local a=Duel.GetAttacker()
-	return (a and s.tnrfilter(a,tp)) or a==e:GetHandler()
+	return a and (s.tnrfilter(a,tp) or a==e:GetHandler())
 end
