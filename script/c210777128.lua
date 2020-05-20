@@ -32,5 +32,5 @@ function s.filter(c)
 	return c:IsRace(RACE_DRAGON) and (c:IsLocation(LOCATION_GRAVE) or c:IsFaceup())
 end
 function s.val(e,c)
-	return Duel.GetMatchingGroupCount(s.filter,0,LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_GRAVE+LOCATION_REMOVED,nil)*300
+	return Duel.GetMatchingGroupCount(s.filter,0,LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_GRAVE+LOCATION_REMOVED,nil)*100
 end
