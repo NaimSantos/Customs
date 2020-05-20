@@ -54,10 +54,10 @@ end
 s.listed_names={78193831}
 s.listed_series={0xd6,0xd7}
 function s.filter(c)
-	return c:IsRace(RACE_DRAGON) and (c:IsLocation(LOCATION_GRAVE) or c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())
+	return c:IsRace(RACE_DRAGON) and (c:IsFaceup() or c:IsLocation(LOCATION_GRAVE))
 end
 function s.val(e,c)
-	return Duel.GetMatchingGroupCount(s.filter,0,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED,nil)*300
+	return Duel.GetMatchingGroupCount(s.filter,0,LOCATION_MZONE+LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_MZONE+LOCATION_GRAVE+LOCATION_REMOVED,nil)*300
 end
 function s.thfilter(c)
 	return c:IsSetCard(0xd6) and c:IsAbleToHand() and (c:IsLocation(LOCATION_GRAVE) or (c:IsLocation(LOCATION_REMOVED) and c:IsFaceup()))
