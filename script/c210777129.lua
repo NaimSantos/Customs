@@ -75,7 +75,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 	end
 end
-function s.ngtfilter()
+function s.ngtfilter(c)
 	return c:IsFaceup() and (c:IsRace(RACE_WARRIOR) or c:IsRace(RACE_DRAGON))
 end
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
