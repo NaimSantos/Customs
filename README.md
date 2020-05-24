@@ -6,55 +6,6 @@ Contains ideias, scripts, cdbs and pictures for cards that I script.
 ## Suggestions
 
 
-### Artifacts:
-
-#### Artifact Caliburn
-
-Monster/Effect/Pendulum/Light/Fairy/LV 5/ATK 2200/DEF 1300/Scale 3-3
-
-[Pendulum effect]
-
-(Quick effect): target 1 set card you control; destroy it, and if you do, set 1 "Artifact" monster from your deck in your S/T Zone.
-If this card would be destroyed, you can destroy 1 face-down card you control instead.
-You can only use each effect of "Artifact  Caliburn" once per turn.
-
-[Monster effect]
-
-You can Set this card from your hand to your Spell & Trap Zone as a Spell Card.
-If this Set card in the Spell & Trap Zone is destroyed: Special Summon it.
-If this card is Special Summoned during your opponent's turn: Your opponent banish 1 random card from your opponent's hand.
-You can only use this effect of "Artifact Caliburn" once per turn.
-
-
-#### Artifact Excalibur
-
-Monster/Effect/Pendulum/Light/Fairy/LV 5/ATK 1700/DEF 2500/Scale 7
-
-[Pendulum effect]
-
-(Quick effect): target 1 set card you control;
-destroy it, and if you do, add 1 artifcat monster from your Graveyard or that is face-up in your extra deck to your hand.
-If this card would be destroyed, you can destroy 1 face-down card you control instead.
-You can only use each effect of "Artifact Excalibur" once per turn.
-
-[Monster effect]
-
-You can Set this card from your hand to your Spell & Trap Zone as a Spell Card.
-If this Set card in the Spell & Trap Zone is destroyed: Special Summon it.
-If this card is Special Summoned during your opponent's turn: Your opponent banish 1 card your opponent controls.
-You can only use this effect of "Artifact Excalibur" once per turn.
-
-
-#### Artifact Arsenal
-Monster/Link/Effect/LIGHT/Fairy/Link 2/ ATK 2200
-
-While this card is in the EMZ, it cannot be destroyed by card effects, also face-down cards you control cannot be banished.
-If an "Artifact" monster is summoned to a zone this card points to: draw 1 card.
-Target 1 face-down card you control and 1 card your opponent controls; destroy the first target and if you do, return the second to the hand.
-This effect can be activated during either player's turn if you control another "Artifact" monster
-You can only activate each effect of "Artifact Arsenal" once per turn.
-
-
 ### Gemini
 
 #### Gemini Dimension
