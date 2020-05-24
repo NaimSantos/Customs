@@ -93,6 +93,9 @@ function s.ngop(e,tp,eg,ep,ev,re,r,rp)
 		end
 	end
 end
+function s.spcon2(e,tp,eg,ep,ev,re,r,rp)
+	return rp==1-tp and e:GetHandler():IsPreviousControler(tp)
+end
 function s.spfilter1(c,e,tp)
 	return c:IsSetCard(0xd6) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
