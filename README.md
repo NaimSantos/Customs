@@ -809,18 +809,6 @@ You can tribute this card card (Quick effect): draw 1 card
 You can only Special Summon "Tellark 2" once per turn.
 
 
-
-#### Alien Recruiter
-
-Monster/Effect/DARK/Reptile/Level 4 ATK 1600/DEF 1200
-
-If a monster with an A-Counter battles an "Alien" monster, it loses 300 ATK and DEF for each A-Counter during damage calculation only.
-If this card is Summoned while your opponent controls a monster: you can Special Summon 1 "Alien" monster from your hand or GY, but destroy it during the End Phase.
-Once per turn: you can place A-Counter counters on face-up monsters on the field, up to to the number of different "Alien" cards in your GY.
-You can only activate each of these effect of "Alien Recruiter" once per turn.
-
-
-
 #### Specimen Extinction
 
 Quick-Play Spell
@@ -842,10 +830,6 @@ If this card is Summoned: Add 1 "Fossil Fusion" from your GY to your hand.
 Once per turn: You can excavate cards from the top of your deck, up to the number of cards your opponent controls, then you can add 1 card that specifically lists "Fossil Fusion" among the excavated cards and place the others in the top of your deck in any order.
 If this card used as fusion material for the Fusion Summon of a "Fossil" monster is banished: you can increase the ATK/DEF of all fusion monsters you control by 300, until the End of your opponent's next turn.
 
-
-#### Ojamax Fusion
-
-Fusion summon 1 Fusion Monster from your Extra Deck using monsters from your field or hand, including 1 "Ojama" monster. If your opponent controls more monsters than you do, you can also use any number of "Ojama" monsters from your Deck as fusion material, up to the difference.
 
 #### Meklord Lockdown
 
@@ -872,32 +856,6 @@ Once per turn: You can Special Summon "Meklord Army" monsters with different nam
 If this card is destroyed by your opponent's card: you can look at your opponent's Extra deck, then you can send 1 Synchro monster from his Extra deck to the GY.
 
 
-#### Cubic ...
-Monster/Effect/FIRE/Pyro/ATK 1800/DEF 1800 Level 4
-
-You can discard 1 "Cubic" card: Special Summon this card from your GY.
-Once per turn: You can declare 1 "Cubic" monster card's name; until the End Phase, this card's name becomes that name.
-If this card is Summoned: You can target 1 of your banished "Cubic" cards, or up 3 if you control "Vijam, the Cubic Seed"; add them to the hand.
-Each effect of this card's name can only be activated once per turn.
-
-
-#### Eldlich, the Golden Lord's Shaddow
-Monster/Effect/LIGHT/Zombie/ATK 1400/DEF 1600 / Level 4
-
-This card's name becomes "Eldlich the Golden Lord" while in the GY or field.
-You can discard this card and 1 Spell/Trap card, then target 1 face-up card on the field; negate its effects.
-If this card is Special Summoned: you can target 1 of your banished "Golden Land" or "Eldlixir" Spell/Trap cards; set it to your field.
-
-#### Megalith ...
-Monster/Xyz/Effect/EARTH/Rock/ATK 3000/DEF 3000/ Rank 8
-
-2+ level 8 monsters
-Unaffected by your opponent's activated effects while it has a Ritual Monster as Xyz material.
-Once per turn: you can detach up to 2 Xyz materials from this card; add 1 "Megalith" card from your deck to your hand, then if you detached 2 materials you can also add 1 "Megalith" Spell/Trap from your GY to your hand.
-Once per turn, if a monster is Ritual Summoned: you can target 1 card your opponent controls; attach it to this card.
-You can only use each effect of this card's name once per turn.
-
-
 #### Advendread Origin
 Ritual Spell
 
@@ -906,35 +864,3 @@ You must also Tribute monsters from your hand or field, whose total Levels equal
 If summoning a "Vendread" monster with this effect, you can also return your banished Zombie monsters to the GY.
 If "Revendread Slayer(s)" is Special Summoned to your field: you can banish this card from your GY; add 1 "Vendread" Spell/Trap from your deck to your hand, except "Advendread Origin".
 You can only use 1 "Advendread Origin"'s effect per turn.
-
-
-#### Vendread Swarm
-Monster/Effect/DARK/Zombie/ Level 5/ ATK:2000 DEF 0
-
-If this card is added to your hand by a card effect: you can discard this card; Add  1 "Vendread" Spell/Trap from your deck to your hand.
-If a Zombie Ritual Monster is Special Summoned while this card is in your GY: you can discard 1 card; Special Summon this card, but banish it when it leaves the field.
-A "Vendread" monster Ritual Summoned using this card on the field gains the following effect.
-You can only use each of the preceding effects of "Vendread Swarm" once per turn.
-● Once per turn (Quick Effect): You can target 1 face-up card your opponent controls; return it to the hand.
-
-#### Vendread Sin
-Normal Spell
-
-Target 1 of your banished "Vendread" cards; add it to your hand.
-If a "Vendread" Ritual monster is Special Summoned to your field while this card is in your GY: you can banish this card, then target 1 of your banished "Vendread" monsters; add it to your hand.
-You can only use each effect of "Vendread Sin" once per turn.
-
-
-#### Revendread Memories
-Continuous Trap
-
-If you control a "Vendread" Ritual monster, you can activate this card the turn it was set.
-Once per turn: you can target 1 "Vendread" monster you control and 1 face-up card your opponent control; banish the first target, and if you, negate the second target's effect until the End Phase of the next turn.
-You can banish this card and 1 "Vendread" monster from your GY, then target 1 "Vendread" Spell/Trap in your GY; add it to your hand.
-You can only each  effect of "Revendread Memoriese" once per turn.
-
-
-
-
-
-
