@@ -12,8 +12,8 @@ function s.initial_effect(c)
 	e1:SetValue(300)
 	c:RegisterEffect(e1)
 	local e2=e1:Clone()
-    e2:SetCode(EFFECT_UPDATE_DEFENSE)
-    c:RegisterEffect(e2)
+	e2:SetCode(EFFECT_UPDATE_DEFENSE)
+	c:RegisterEffect(e2)
 	--Level change
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(id,1))
@@ -73,7 +73,7 @@ function s.lvop(e,tp,eg,ep,ev,re,r,rp)
 		ec:RegisterEffect(e1)
 	end
 end
-function s.spcond(e,tp,eg,ep,ev,re,r,rp)
+function s.exattcond(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetEquipTarget():IsType(TYPE_UNION)
 end
 function s.filter(c,e,tp,lv,code)
