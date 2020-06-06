@@ -93,8 +93,8 @@ function s.ngtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	Duel.SetOperationInfo(0,CATEGORY_EQUIP,nil,1,tp,LOCATION_DECK)
 end
-function s.eqpfilter(c,ec)
-	return c:IsType(TYPE_EQUIP) and c:CheckEquipTarget(ec)
+function s.eqpfilter(c,ec,tp)
+	return c:IsType(TYPE_EQUIP) and c:CheckEquipTarget(ec) and c:CheckUniqueOnField(tp)
 end
 function s.ngop(e,tp,eg,ep,ev,re,r,rp)
 	local tc,dc=Duel.GetAttacker(),Duel.GetAttackTarget()
@@ -105,9 +105,10 @@ function s.ngop(e,tp,eg,ep,ev,re,r,rp)
 	elseif dc and dc:IsControler(tp) and dc:IsSetCard(0x30) then
 		a=dc
 	end
-	if Duel.NegateAttack() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and a and Duel.IsExistingMatchingCard(s.eqpfilter,tp,LOCATION_DECK,0,1,nil,a) and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+	if Duel.NegateAttack() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+		and a and Duel.IsExistingMatchingCard(s.eqpfilter,tp,LOCATION_DECK,0,1,nil,a,tp) and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(id,3))
-		local g=Duel.SelectMatchingCard(tp,s.eqpfilter,tp,LOCATION_DECK,0,1,1,nil,a)
+		local g=Duel.SelectMatchingCard(tp,s.eqpfilter,tp,LOCATION_DECK,0,1,1,nil,a,tp)
 		if #g>0 then
 			Duel.Equip(tp,g:GetFirst(),a)
 		end

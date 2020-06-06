@@ -53,6 +53,17 @@ function s.initial_effect(c)
 	e6:SetTarget(s.tgtg)
 	e6:SetOperation(s.tgop)
 	c:RegisterEffect(e6)
+	--Search
+	local e7=Effect.CreateEffect(c)
+	e7:SetDescription(aux.Stringid(id,0))
+	e7:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
+	e7:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e7:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
+	e7:SetCode(EVENT_TO_GRAVE)
+	e7:SetCondition(s.thcon)
+	e7:SetTarget(s.thtg)
+	e7:SetOperation(s.thop)
+	c:RegisterEffect(e7)
 end
 s.listed_series={0x30}
 function s.atkcond(e,tp,eg,ep,ev,re,r,rp)
@@ -114,5 +125,24 @@ function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsRelateToEffect(e) then
 		Duel.SendtoGrave(tc,REASON_EFFECT)
+	end
+end
+function s.thcon(e,tp,eg,ep,ev,re,r,rp)
+	return e:GetHandler():IsPreviousPosition(POS_FACEUP)
+		and e:GetHandler():IsPreviousLocation(LOCATION_ONFIELD)
+end
+function s.thfilter(c)
+	return c:IsSetCard(0x30) and c:IsType(TYPE_SPELL) and c:IsAbleToHand()
+end
+function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) end
+	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
+end
+function s.thop(e,tp,eg,ep,ev,re,r,rp)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
+	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
+	if #g>0 then
+		Duel.SendtoHand(g,nil,REASON_EFFECT)
+		Duel.ConfirmCards(1-tp,g)
 	end
 end
