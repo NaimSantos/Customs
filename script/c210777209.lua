@@ -44,7 +44,7 @@ function s.initial_effect(c)
 	e5:SetDescription(aux.Stringid(id,4))
 	e5:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e5:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
-	e5:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
+	e5:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DAMAGE_STEP)
 	e5:SetCode(EVENT_LEAVE_FIELD)
 	e5:SetCondition(s.spcon2)
 	e5:SetTarget(s.sptg2)
@@ -94,7 +94,7 @@ function s.ngtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_EQUIP,nil,1,tp,LOCATION_DECK)
 end
 function s.eqpfilter(c,ec,tp)
-	return c:IsType(TYPE_EQUIP) and c:CheckEquipTarget(ec) and c:CheckUniqueOnField(tp)
+	return c:IsType(TYPE_EQUIP) and c:IsSetCard(0x30) and c:CheckEquipTarget(ec) and c:CheckUniqueOnField(tp)
 end
 function s.ngop(e,tp,eg,ep,ev,re,r,rp)
 	local tc,dc=Duel.GetAttacker(),Duel.GetAttackTarget()
@@ -118,7 +118,7 @@ function s.spcon2(e,tp,eg,ep,ev,re,r,rp)
 	return rp==1-tp and e:GetHandler():IsPreviousControler(tp)
 end
 function s.spfilter(c,e,tp)
-	return c:IsSetCard(0x30) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsSetCard(0x30) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE) and not c:IsCode(id)
 end
 function s.sptg2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:IsControler(tp) and s.spfilter(chkc,e,tp) end
@@ -129,12 +129,12 @@ function s.sptg2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,1,0,0)
 end
 function s.thfilter(c)
-	return c:IsSetCard(0xe3) and c:IsAbleToHand()
+	return c:IsSetCard(0x30) and c:IsAbleToHand()
 end
 function s.spop2(e,tp,eg,ep,ev,re,r,rp)
 	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
 	local g=Duel.GetTargetCards(e)
-	if g and ft>0 and Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)~=0 then
+	if g and ft>0 and Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP_DEFENSE)~=0 then
 		local sg=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.thfilter),tp,LOCATION_GRAVE,0,nil)
 		if not g:GetFirst():IsType(TYPE_SYNCHRO) and #sg>0 and Duel.SelectYesNo(tp,aux.Stringid(id,5)) then
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)

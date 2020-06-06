@@ -87,6 +87,9 @@ end
 function s.exattcond(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetEquipTarget():IsType(TYPE_UNION)
 end
+function s.spcond(e,tp,eg,ep,ev,re,r,rp)
+	return e:GetHandler():GetEquipTarget():IsRace(RACE_FAIRY)
+end
 function s.filter(c,e,tp,lv,code)
 	return c:IsType(TYPE_UNION) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and c:IsLevel(lv) and not c:IsCode(code)
 end
@@ -107,9 +110,6 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if #g>0 then
 		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
 	end
-end
-function s.spcond(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():GetEquipTarget():IsRace(RACE_FAIRY)
 end
 function s.tgcond(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetEquipTarget():IsSetCard(0x30)
