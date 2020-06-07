@@ -2,7 +2,7 @@
 --designed and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	--synchro summon
+	--Synchro Summon procedure
 	c:EnableReviveLimit()
 	Synchro.AddProcedure(c,aux.FilterBoolFunctionEx(Card.IsSetCard,0x30),1,1,Synchro.NonTuner(nil),1,99)
 	--ATK increase

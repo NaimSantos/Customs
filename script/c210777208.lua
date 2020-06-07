@@ -2,7 +2,7 @@
 --designed and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	--link summon
+	--Link Summon procedure
 	Link.AddProcedure(c,nil,2,2,s.lcheck)
 	c:EnableReviveLimit()
 	--Special Summon

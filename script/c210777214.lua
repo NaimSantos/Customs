@@ -2,7 +2,7 @@
 --Odesigned and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	--link summon
+	--Link Summon  procedure
 	c:EnableReviveLimit()
 	Synchro.AddProcedure(c,aux.FilterBoolFunctionEx(Card.IsSetCard,0x30),1,1,Synchro.NonTuner(nil),1,99)
 	--Equip
@@ -17,7 +17,7 @@ function s.initial_effect(c)
 	e1:SetTarget(s.eqtg)
 	e1:SetOperation(s.eqop)
 	c:RegisterEffect(e1)
-	--destroy/negate
+	--Destroy/negate
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(id,1))
 	e2:SetCategory(CATEGORY_DESTROY+CATEGORY_DISABLE)

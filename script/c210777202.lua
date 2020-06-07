@@ -2,17 +2,17 @@
 --designed by CyberCatman and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	--fusion material
+	--Fusion Summon procedure
 	Fusion.AddProcMix(c,false,false,CARD_NEOS,aux.FilterBoolFunctionEx(Card.IsSetCard,0x1034))
 	c:EnableReviveLimit()
-	--special summon limitation
+	--Special Summon limitation
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)
 	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e0:SetCode(EFFECT_SPSUMMON_CONDITION)
 	e0:SetValue(aux.fuslimit)
 	c:RegisterEffect(e0)
-	--to the  S/T zone as continuous spell
+	--Place itself in the S/T zone
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_TO_GRAVE_REDIRECT_CB)
@@ -21,9 +21,9 @@ function s.initial_effect(c)
 	e1:SetCondition(s.repcon)
 	e1:SetOperation(s.repop)
 	c:RegisterEffect(e1)
-	--special summon when destroying
+	--Special summon when destroying
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(id,0))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_ATKCHANGE)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_BATTLED)
@@ -33,7 +33,7 @@ function s.initial_effect(c)
 	e2:SetTarget(s.sptg1)
 	e2:SetOperation(s.spop1)
 	c:RegisterEffect(e2)
-	--special summon and add to hand
+	--Special summon and add to hand
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(id,1))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOHAND+CATEGORY_SEARCH)
@@ -66,8 +66,7 @@ function s.spcond1(e,tp,eg,ep,ev,re,r,rp)
 	local d=Duel.GetAttackTarget()
 	if not d or not a then return false end
 	if d:IsControler(tp) then a,d=d,a end
-	return a:IsSetCard(0x1034)
-		and not a:IsStatus(STATUS_BATTLE_DESTROYED) and d:IsStatus(STATUS_BATTLE_DESTROYED)
+	return a:IsSetCard(0x1034) and not a:IsStatus(STATUS_BATTLE_DESTROYED) and d:IsStatus(STATUS_BATTLE_DESTROYED)
 end
 function s.filter(c)
 	return c:IsSetCard(0x1034) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)

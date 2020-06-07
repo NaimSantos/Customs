@@ -2,9 +2,10 @@
 --designed by CyberCatman, scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
+	--Synchro Summon procedure
 	c:EnableReviveLimit()
 	Synchro.AddProcedure(c,nil,2,99,Synchro.NonTuner(Card.IsType,TYPE_SYNCHRO),1,1)
-	--banish all cards
+	--Banish all cards
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(id,0))
 	e1:SetCategory(CATEGORY_REMOVE)
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	e1:SetTarget(s.remtg)
 	e1:SetOperation(s.remop)
 	c:RegisterEffect(e1)
-	--increase ATK
+	--Increase ATK
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetCode(EFFECT_UPDATE_ATTACK)
@@ -24,7 +25,7 @@ function s.initial_effect(c)
 	e2:SetTarget(s.atktg)
 	e2:SetValue(s.atkval)
 	c:RegisterEffect(e2)
-	--activation limit
+	--Activation limit
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_FIELD)
 	e3:SetProperty(EFFECT_FLAG_PLAYER_TARGET)

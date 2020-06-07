@@ -5,7 +5,7 @@ function s.initial_effect(c)
 	--xyz summon
 	Xyz.AddProcedure(c,aux.FilterBoolFunctionEx(Card.IsAttribute,ATTRIBUTE_WATER),4,2,s.ovfilter,aux.Stringid(id,0))
 	c:EnableReviveLimit()
-	--increase ATK
+	--Increase ATK
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
@@ -13,7 +13,7 @@ function s.initial_effect(c)
 	e1:SetCode(EFFECT_UPDATE_ATTACK)
 	e1:SetValue(s.atkval)
 	c:RegisterEffect(e1)
-	--negate effects
+	--Negate effects
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(id,1))
 	e2:SetType(EFFECT_TYPE_FIELD)
@@ -22,7 +22,7 @@ function s.initial_effect(c)
 	e2:SetTargetRange(0,LOCATION_MZONE)
 	e2:SetTarget(s.distg)
 	c:RegisterEffect(e2)
-	--attach monster destroy
+	--Attach monster destroyed
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(id,2))
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
