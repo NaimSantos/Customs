@@ -76,7 +76,6 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 			local rg=Duel.SelectMatchingCard(tp,Card.IsAbleToRemove,tp,0,LOCATION_HAND+LOCATION_EXTRA,ct,ct,nil,tp)
 			if #rg>0 then
 				Duel.Remove(rg,POS_FACEUP,REASON_EFFECT)
-				Duel.SendtoHand(g,nil,REASON_EFFECT)
 				Duel.ShuffleExtra(1-tp)
 				Duel.ShuffleHand(1-tp)
 			end
