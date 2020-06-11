@@ -70,18 +70,28 @@ function s.atkcond(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetEquipTarget():IsAttribute(ATTRIBUTE_LIGHT)
 end
 function s.lvcond(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():GetEquipTarget():IsType(TYPE_TUNER)
+	local ec=e:GetHandler():GetEquipTarget()
+	return ec:IsType(TYPE_TUNER) and ec:HasLevel()
 end
 function s.lvop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	local ec=c:GetEquipTarget()
-	if ec and c:IsRelateToEffect(e) then
+	local tc=c:GetEquipTarget()
+	if c:IsRelateToEffect(e) and tc and tc:HasLevel() then
+		local lvl=1
+		if tc:GetLevel()==1 then
+			Duel.SelectOption(tp,aux.Stringid(id,4))
+		else
+			sel=Duel.SelectOption(tp,aux.Stringid(id,4),aux.Stringid(id,5))
+		end
+		if sel==1 then
+			lvl=-1
+		end
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_UPDATE_LEVEL)
-		e1:SetValue(1)
+		e1:SetValue(lvl)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
-		ec:RegisterEffect(e1)
+		tc:RegisterEffect(e1)
 	end
 end
 function s.exattcond(e,tp,eg,ep,ev,re,r,rp)
