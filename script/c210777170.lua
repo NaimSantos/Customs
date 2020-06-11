@@ -1,4 +1,4 @@
---Chemicritter Z
+--Catalyst Solution
 --designed and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
@@ -28,7 +28,7 @@ function s.filter(c)
 end
 function s.tgyfilter(c,tp)
 	return c:IsSetCard(0xeb) and c:IsAbleToGraveAsCost()
-		and Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_DECK,0,1,e:GetHandler())
+		and Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_DECK,0,1,c)
 end
 function s.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.tgyfilter,tp,LOCATION_DECK,0,1,nil,tp) end
@@ -49,7 +49,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.repfilter(c,tp)
-	return c:IsFaceup() and c:IsType(TYPE_GEMINI) and c:IsLocation(LOCATION_MZONE) and c:IsControler(tp) 
+	return c:IsFaceup() and c:IsType(TYPE_GEMINI) and c:IsLocation(LOCATION_MZONE) and c:IsControler(tp)
 		and not c:IsReason(REASON_REPLACE) and c:IsReason(REASON_EFFECT+REASON_BATTLE)
 end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
