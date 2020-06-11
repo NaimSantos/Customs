@@ -1,5 +1,5 @@
 --Vylon Connector
---Odesigned and scripted by Naim
+--designed and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
 	aux.AddEquipProcedure(c,0)
@@ -85,10 +85,10 @@ function s.lvop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.exattcond(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():GetEquipTarget():IsType(TYPE_UNION)
+	return e:GetHandler():GetEquipTarget():IsRace(RACE_FAIRY)
 end
 function s.spcond(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():GetEquipTarget():IsRace(RACE_FAIRY)
+	return e:GetHandler():GetEquipTarget():IsType(TYPE_UNION)
 end
 function s.filter(c,e,tp,lv,code)
 	return c:IsType(TYPE_UNION) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and c:IsLevel(lv) and not c:IsCode(code)
