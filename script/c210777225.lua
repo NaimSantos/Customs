@@ -63,7 +63,7 @@ function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.ConfirmCards(1-p,sg)
 			Duel.ShuffleHand(p)
 		else
-			Duel.SendToGrave(sg,REASON_EFFECT)
+			Duel.SendtoGrave(sg,REASON_EFFECT)
 		end
 	end
 	Duel.ShuffleDeck(p)
