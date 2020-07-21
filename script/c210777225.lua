@@ -48,7 +48,8 @@ function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,0,LOCATION_DECK)
 end
 function s.thfilter(c,tp)
-	return c:IsSetCard(0xf19) and (c:IsAbleToGrave() or (c:IsAbleToHand() and Duel.IsExistingMatchingCard(Card.IsType,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil,TYPE_TRAP)))
+	return (c:IsSetCard(0xf19) or c:IsCode(8955148,72566043)) and (c:IsAbleToGrave()
+		or (c:IsAbleToHand() and Duel.IsExistingMatchingCard(Card.IsType,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil,TYPE_TRAP)))
 end
 function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	local p=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER)
