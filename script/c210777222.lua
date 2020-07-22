@@ -66,6 +66,7 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.ChangePosition(tc,POS_FACEDOWN)
 			tc:SetStatus(STATUS_SET_TURN,false)
 			Duel.RaiseEvent(tc,EVENT_SSET,e,REASON_EFFECT,tp,tp,0)
+		end
 	end
 end
 function s.drcond(e,tp,eg,ep,ev,re,r,rp)
