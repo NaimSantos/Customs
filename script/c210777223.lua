@@ -72,7 +72,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 				Duel.BreakEffect()
 			end
 		end
-		if Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+		if Duel.GetLocationCount(tp,LOCATION_SZONE)>0 then
 			Duel.SSet(tp,tc)
 		end
 	end
