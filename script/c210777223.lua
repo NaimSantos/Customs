@@ -1,94 +1,103 @@
---Litmus Doom Act
+--Litmus Doom Soldier
 --designed and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	--Activate
+	--Excavate
 	local e1=Effect.CreateEffect(c)
-	e1:SetType(EFFECT_TYPE_ACTIVATE)
-	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetHintTiming(0,TIMING_END_PHASE)
+	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
+	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e1:SetProperty(EFFECT_FLAG_DELAY)
+	e1:SetCode(EVENT_SUMMON_SUCCESS)
+	e1:SetCountLimit(1,id)
+	e1:SetTarget(s.tgtg)
+	e1:SetOperation(s.tgop)
 	c:RegisterEffect(e1)
-	--Set 1 card
-	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
-	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
-	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	local e2=e1:Clone()
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
-	e2:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DELAY)
-	e2:SetRange(LOCATION_SZONE)
-	e2:SetCountLimit(1)
-	e2:SetCondition(s.condition)
-	e2:SetTarget(s.target)
-	e2:SetOperation(s.activate)
 	c:RegisterEffect(e2)
-	--Act in set turn
-	local e3=Effect.CreateEffect(c)
-	e3:SetType(EFFECT_TYPE_SINGLE)
-	e3:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)
-	e3:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
-	e3:SetCondition(s.actcon)
+	local e3=e1:Clone()
+	e3:SetCode(EVENT_FLIP_SUMMON_SUCCESS)
 	c:RegisterEffect(e3)
-	--cannot be destroyed by effects
+	--Add to hand
 	local e4=Effect.CreateEffect(c)
-	e4:SetType(EFFECT_TYPE_SINGLE)
-	e4:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
-	e4:SetRange(LOCATION_SZONE)
-	e4:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)
-	e4:SetCondition(s.incon)
-	e4:SetValue(1)
+	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetCategory(CATEGORY_TOHAND)
+	e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e4:SetCode(EVENT_RELEASE)
+	e4:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
+	e4:SetCountLimit(1,id+100)
+	e4:SetCost(s.thcost)
+	e4:SetCondition(s.thcon)
+	e4:SetTarget(s.thtg)
+	e4:SetOperation(s.thop)
 	c:RegisterEffect(e4)
+	--Level change
+	local e5=Effect.CreateEffect(c)
+	e5:SetType(EFFECT_TYPE_SINGLE)
+	e5:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e5:SetCode(EFFECT_CHANGE_LEVEL)
+	e5:SetRange(LOCATION_MZONE)
+	e5:SetCondition(s.lvcond)
+	e5:SetValue(8)
+	c:RegisterEffect(e5)
 end
-function s.cfilter(c)
-	return c:IsFaceup() and c:IsType(TYPE_RITUAL)
+function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)>=3 end
+	Duel.SetTargetPlayer(tp)
+	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,0,LOCATION_DECK)
 end
-function s.condition(e,tp,eg,ep,ev,re,r,rp)
-	return eg and eg:IsExists(s.cfilter,1,nil)
+function s.thfilter(c,tp)
+	return (c:IsSetCard(0xf19) or c:IsCode(8955148,72566043)) and (c:IsAbleToGrave()
+		or (c:IsAbleToHand() and Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)))
 end
-function s.setfilter(c,e,tp)
-	if not (c:IsSetCard(0xf19) or c:IsCode(8955148,72566043)) then return end
-	if c:IsType(TYPE_MONSTER) then 
-		return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENSE)
-	elseif c:IsType(TYPE_SPELL+TYPE_TRAP) then 
-		return (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0) and c:IsSSetable()
+function s.tgop(e,tp,eg,ep,ev,re,r,rp)
+	local p=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER)
+	Duel.ConfirmDecktop(p,3)
+	local g=Duel.GetDecktopGroup(p,3)
+	if #g>0 and g:IsExists(s.thfilter,1,nil,tp) then
+		Duel.Hint(HINT_SELECTMSG,p,HINTMSG_TOGRAVE)
+		local sg=g:FilterSelect(p,s.thfilter,1,1,nil,tp)
+		if Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) and Duel.SelectYesNo(p,aux.Stringid(id,3)) then
+			Duel.SendtoHand(sg,nil,REASON_EFFECT)
+			Duel.ConfirmCards(1-p,sg)
+			Duel.ShuffleHand(p)
+		else
+			Duel.SendtoGrave(sg,REASON_EFFECT)
+		end
 	end
-	return false
+	Duel.ShuffleDeck(p)
 end
-function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:IsControler(tp) and s.setfilter(chkc,e,tp) end
-	if chk==0 then return Duel.IsExistingTarget(s.setfilter,tp,LOCATION_GRAVE,0,1,nil,e,tp) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-	local g=Duel.SelectTarget(tp,s.setfilter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
-	local tc=g:GetFirst()
-	if tc:IsType(TYPE_MONSTER) then
-		Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,1,tp,LOCATION_GRAVE)
-	elseif tc:IsType(TYPE_SPELL+TYPE_TRAP) then
-		Duel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,g,1,tp,LOCATION_GRAVE)
-	end
+function s.costfilter(c)
+	return c:IsRitualMonster() and not c:IsPublic()
 end
-function s.activate(e,tp,eg,ep,ev,re,r,rp)
-	if not e:GetHandler():IsRelateToEffect(e) then return end
+function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_HAND,0,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
+	local g=Duel.SelectMatchingCard(tp,s.costfilter,tp,LOCATION_HAND,0,1,1,nil)
+	Duel.ConfirmCards(1-tp,g)
+	Duel.ShuffleHand(tp)
+end
+function s.thcon(e,tp,eg,ep,ev,re,r,rp)
+	return (r&REASON_EFFECT)~=0
+end
+function s.thgfilter(c)
+	return c:IsFaceup() and c:IsRitualSpell()
+end
+function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:IsControler(tp) and s.thgfilter(chkc) end
+	if chk==0 then return Duel.IsExistingTarget(s.thgfilter,tp,LOCATION_GRAVE,0,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
+	local g=Duel.SelectTarget(tp,s.thgfilter,tp,LOCATION_GRAVE,0,1,1,nil)
+	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,1,0,0)
+end
+function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not tc or not tc:IsRelateToEffect(e) then return end
-	if tc:IsType(TYPE_MONSTER) then
-		if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then
-			Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)
-		end
-	elseif tc:IsType(TYPE_SPELL+TYPE_TRAP) then
-		if tc:IsType(TYPE_FIELD) then
-			local fc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
-			if fc then
-				Duel.SendtoGrave(fc,REASON_RULE)
-				Duel.BreakEffect()
-			end
-		end
-		if Duel.GetLocationCount(tp,LOCATION_SZONE)>0 then
-			Duel.SSet(tp,tc)
-		end
+	if tc and tc:IsRelateToEffect(e) then
+		Duel.SendtoHand(tc,nil,REASON_EFFECT)
+		Duel.ConfirmCards(1-tp,tc)
 	end
 end
-function s.actcon(e)
-	return not Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),e:GetHandlerPlayer(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
-end
-function s.incon(e)
-	return Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),e:GetHandlerPlayer(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,e:GetHandler())
+function s.lvcond(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
 end
