@@ -42,19 +42,18 @@ function s.tdfilter(c)
 end
 function s.postg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return false end
-	if chk==0 then return Duel.IsExistingTarget(s.tdfilter,tp,LOCATION_SZONE,0,1,nil)
+	if chk==0 then return Duel.IsExistingTarget(s.tdfilter,tp,LOCATION_SZONE,LOCATION_SZONE,1,nil)
 		and Duel.IsExistingTarget(Card.IsFaceup,tp,0,LOCATION_MZONE,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local g1=Duel.SelectTarget(tp,Card.IsFaceup,tp,0,LOCATION_MZONE,1,1,nil)
-	e:SetLabelObject(g1)
+	e:SetLabelObject(g1:GetFirst())
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
-	local g2=Duel.SelectTarget(tp,s.tdfilter,tp,LOCATION_SZONE,0,1,1,nil)
+	local g2=Duel.SelectTarget(tp,s.tdfilter,tp,LOCATION_SZONE,LOCATION_SZONE,1,1,nil)
 	g2:Merge(g1)
 	Duel.SetOperationInfo(0,CATEGORY_POSITION,g2,2,0,0)
 end
 function s.posop(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
-	local tg=g:Filter(Card.IsRelateToEffect,nil,e)
+	local tg=Duel.GetTargetCards(e)
 	if #tg>0 then
 		local tc=tg:GetFirst() --spell/trap
 		if tc==e:GetLabelObject() then tc=tg:GetNext() end --se for o monstro

@@ -28,6 +28,17 @@ function s.initial_effect(c)
 	e3:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
 	e3:SetCondition(s.actcon)
 	c:RegisterEffect(e3)
+	--Decrease ATK/DEF
+	local e4=Effect.CreateEffect(c)
+	e4:SetType(EFFECT_TYPE_FIELD)
+	e4:SetRange(LOCATION_SZONE)
+	e4:SetTargetRange(0,LOCATION_MZONE)
+	e4:SetCode(EFFECT_UPDATE_ATTACK)
+	e4:SetValue(s.atkval)
+	c:RegisterEffect(e4)
+	local e5=e4:Clone()
+	e5:SetCode(EFFECT_UPDATE_DEFENSE)
+	c:RegisterEffect(e5)
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsAbleToGraveAsCost,tp,LOCATION_HAND,0,1,nil) end
@@ -53,4 +64,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.actcon(e)
 	return not Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),e:GetHandlerPlayer(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
+end
+function s.atkval(e,c)
+	return Duel.GetMatchingGroupCount(aux.FilterFaceupFunction(Card.IsRace,RACE_WARRIOR),0,LOCATION_ONFIELD,0,nil)*-200
 end

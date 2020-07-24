@@ -28,6 +28,15 @@ function s.initial_effect(c)
 	e3:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
 	e3:SetCondition(s.actcon)
 	c:RegisterEffect(e3)
+	--cannot be destroyed by effects
+	local e4=Effect.CreateEffect(c)
+	e4:SetType(EFFECT_TYPE_SINGLE)
+	e4:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e4:SetRange(LOCATION_SZONE)
+	e4:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)
+	e4:SetCondition(s.incon)
+	e4:SetValue(1)
+	c:RegisterEffect(e4)
 end
 function s.cfilter(c)
 	return c:IsFaceup() and c:IsType(TYPE_RITUAL)
@@ -79,4 +88,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.actcon(e)
 	return not Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),e:GetHandlerPlayer(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
+end
+function s.incon(e)
+	return Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),e:GetHandlerPlayer(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,e:GetHandler())
 end
