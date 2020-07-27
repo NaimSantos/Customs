@@ -108,4 +108,10 @@ Once per turn you can target 1 "Watt" monster you control; each time it inflicts
 If this card leaves the field because of your opponent's card: Special Summon 2 "Watt" monsters from your GY in defense position.
 
 
-
+sig|name|desc
+void|initial_effect(Card c)|The function that will be called for each card's initialization.
+int|bit.band(int a, int b)|Does a bitwise AND operation between 2 integers. (Deprecated, advised to use (int a)&(int b) instead.)
+int|bit.lshift(int a, int b)|Shifts all bits of an integer to the left by an amount (Deprecated, advised to use (int a)<<(int b) instead.)
+int|bit.bor(int a, int b)|Does a bitwise OR operation between 2 integers. (Deprecated, advised to use (int a)|(int b) instead.)
+int|bit.rshift(int a, int b)|Shift all bits of an integer to the right by an amount (Deprecated, advised to use (int a)>>(int b) instead.)
+int|bit.bxor(int a, int b)|Does a bitwise XOR operation between 2 integers. (Deprecated, advised to use (int a)~(int b) instead.)
