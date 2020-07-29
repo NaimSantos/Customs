@@ -20,6 +20,7 @@ function s.initial_effect(c)
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_SINGLE)
 	e2:SetCode(EFFECT_DESTROY_REPLACE)
+	e2:SetCountLimit(1,id+200)
 	e2:SetTarget(s.reptg)
 	e2:SetOperation(s.repop)
 	c:RegisterEffect(e2)
@@ -62,14 +63,14 @@ function s.desfilter2(c)
 	return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsFacedown() and c:GetSequence()<5
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsOnField() and s.desfilter(chkc) and chkc~=e:GetHandler() end
+	if chkc then return chkc:IsOnField() and s.desfilter(chkc) and chkc:IsControler(tp) and chkc~=e:GetHandler() end
 	if chk==0 then
 		if not Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_DECK,0,1,nil) then return false end
 		local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
 		if ft<0 then
 			return false
 		elseif ft>0 then
-			return Duel.IsExistingTarget(s.desfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
+			return Duel.IsExistingTarget(s.desfilter,tp,LOCATION_ONFIELD,0,1,nil)
 		else
 			return Duel.IsExistingTarget(s.desfilter2,tp,LOCATION_ONFIELD,0,1,nil)
 		end
@@ -78,7 +79,7 @@ function s.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local g=nil
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	if ft>0 then
-		g=Duel.SelectTarget(tp,s.desfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
+		g=Duel.SelectTarget(tp,s.desfilter,tp,LOCATION_ONFIELD,0,1,1,nil)
 	else
 		g=Duel.SelectTarget(tp,s.desfilter2,tp,LOCATION_ONFIELD,0,1,1,nil)
 	end
