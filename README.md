@@ -107,3 +107,53 @@ If this card is link summoned: you can add 2 Thunder monsters to your hand, 1 fr
 Once per turn you can target 1 "Watt" monster you control; each time it inflicts Battle Damage this turn Special Summon 1 "Watt" monster from your deck.
 If this card leaves the field because of your opponent's card: Special Summon 2 "Watt" monsters from your GY in defense position.
 
+
+#### Litmus Doom Alkal
+Level 4 DARK Warrior ATK 0 DEF 0
+You can discard 1 "Litmus Doom" card; Special Summon this card from your hand.
+While there is a Trap on the field, this card's original Level becomes 8, also it gains 2000 ATK.
+A Warrior Ritual Monster Ritual Summoned using this card as material gains the following effect.
+•Cannot be targeted by your opponent's card effects while there is a Trap on the field.
+
+#### Litmus Doom Swordcerer
+Level 8 DARK Warrior (Ritual) ATK 0 DEF 0
+You can Ritual Summon this card with "Litmus Doom Ritual".
+This card is treated as "Litmus Doom Swordsman" while in your hand or in the GY.
+While a Trap is on the field, this card gains 2000 ATK/DEF, and cannot be destroyed by battle.
+Unaffected by Trap effects.
+You can only use each of the following effects of "Litmus Doom Swordcerer" once per turn.
+•You can discard this card; add 1 "Litmus Doom" card from your Deck to your hand, except a Ritual Monster.
+•If a Trap is on the field (Quick Effect): You can target up to 3 cards in your opponent's GY; banish them.
+
+#### Litmus Doom Strip
+Normal Spell
+Target 1 "Litmus Doom" monster in your GY; add that card to your hand, then if that monster was a Ritual Monster, you can draw 1 card.
+During your Main Phase, except the turn this card was sent to the GY or was banished: You can discard 1 Warrior monster; add this card to your hand, then you can add 1 other "Litmus Doom" Spell/Trap from your GY to your hand.
+You can only use each effect of "Litmus Doom Strip" once per turn.
+
+#### Litmus Doom Retest
+Continuous Trap
+Activate this card by targeting 1 "Litmus Doom" monster in your GY; Special Summon it.
+You can discard 1 "Litmus Doom" card, then target 1 monster your opponent controls; negate that card's effects, until the end of this turn, then you can apply the following effect.
+•Ritual Summon 1 "Litmus Doom" from your hand or GY, by Tributing DARK Warrior monsters from your hand and/or field, whose total levels equal or exceed 8.
+
+#### Rikka Queen (+ some other name, to keep their pattern)
+Monster/Effect/Xyz/Plant/Water
+Rank 8 
+ATK 3000/DEF2000
+
+2+ level 8 monsters
+If this card is Summoned: you can target 1 "Rikka" Spell/Trap in your GY; set it to your field. While this card has a plant monster as Xyz material, plant monsters you control cannot be targeted by your opponent's effect. Once per turn (Quick Effect): you can target 1 monster on the field; tribute that monster, then excavate cards from your top deck, up to that monster's level, then you can take 1 Plant monster or "Rikka" card among the excavated cards and either add it to your hand or send it to the GY and return the remaining cards to the top of the deck in any order. You can only use each of these card name's effects once per turn.
+
+#### Rikka Trade
+Normal Spell
+Tribute 1 Plant monster from your hand or field; draw 3 cards, then discard 1 card and return 1 card from your hand to the bottom of the Deck. You cannot declare an attack the turn you activate this card, except with Plant monsters. You can only activate 1 "Rikka Trade" per turn.
+
+#### A Rikka & Sylvan Meeting
+Field Spell
+Once per turn: you can tribute 1 Plant monster from your hand or field; excavate the top 2 cards from your Deck, then you can take 1 "Rikka" card or Plant monster among the excavated cards and either add it to your hand or send it to the GY and return the remaining cards to the top deck in any order. Once per turn, when a Plant monster is tributed OR when a Plant monster is sent from the deck to the GY, except due to this card: you can target 1 "Rikka" or "Sylvan" card in your GY; add it to your hand. If this card is destroyed by your opponent's effect: you can activate this effect; until the End Phase of the next turn, all Plant monsters on the field gain 200 ATK/DEF
+
+#### Rikka Fertilizer
+Continuous Spell
+
+Once per turn: You can target 1 "Rikka" monster in your GY; Special Summon it. When either of the monsters summoned by this card effect leave the field, destroy this card. When this card leaves the field, shuffle into your Deck all the monsters summoned by this effect.
