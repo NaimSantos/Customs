@@ -39,6 +39,18 @@ function s.initial_effect(c)
 	e4:SetTarget(s.sptg)
 	e4:SetOperation(s.spop)
 	c:RegisterEffect(e4)
+	--Make the opponent banish
+	local e5=Effect.CreateEffect(c)
+	e5:SetDescription(aux.Stringid(id,4))
+	e5:SetCategory(CATEGORY_REMOVE)
+	e5:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
+	e5:SetCode(EVENT_SPSUMMON_SUCCESS)
+	e5:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
+	e5:SetCountLimit(1,id+100)
+	e5:SetCondition(s.remvond)
+	e5:SetTarget(s.remtg)
+	e5:SetOperation(s.remop)
+	c:RegisterEffect(e5)
 end
 function s.thfilter(c)
 	return c:IsSetCard(0x97) and c:IsAbleToHand() and (c:IsLocation(LOCATION_GRAVE) or c:IsFaceup())
@@ -96,5 +108,24 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if e:GetHandler():IsRelateToEffect(e) then
 		Duel.SpecialSummon(e:GetHandler(),0,tp,tp,false,false,POS_FACEUP)
+	end
+end
+function s.remvond(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.GetTurnPlayer()~=tp
+end
+function s.remtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	local g=Duel.GetFieldGroup(tp,0,LOCATION_ONFIELD)
+	if chk==0 then return #g>0 and g:IsExists(Card.IsAbleToRemove,1,nil,1-tp,POS_FACEUP,REASON_RULE)
+		and not Duel.IsPlayerAffectedByEffect(1-tp,30459350)
+	end
+	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,0,LOCATION_ONFIELD)
+end
+function s.remop(e,tp,eg,ep,ev,re,r,rp)
+	if Duel.IsPlayerAffectedByEffect(1-tp,30459350) then return end
+	local g=Duel.GetFieldGroup(tp,0,LOCATION_ONFIELD)
+	if #g>0 then
+		Duel.Hint(HINT_SELECTMSG,1-tp,HINTMSG_REMOVE)
+		local sg=g:FilterSelect(1-tp,Card.IsAbleToRemove,1,1,nil,1-tp,POS_FACEUP,REASON_RULE)
+		Duel.Remove(sg,POS_FACEUP,REASON_RULE)
 	end
 end

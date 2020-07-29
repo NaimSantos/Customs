@@ -39,6 +39,18 @@ function s.initial_effect(c)
 	e4:SetTarget(s.sptg)
 	e4:SetOperation(s.spop)
 	c:RegisterEffect(e4)
+	--Make the opponent banish
+	local e5=Effect.CreateEffect(c)
+	e5:SetDescription(aux.Stringid(id,4))
+	e5:SetCategory(CATEGORY_REMOVE)
+	e5:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
+	e5:SetCode(EVENT_SPSUMMON_SUCCESS)
+	e5:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
+	e5:SetCountLimit(1,id+100)
+	e5:SetCondition(s.remvond)
+	e5:SetTarget(s.remtg)
+	e5:SetOperation(s.remop)
+	c:RegisterEffect(e5)
 end
 function s.filter(c)
 	return c:IsSetCard(0x97) and c:IsType(TYPE_MONSTER) and c:IsSSetable(true)
@@ -102,4 +114,37 @@ function s.repop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	g:GetFirst():SetStatus(STATUS_DESTROY_CONFIRMED,false)
 	Duel.Destroy(g,REASON_EFFECT+REASON_REPLACE)
+end
+function s.spcon(e,tp,eg,ep,ev,re,r,rp)
+	local c=e:GetHandler()
+	return c:IsPreviousLocation(LOCATION_SZONE) and c:IsPreviousPosition(POS_FACEDOWN)
+		and c:IsReason(REASON_DESTROY) and Duel.GetTurnPlayer()~=tp
+end
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
+end
+function s.spop(e,tp,eg,ep,ev,re,r,rp)
+	if e:GetHandler():IsRelateToEffect(e) then
+		Duel.SpecialSummon(e:GetHandler(),0,tp,tp,false,false,POS_FACEUP)
+	end
+end
+function s.remvond(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.GetTurnPlayer()~=tp
+end
+function s.remtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	local g=Duel.GetFieldGroup(tp,0,LOCATION_HAND)
+	if chk==0 then return #g>0 and g:IsExists(Card.IsAbleToRemove,1,nil,1-tp,POS_FACEUP,REASON_RULE)
+		and not Duel.IsPlayerAffectedByEffect(1-tp,30459350)
+	end
+	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,0,LOCATION_HAND)
+end
+function s.remop(e,tp,eg,ep,ev,re,r,rp)
+	if Duel.IsPlayerAffectedByEffect(1-tp,30459350) then return end
+	local g=Duel.GetFieldGroup(tp,0,LOCATION_HAND)
+	if #g>0 then
+		Duel.Hint(HINT_SELECTMSG,1-tp,HINTMSG_REMOVE)
+		local sg=g:FilterSelect(1-tp,Card.IsAbleToRemove,1,1,nil,1-tp,POS_FACEUP,REASON_RULE)
+		Duel.Remove(sg,POS_FACEUP,REASON_RULE)
+	end
 end
