@@ -130,7 +130,7 @@ if not BoosterDraft then
 			for t=1,total do
 				local g=Group.CreateGroup()
 				for p=1,3 do
-					for i=1,5 do
+					for i=1,6 do
 						local cpack=pack[i]
 						local c=cpack[Duel.GetRandomNumber(1,#cpack)]
 						g:AddCard(Debug.AddCard(c,t%2,t%2,LOCATION_GRAVE,1,POS_FACEUP))
@@ -143,7 +143,7 @@ if not BoosterDraft then
 		end
 		local packs = generate_packs()
 		local graveg=Duel.GetFieldGroup(p,LOCATION_GRAVE,LOCATION_GRAVE)
-		local pack=table.remove(packs, 1)
+		local pack=table.remove(packs, 1)--[[
 		local confirmed=false
 		while pack do
 			for p=z,o do
@@ -162,7 +162,7 @@ if not BoosterDraft then
 				end
 			end
 			confirmed=true
-		end
+		end--]]
 		::exit::
 		for p=z,o do
 			for team=1,counts[p] do
