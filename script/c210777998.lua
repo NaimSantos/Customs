@@ -126,6 +126,7 @@ if not BoosterDraft then
 
 		local function generate_packs()
 			local total=(counts[0]+counts[1])*3
+			Debug.Message("Total = "..tostring(total))
 			local retpacks={}
 			for t=1,total do
 				local g=Group.CreateGroup()
@@ -143,7 +144,8 @@ if not BoosterDraft then
 		end
 		local packs = generate_packs()
 		local graveg=Duel.GetFieldGroup(p,LOCATION_GRAVE,LOCATION_GRAVE)
-		local pack=table.remove(packs, 1)--[[
+		--[[
+		local pack=table.remove(packs, 1)
 		local confirmed=false
 		while pack do
 			for p=z,o do
