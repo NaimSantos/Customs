@@ -1,6 +1,11 @@
 --Random Duel
 --based off of "Sealed Duel", a script by andre, AlphaKretin, senpaizuri, MLD and by edo9300
---DANE, CHIM, ROTD, RIRA, IGAS, ETCO
+-- Cards from the following packs are supported:
+--[[
+Dark Neostorm, Rising Rampage, Chaos Impact
+Ignition Assault, Eternity Code, Rise of the Duelist
+--]]
+
 local id=210777998
 local selfs={}
 if self_table then
@@ -125,46 +130,19 @@ if not BoosterDraft then
 		end
 
 		local function generate_packs()
-			local total=(counts[0]+counts[1])*3
-			Debug.Message("Total = "..tostring(total))
 			local retpacks={}
-			for t=1,total do
+			local size=Duel.GetRandomNumber(50,60)--using 50 because some extra deck cards might be created
+			for t=1,size*2 do
 				local g=Group.CreateGroup()
-				for p=1,3 do
-					for i=1,6 do
-						local cpack=pack[i]
-						local c=cpack[Duel.GetRandomNumber(1,#cpack)]
-						g:AddCard(Debug.AddCard(c,t%2,t%2,LOCATION_GRAVE,1,POS_FACEUP))
-					end
-				end
+				local cpack=pack[Duel.GetRandomNumber(1,6)]--number of packs I have
+				local c=cpack[Duel.GetRandomNumber(1,#cpack)]
+				g:AddCard(Debug.AddCard(c,t%2,t%2,LOCATION_GRAVE,1,POS_FACEUP))
 				table.insert(retpacks,g)
 			end
 			Debug.ReloadFieldEnd()
 			return retpacks
 		end
-		local packs = generate_packs()
-		local graveg=Duel.GetFieldGroup(p,LOCATION_GRAVE,LOCATION_GRAVE)
-		--[[
-		local pack=table.remove(packs, 1)
-		local confirmed=false
-		while pack do
-			for p=z,o do
-				for team=1,counts[p] do
-					if not confirmed then Duel.ConfirmCards(p,graveg) end
-					local tc=pack:Select(p,1,1,nil)
-					table.insert(groups[p][team],tc:GetFirst():GetCode())
-					pack:Sub(tc)
-					if counts[p]~=1 then
-						Duel.TagSwap(p)
-					end
-					if #pack==0 then
-						pack=table.remove(packs, 1)
-						if not pack then goto exit end
-					end
-				end
-			end
-			confirmed=true
-		end--]]
+		local packs = generate_packs() --calls the function above
 		::exit::
 		for p=z,o do
 			for team=1,counts[p] do
