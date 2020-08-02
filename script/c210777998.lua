@@ -1,11 +1,10 @@
 --Random Duel
 --based off of "Sealed Duel", a script by andre, AlphaKretin, senpaizuri, MLD and by edo9300
---[[Cards from the following packs are supported:
+--[[Cards from the following 11 packs are supported:
 Dark Neostorm, Rising Rampage, Chaos Impact, Ignition Assault,
 Eternity Code, Rise of the Duelist, Soul Fusion, Savage Strike,
 Cybernetic Horizon, Flames of Destruction, Extreme Force
 --]]
-
 local id=210777998
 local selfs={}
 if self_table then
