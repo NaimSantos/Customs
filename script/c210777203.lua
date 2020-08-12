@@ -47,7 +47,8 @@ function s.initial_effect(c)
 	e3:SetOperation(s.disop)
 	c:RegisterEffect(e3)
 end
-s.listed_names={CARD_DARK_MAGICIAN,CARD_BLUEEYES_W_DRAGON}
+s.listed_series={0xdd}
+s.listed_names={CARD_BLUEEYES_W_DRAGON}
 function s.valcheck(e,c)
 	if c:GetMaterial():IsExists(Card.IsCode,1,nil,CARD_BLUEEYES_W_DRAGON) then
 		e:GetLabelObject():SetLabel(1)

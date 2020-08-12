@@ -24,6 +24,7 @@ function s.initial_effect(c)
 	e1:SetOperation(s.operation)
 	c:RegisterEffect(e1)
 end
+s.listed_series={0x9b}
 function s.matfilter(c,lc,sumtype,tp)
 	return c:IsSetCard(0x9b,lc,sumtype,tp) and not c:IsSummonCode(lc,sumtype,tp,id)
 end

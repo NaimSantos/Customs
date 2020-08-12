@@ -38,6 +38,7 @@ function s.initial_effect(c)
 	e4:SetValue(1)
 	c:RegisterEffect(e4)
 end
+s.listed_series={0xf19}
 function s.cfilter(c)
 	return c:IsFaceup() and c:IsType(TYPE_RITUAL)
 end

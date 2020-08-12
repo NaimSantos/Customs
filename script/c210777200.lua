@@ -72,6 +72,7 @@ function s.initial_effect(c)
 	e6:SetOperation(s.atkop)
 	c:RegisterEffect(e6)
 end
+s.listed_series={0xaf,0x99}
 function s.pcfilter(c)
 	return c:IsFaceup() and (c:IsSetCard(0xaf) or c:IsSetCard(0x99))
 		and c:IsType(TYPE_PENDULUM) and not c:IsForbidden()

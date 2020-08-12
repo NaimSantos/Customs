@@ -42,6 +42,7 @@ function s.initial_effect(c)
 	e5:SetValue(8)
 	c:RegisterEffect(e5)
 end
+s.listed_series={0xf19}
 function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)>=3 end
 	Duel.SetTargetPlayer(tp)

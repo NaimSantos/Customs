@@ -46,7 +46,8 @@ function s.initial_effect(c)
 	e3:SetOperation(s.thop)
 	c:RegisterEffect(e3)
 end
-s.listed_series={0x1034,0x2034,0x46}
+s.listed_names={CARD_NEOS}
+s.listed_series={0x1034,0x46,0x2034}
 function s.repcon(e)
 	local c=e:GetHandler()
 	return c:IsFaceup() and c:IsLocation(LOCATION_MZONE) and c:IsReason(REASON_DESTROY)

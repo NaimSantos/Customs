@@ -15,6 +15,7 @@ function s.initial_effect(c)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
 end
+s.listed_series={0x30}
 function s.filter(c,ft,check)
 	return c:IsFaceup() and ((c:IsType(TYPE_EQUIP) and ft>0)
 		or (check and c:IsSetCard(0x30) and (ft>0 or (c:IsLocation(LOCATION_MZONE) and c:GetSequence()<5))))

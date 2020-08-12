@@ -40,6 +40,7 @@ function s.initial_effect(c)
 	e5:SetCode(EFFECT_UPDATE_DEFENSE)
 	c:RegisterEffect(e5)
 end
+s.listed_series={0xf19}
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsAbleToGraveAsCost,tp,LOCATION_HAND,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)

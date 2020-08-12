@@ -53,6 +53,7 @@ function s.initial_effect(c)
 	e5:SetOperation(s.remop)
 	c:RegisterEffect(e5)
 end
+s.listed_series={0x97}
 function s.filter(c)
 	return c:IsSetCard(0x97) and c:IsType(TYPE_MONSTER) and c:IsSSetable(true)
 end
