@@ -2,7 +2,7 @@
 --designed and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	--atk/def up
+	--Increase ATK/DEF
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_FIELD)
 	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
@@ -23,7 +23,7 @@ function s.initial_effect(c)
 	local e2=e1:Clone()
 	e2:SetCode(id)
 	c:RegisterEffect(e2)
-	--to hand
+	--Return target to hand
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(id,1))
 	e3:SetCategory(CATEGORY_TOHAND)
@@ -35,7 +35,7 @@ function s.initial_effect(c)
 	e3:SetTarget(s.thtg)
 	e3:SetOperation(s.thop)
 	c:RegisterEffect(e3)
-	--banish
+	--Banish
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(id,3))
 	e4:SetCategory(CATEGORY_REMOVE)
@@ -84,7 +84,7 @@ function s.tffilter(c,tp)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc:IsRelateToEffect(e) and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
+	if tc and tc:IsRelateToEffect(e) and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
 		local g=Duel.GetMatchingGroup(s.tffilter,tp,LOCATION_HAND,0,nil,tp)
 		if #g>0 and Duel.SelectYesNo(tp,aux.Stringid(73734821,2)) then
 			Duel.BreakEffect()
