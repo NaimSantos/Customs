@@ -55,6 +55,6 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.val(e,c,re,chk)
-    if chk==0 then return true end
-    return RACE_ZOMBIE
+	if chk==0 then return true end
+	return RACE_ZOMBIE
 end
