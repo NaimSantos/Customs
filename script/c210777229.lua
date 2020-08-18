@@ -56,7 +56,7 @@ function s.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.thfilter2(c,code)
-	return c:IsSetCard(0x105) and c:IsAbleToHand() and not c:IsCode(code)
+	return c:IsSetCard(0x105) and c:IsAbleToHand() and c:IsCode(code)
 end
 function s.costfilter2(c,tp)
 	return c:IsSetCard(0x105) and c:IsAbleToRemoveAsCost() and (c:IsFaceup() or c:IsLocation(LOCATION_HAND+LOCATION_GRAVE))
@@ -78,11 +78,7 @@ function s.operation2(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetOperation(s.desop)
 	e1:SetLabel(e:GetLabel())
 	Duel.RegisterEffect(e1,tp)
-	if Duel.GetCurrentPhase()==PHASE_STANDBY then
-		e:GetHandler():RegisterFlagEffect(id,RESET_PHASE+PHASE_STANDBY,EFFECT_FLAG_OATH,2,Duel.GetTurnCount())
-	else
-		e:GetHandler():RegisterFlagEffect(id,RESET_PHASE+PHASE_STANDBY,EFFECT_FLAG_OATH,1)
-	end
+	e:GetHandler():RegisterFlagEffect(id,RESET_PHASE+PHASE_STANDBY,EFFECT_FLAG_OATH,1)
 end
 function s.descond(e,tp,eg,ep,ev,re,r,rp)
 	local label=e:GetHandler():GetFlagEffectLabel(id)

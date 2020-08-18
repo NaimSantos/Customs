@@ -2,18 +2,18 @@
 --scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-    --Activate
-    local e1=Effect.CreateEffect(c)
-    e1:SetType(EFFECT_TYPE_ACTIVATE)
-    e1:SetCode(EVENT_FREE_CHAIN)
-    c:RegisterEffect(e1)
+	--Activate
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_ACTIVATE)
+	e1:SetCode(EVENT_FREE_CHAIN)
+	c:RegisterEffect(e1)
 	--Tribute and Draw
 	local e2=Effect.CreateEffect(c)
-    e2:SetDescription(aux.Stringid(id,0))
-    e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
-    e2:SetType(EFFECT_TYPE_IGNITION)
-    e2:SetCountLimit(1)
-    e2:SetRange(LOCATION_SZONE)
+	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e2:SetType(EFFECT_TYPE_IGNITION)
+	e2:SetCountLimit(1)
+	e2:SetRange(LOCATION_SZONE)
 	e2:SetCondition(s.condition)
 	e2:SetCost(s.cost)
 	e2:SetTarget(s.target)
