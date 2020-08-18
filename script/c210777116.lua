@@ -112,7 +112,7 @@ function s.tdfilter(c)
 end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local ct=Duel.GetMatchingGroupCount(s.imnfilter,tp,LOCATION_ONFIELD,0,nil)
-	if chkc then return chkc:IsControler(1-tp)  and chkc:IsLocation(LOCATION_ONFIELD) and s.tdfilter(chkc) end
+	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_ONFIELD) and s.tdfilter(chkc) end
 	if chk==0 then return ct>0 and Duel.IsExistingTarget(s.tdfilter,tp,0,LOCATION_ONFIELD,1,nil,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectTarget(tp,s.tdfilter,tp,LOCATION_GRAVE,0,1,ct,nil)

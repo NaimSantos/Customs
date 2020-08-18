@@ -42,10 +42,10 @@ function s.initial_effect(c)
 end
 s.listed_series={0x47,0xc008,0x1047}
 function s.ffilter1(c,fc,sumtype,tp)
-	return c:IsSetCard(0x1047,fc,sumtype,tp) and c:IsType(TYPE_NORMAL,fc,sumtype,tp) 
+	return c:IsSetCard(0x1047,fc,sumtype,tp) and c:IsType(TYPE_NORMAL,fc,sumtype,tp)
 end
 function s.ffilter2(c,fc,sumtype,tp)
-	return c:IsSetCard(0x1047,fc,sumtype,tp) and c:IsType(TYPE_EFFECT,fc,sumtype,tp) 
+	return c:IsSetCard(0x1047,fc,sumtype,tp) and c:IsType(TYPE_EFFECT,fc,sumtype,tp)
 end
 function s.excvcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_FUSION)
@@ -106,7 +106,7 @@ function s.thcond(e,tp,eg,ep,ev,re,r,rp)
 	return c:GetReasonPlayer()==1-tp and c:IsReason(REASON_EFFECT) and c:IsPreviousPosition(POS_FACEUP) and c:IsPreviousControler(tp)
 end
 function s.thfilter(c)
-	return  c:IsSetCard(0x1047) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
+	return c:IsSetCard(0x1047) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_REMOVED) and chkc:IsControler(tp) and chkc:IsAbleToHand() end

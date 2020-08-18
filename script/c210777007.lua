@@ -80,7 +80,7 @@ function s.spcon(e,c)
 	local g2=rg:Filter(s.matfilter2,nil)
 	local g=g1:Clone()
 	g:Merge(g2)
-	return Duel.GetLocationCountFromEx(tp,tp,c,c)>0 and #g1>0 and #g2>0 and #g>1  and aux.SelectUnselectGroup(g,e,tp,2,2,s.rescon,0)
+	return Duel.GetLocationCountFromEx(tp,tp,c,c)>0 and #g1>0 and #g2>0 and #g>1 and aux.SelectUnselectGroup(g,e,tp,2,2,s.rescon,0)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,c)
 	local rg=Duel.GetReleaseGroup(tp)
