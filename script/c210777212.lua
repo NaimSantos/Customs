@@ -111,7 +111,7 @@ function s.eqlimit(e,c)
 end
 function s.atkcon(e)
 	local ec=e:GetHandler():GetEquipTarget()
-	return ec and ec:IsRace(RACE_FAITY)
+	return ec and ec:IsRace(RACE_FAIRY)
 end
 function s.lptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
