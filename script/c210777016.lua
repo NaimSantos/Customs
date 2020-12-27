@@ -2,27 +2,28 @@
 --designed by DavidKManner#3522, scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	--pendulum summon
+	--Pendulum attributes
 	Pendulum.AddProcedure(c)
-	--splimit
+	--Special Summon limit
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetRange(LOCATION_PZONE)
+	e1:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
+	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_CANNOT_NEGATE)
+	e1:SetTargetRange(1,0)
+	e1:SetTarget(s.splimit)
+	c:RegisterEffect(e1)
+	--Special Summon
 	local e2=Effect.CreateEffect(c)
-	e2:SetType(EFFECT_TYPE_FIELD)
+	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_PZONE)
-	e2:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
-	e2:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_CANNOT_NEGATE)
-	e2:SetTargetRange(1,0)
-	e2:SetTarget(s.splimit)
+	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e2:SetCountLimit(1)
+	e2:SetTarget(s.target)
+	e2:SetOperation(s.operation)
 	c:RegisterEffect(e2)
-	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
-	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
-	e3:SetType(EFFECT_TYPE_IGNITION)
-	e3:SetRange(LOCATION_PZONE)
-	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
-	e3:SetCountLimit(1)
-	e3:SetTarget(s.target)
-	e3:SetOperation(s.operation)
-	c:RegisterEffect(e3)
 end
 s.listed_series={0x3b}
 function s.splimit(e,c,sump,sumtype,sumpos,targetp)

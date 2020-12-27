@@ -1,8 +1,8 @@
 --Reptilianne Euryale
---designed and scripted by Naim
+--Designed and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	--special summon
+	--Special summon procedure
 	local e0=Effect.CreateEffect(c)
 	e0:SetDescription(aux.Stringid(id,0))
 	e0:SetType(EFFECT_TYPE_FIELD)
@@ -13,7 +13,7 @@ function s.initial_effect(c)
 	e0:SetOperation(s.spop)
 	e0:SetCountLimit(1,id)
 	c:RegisterEffect(e0)
-	--immune
+	--Unnafected
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_IMMUNE_EFFECT)
@@ -21,7 +21,7 @@ function s.initial_effect(c)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetValue(s.efilter)
 	c:RegisterEffect(e1)
-	--atk
+	--Change ATK
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(id,1))
 	e2:SetCategory(CATEGORY_ATKCHANGE)
@@ -29,7 +29,7 @@ function s.initial_effect(c)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e2:SetOperation(s.atkop)
 	c:RegisterEffect(e2)
-	--destroy & spsummon
+	--Destroy and Special Summon
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(id,2))
 	e3:SetCategory(CATEGORY_DESTROY+CATEGORY_SPECIAL_SUMMON)
@@ -127,8 +127,8 @@ end
 function s.spop2(e,tp,eg,ep,ev,re,r,rp)
 	local tc1,tc2=Duel.GetFirstTarget()
 	if tc1~=e:GetLabelObject() then tc1,tc2=tc2,tc1 end
-	if tc1:IsRelateToEffect(e) and Duel.Destroy(tc1,REASON_EFFECT)>0 and tc1:IsLocation(LOCATION_GRAVE) 
+	if tc1:IsRelateToEffect(e) and Duel.Destroy(tc1,REASON_EFFECT)>0 and tc1:IsLocation(LOCATION_GRAVE)
 		and tc2:IsRelateToEffect(e) and (aux.nvfilter(tc2) or not Duel.IsChainDisablable(0)) then
-		Duel.SpecialSummon(tc2,0,tp,tp,false,false,POS_FACEUP)
+			Duel.SpecialSummon(tc2,0,tp,tp,false,false,POS_FACEUP)
 	end
 end
