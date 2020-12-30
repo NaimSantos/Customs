@@ -23,7 +23,6 @@ function s.initial_effect(c)
 	--search in the end phase
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(id,1))
-	e4:SetCategory(CATEGORY_TOFIELD)
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e4:SetRange(LOCATION_GRAVE)
 	e4:SetCode(EVENT_PHASE+PHASE_END)
