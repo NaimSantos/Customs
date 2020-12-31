@@ -50,12 +50,12 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	end
 	local og=Duel.GetOperatedGroup()
 	if #og~=lvl then
-		local diff=lv-#og
+		local diff=lvl-#og
 		local g1=Duel.GetFieldGroup(tp,LOCATION_ONFIELD,LOCATION_ONFIELD)
 		if #g1>0 and Duel.SelectYesNo(tp,aux.Stringid(id,1)) then
 			Duel.BreakEffect()
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-			local dg=g1:Select(tp,1,math.min(1,diff,nil))
+			local dg=g1:Select(tp,1,diff,nil)
 			Duel.Destroy(dg,REASON_EFFECT)
 		end
 	end
