@@ -1,6 +1,5 @@
 --Apoqliphort Space Pyramid
---Tungnon's request
---Scripted by Naim
+--Designed by Tungnon, scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
 	c:EnableReviveLimit()

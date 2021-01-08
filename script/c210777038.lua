@@ -1,11 +1,5 @@
 --Altar of the Earthbound Immortals
 --Designed and scripted by Naim
---[[
-(1) Each turn, 1 level 5 or higher "Earthbound Immortal" monster you would normal summon can be summoned without tribute. ok
-(2) While you control an "Earthbound Immortal" monster your opponent cannot target this card with effects. ok
-(3) If damage calculation is performed involving an "Earthbound Immortal" monster you control, at the end of the battle phase:
-You can add 1 "Earthbound" card to your hand, from your deck or graveyard.
---]]
 local s,id=GetID()
 function s.initial_effect(c)
 	--activate

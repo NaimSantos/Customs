@@ -54,7 +54,3 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Draw(tp,1,REASON_EFFECT)
 	end
 end
-function s.val(e,c,re,chk)
-	if chk==0 then return true end
-	return RACE_ZOMBIE
-end

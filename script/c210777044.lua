@@ -1,6 +1,5 @@
 --Millennium Eye Vision
---Original ideia by Hooded Red™#7087
---scripted by Hooded Red™#7087 / Added to Naim's range
+--Designed and scripted by Hooded Red™#7087 / Added to Naim's range
 local s,id=GetID()
 function s.initial_effect(c)
 	--Activate

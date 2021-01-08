@@ -56,11 +56,11 @@ function s.filter2(c)
 	return c:IsType(TYPE_TRAP) and c:IsAbleToHand()
 end
 function s.setcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then
-	return Duel.IsExistingMatchingCard(s.rvfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,nil)
-		and Duel.IsExistingMatchingCard(s.filter2,tp,LOCATION_REMOVED,0,1,nil)	end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.rvfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,nil)
+		and Duel.IsExistingMatchingCard(s.filter2,tp,LOCATION_REMOVED,0,1,nil) end
+	local maxct=Duel.GetMatchingGroupCount(s.filter2,tp,LOCATION_REMOVED,0,nil)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local rev=Duel.SelectMatchingCard(tp,s.rvfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,99,nil)
+	local rev=Duel.SelectMatchingCard(tp,s.rvfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,maxct,nil)
 	Duel.ConfirmCards(1-tp,rev)
 	Duel.ShuffleHand(tp)
 	e:SetLabel(#rev)

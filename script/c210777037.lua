@@ -1,10 +1,5 @@
 --Magician Girl's Pajama Party
 --Scripted by Naim
---[[
-(1) Your opponent must attack, if able. Also, if you control 2 or more "Magician Girl" monster, you choose the attack target for your opponent's attack. ok
-(2) While you have 3 or more Spellcaster in your graveyard, Spellcaster monsters you control cannot be destroyed by cards effect. ok
-(3) If this card is sent from field to the graveyard: special summon 1 "Magician Girl" monster from your deck or graveyard.
---]]
 local s,id=GetID()
 function s.initial_effect(c)
 	--Activate

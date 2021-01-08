@@ -57,7 +57,7 @@ function s.filter3(c)
 	return c:IsRace(RACE_WARRIOR) or c:IsRace(RACE_SPELLCASTER)
 end
 function s.thcond2(e,tp,eg,ep,ev,re,r,rp)
-	 return Duel.IsExistingMatchingCard(s.filter3,tp,LOCATION_MZONE,0,1,nil)
+	return Duel.IsExistingMatchingCard(s.filter3,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.filter4(c)
 	return c:GetType()==TYPE_SPELL and c:IsSetCard(0x46) and c:IsAbleToHand()

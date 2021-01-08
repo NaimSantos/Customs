@@ -36,7 +36,7 @@ function s.initial_effect(c)
 	e4:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE)
 	e4:SetCondition(s.tgcond)
 	e4:SetValue(aux.tgoval)
-	c:RegisterEffect(e4)	
+	c:RegisterEffect(e4)
 	--Search
 	local e5=Effect.CreateEffect(c)
 	e5:SetDescription(aux.Stringid(id,1))
@@ -47,7 +47,7 @@ function s.initial_effect(c)
 	e5:SetCondition(s.thcon)
 	e5:SetTarget(s.thtg)
 	e5:SetOperation(s.thop)
-	c:RegisterEffect(e5)	
+	c:RegisterEffect(e5)
 end
 s.listed_series={0x30}
 function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
