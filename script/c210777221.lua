@@ -50,7 +50,7 @@ function s.indcond(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_GRAVE,LOCATION_GRAVE,1,nil)
 end
 function s.atkcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
+	return Duel.IsExistingMatchingCard(s.filter,e:GetHandlerPlayer(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
 end
 function s.spcond(e,tp,eg,ep,ev,re,r,rp)
 	return (r&REASON_EFFECT)~=0
