@@ -82,7 +82,7 @@ function s.negcon(e,tp,eg,ep,ev,re,r,rp)
 	if e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED) then return false end
 	return ep==1-tp and Duel.IsChainNegatable(ev) and Duel.IsExistingMatchingCard(s.ngtfilter,tp,LOCATION_MZONE,0,1,e:GetHandler())
 end
-function s.dswdfilter()
+function s.dswdfilter(c)
 	return c:IsSetCard(0xd6) and c:IsAbleToGraveAsCost()
 end
 function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -91,14 +91,15 @@ function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoGrave(g:GetFirst(),REASON_COST,tp)
 end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	--if chk==0 then return re:GetHandler():IsAbleToDeck() end
+    if chk==0 then return true end
 	Duel.SetOperationInfo(0,CATEGORY_NEGATE,eg,1,0,0)
 	if re:GetHandler():IsRelateToEffect(re) then
-		Duel.SetOperationInfo(0,CATEGORY_TODECK,re:GetHandler(),1,0,re:GetHandler():GetLocation())
+		Duel.SetOperationInfo(0,CATEGORY_TODECK,eg,1,0,0)
 	end
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.NegateActivation(ev) and re:GetHandler():IsRelateToEffect(re) then
+        re:GetHandler():CancelToGrave()
 		Duel.SendtoDeck(re:GetHandler(),nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
 	end
 end
