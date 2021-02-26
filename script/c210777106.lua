@@ -78,7 +78,7 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingTarget(s.filter3,tp,LOCATION_ONFIELD,0,1,nil,tp)
 		and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local g=Duel.SelectTarget(tp,s.filter3,tp,LOCATION_ONFIELD,0,1,1,nil)
+	local g=Duel.SelectTarget(tp,s.filter3,tp,LOCATION_ONFIELD,0,1,1,nil,tp)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
 end
