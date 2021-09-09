@@ -2,8 +2,8 @@
 --designed by Natalia, scripted by Naim
 function c210777009.initial_effect(c)
 	--pendulum summon
-	aux.EnablePendulumAttribute(c)
-	--splimit
+	Pendulum.AddProcedure(c)
+	--Special Summon Limit
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
@@ -12,7 +12,7 @@ function c210777009.initial_effect(c)
 	e2:SetTargetRange(1,0)
 	e2:SetTarget(c210777009.splimit)
 	c:RegisterEffect(e2)
-	--tohand
+	--Add to Hand
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(210777009,0))
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)

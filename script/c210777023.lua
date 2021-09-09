@@ -2,7 +2,7 @@
 --designed by Natalia, scripted by Naim
 function c210777023.initial_effect(c)
 	--pendulum summon
-	aux.EnablePendulumAttribute(c)
+	Pendulum.AddProcedure(c)
 	--splimit
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
@@ -75,7 +75,7 @@ function c210777023.initial_effect(c)
 	e10:SetType(EFFECT_TYPE_SINGLE)
 	e10:SetCode(EFFECT_MATERIAL_CHECK)
 	e10:SetValue(c210777023.valcheck)
-	e9:SetLabelObject(e9)
+	e10:SetLabelObject(e9)
 	c:RegisterEffect(e10)
 end
 function c210777023.splimcon(e)
@@ -155,14 +155,14 @@ function c210777023.immcon(e)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_NORMAL)
 end
 function c210777023.thcon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsSummonType(SUMMON_TYPE_ADVANCE) and e:GetLabel()==1
+	return e:GetHandler():IsSummonType(SUMMON_TYPE_TRIBUTE) and e:GetLabel()==1
 end
 function c210777023.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and chkc:IsAbleToRemove() end
 	if chk==0 then return Duel.IsExistingTarget(Card.IsAbleToRemove,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local g=Duel.SelectTarget(tp,Card.IsAbleToRemove,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
-	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,1,0,0)
+	Duel.SetOperationInfo(0,HINTMSG_REMOVE,g,1,0,0)
 	Duel.SetChainLimit(c210777023.chlimit)
 end
 function c210777023.chlimit(e,ep,tp)
