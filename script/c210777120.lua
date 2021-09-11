@@ -4,7 +4,7 @@ local s,id=GetID()
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Fusion material
-	Fusion.AddProcMix(c,true,true,s.ffilter2,s.ffilter2)
+	Fusion.AddProcMix(c,true,true,s.ffilter1,s.ffilter2)
 	--Excavate
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(id,0))
@@ -95,7 +95,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		if Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP) then
 			local ct=Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)
 			if ct>0 and Duel.SelectYesNo(tp,aux.Stringid(id,3)) and Duel.DiscardHand(tp,nil,1,1,REASON_EFFECT+REASON_DISCARD)~=0 then
-				tc:EnableDualState()
+				tc:EnableGeminiState()
 			end
 		end
 		Duel.SpecialSummonComplete()
@@ -103,7 +103,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.thcond(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	return c:GetReasonPlayer()==1-tp and c:IsReason(REASON_EFFECT) and c:IsPreviousPosition(POS_FACEUP) and c:IsPreviousControler(tp)
+	return c:GetReasonPlayer()==tp and c:IsReason(REASON_EFFECT) and c:IsPreviousPosition(POS_FACEUP) and c:IsPreviousControler(tp)
 end
 function s.thfilter(c)
 	return c:IsSetCard(0x1047) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()

@@ -37,6 +37,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Special summon monster from the GY
 	local e3=Effect.CreateEffect(c)
+	e3:SetDescription(aux.Stringid(id,1))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
@@ -63,18 +64,17 @@ function s.damtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local ct=Duel.GetMatchingGroupCount(s.damfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED,0,nil)
 	if chk==0 then return ct>0 end
 	Duel.SetTargetPlayer(1-tp)
-	Duel.SetOperationInfo(0,CATEGORY_DAMAGE,nil,0,1-tp,ct*200)
+	Duel.SetOperationInfo(0,CATEGORY_DAMAGE,nil,0,1-tp,ct*100)
 end
 function s.damop(e,tp,eg,ep,ev,re,r,rp)
 	local ct=Duel.GetMatchingGroupCount(s.damfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED,0,nil)
 	local p=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER)
 	if ct>0 then
-		Duel.Damage(p,ct*200,REASON_EFFECT)
+		Duel.Damage(p,ct*100,REASON_EFFECT)
 	end
 end
 function s.tgcon(e)
-	local ph=Duel.GetCurrentPhase()
-	return ph<=PHASE_MAIN1 or ph>=PHASE_MAIN2
+	return Duel.IsMainPhase()
 end
 function s.spcond(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
