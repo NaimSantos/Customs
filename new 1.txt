@@ -1,0 +1,4 @@
+Delay Fusion
+Quick-Play Spell
+
+Reveal 1 Fusion monster in your Extra Deck, and if you do, send to the GY Fusion Materials listed on it from your hand or field. During the End Phase of this turn, Special Summon from your Extra Deck a monster with the same name as the revealed monster. You can only activate 1 "Delay Fusion" per turn.

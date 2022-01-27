@@ -97,3 +97,42 @@ Once per turn: you can tribute 1 Plant monster from your hand or field; excavate
 --Rikka Fertilizer
 Continuous Spell
 Once per turn: You can target 1 "Rikka" monster in your GY; Special Summon it. When either of the monsters summoned by this card effect leave the field, destroy this card. When this card leaves the field, shuffle into your Deck all the monsters summoned by this effect.
+
+
+# Burning Pit
+
+### The Burning Pit
+* Field Spell
+* When this cards is activated: You can add 1 "Burning Spell" monster from your Deck to your hand. Once per turn, if a "Burning Pit" monster is Special Summoned: You can send 1 "Burning Pit" monster from your hand to the GY; Special Summon 1 "Burning Pit" monster from your Deck. If this card on the field is destroyed: You can target 1 "Burning Pit" monster in your GY; add it to your hand. You can only use this effect of "The Burning Pit" once per turn.
+
+
+### Burning Pit Larva
+* Pyro/FIRE/Level 1/ATK 300 DEF 200
+
+
+### Burning Pit Fusion
+* Normal Spell
+* Fusion Summon 1 Pyro monster from your Extra Deck, using materials from your hand or field. If your opponent controls more monsters than you do, you can also send  1 FIRE monster from your Deck to the GY as material.
+
+### Burning Pit Thaw
+* Continuous Spell Card
+* Once per turn: You can Fusion Summon 1 FIRE monster from your Extra Deck, using materials from your hand or field. If your opponent controls more monsters than you do, you can also send  1 FIRE monster from your Deck to the GY as material. If this card on the field is destroyed: You can target 1 "Burning Pit" Spell/Trap in your GY, except "Burning Pit Thaw"; add it to your hand. You can only use this effect of "Burning Pit Thaw" once per turn.
+
+
+
+
+Fusion Reactor
+Continuous Spell Card
+Once per turn: You can Fusion Summon 1 Fusion monster from your Extra Deck, by using materials from your hand or field. If this card is sent from the field to the GY: You can target 1 Fusion monster in either GY; return it to the Extra Deck.
+
+
+
+D/D Savant Euler
+DARK/Fiend/Level 4/ATK 1200 DEF 1000/Pendulum Scale: 0
+[Pendulum Effect]
+You can target 1 "D/D" Pendulum monster in your GY, except "D/D Savant Euler"; place it in your Pendulum Zone, then destroy 1 card you control. If a "D/D/D" monster is Special Summoned: You can target 1 "Dark Contract" or "D/D" monster in your GY; add it to your hand then destroy this card. You can only use each Pendulum effect of "D/D Savant Euler" once per turn.
+
+[Monster Effect]
+
+If a "D/D/D" monster is Special Summoned to your field while this card is in the GY or face-up in your Extra Deck: you can destroy 1 card you control, then Special Summon this card. You can only use this effect of "D/D Savant Euler" once per turn. A "D/D" monster summoned using this card on the field as material gains this effect:
+*Cannot be destroyed by card effects.
