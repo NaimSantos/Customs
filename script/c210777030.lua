@@ -31,8 +31,8 @@ end
 function s.contactop(g)
 	Duel.Release(g,REASON_COST+REASON_MATERIAL)
 end
-function s.spcondition(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.IsExistingTarget(aux.FilterFaceupFunction(Card.IsType,TYPE_SPELL),tp,LOCATION_ONFIELD,0,1,nil)
+function s.spcondition(e,c)
+	return Duel.IsExistingTarget(aux.FilterFaceupFunction(Card.IsType,TYPE_SPELL),e:GetHandlerPlayer(),LOCATION_ONFIELD,0,1,nil)
 end
 function s.thfilter(c)
 	return c:IsFaceup() and c:GetType()==TYPE_SPELL and c:IsAbleToHand()
