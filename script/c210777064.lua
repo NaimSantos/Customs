@@ -1,7 +1,7 @@
 --The Beast That Lurks in the Ashes
 --designed by Thaumablazer#4134, scripted by Naim
---local s,id=GetID()
-function c210777064.initial_effect(c)
+local s,id=GetID()
+function s.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
@@ -9,8 +9,8 @@ function c210777064.initial_effect(c)
 	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
 	e1:SetRange(LOCATION_HAND)
 	e1:SetCountLimit(1,210777064)
-	e1:SetCondition(c210777064.spcon)
-	e1:SetOperation(c210777064.spop)
+	e1:SetCondition(s.spcon)
+	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
 	--immune
 	local e2=Effect.CreateEffect(c)
@@ -18,7 +18,7 @@ function c210777064.initial_effect(c)
 	e2:SetCode(EFFECT_IMMUNE_EFFECT)
 	e2:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
 	e2:SetRange(LOCATION_MZONE)
-	e2:SetValue(c210777064.efilter)
+	e2:SetValue(s.efilter)
 	c:RegisterEffect(e2)
 	--gy effect (burn)
 	local e3=Effect.CreateEffect(c)
@@ -29,23 +29,23 @@ function c210777064.initial_effect(c)
 	e3:SetRange(LOCATION_GRAVE)
 	e3:SetCountLimit(1,210777064+100)
 	e3:SetCost(aux.bfgcost)
-	e3:SetCondition(c210777064.dmgcond)
-	e3:SetTarget(c210777064.dmgtg)
-	e3:SetOperation(c210777064.dmgop)
+	e3:SetCondition(s.dmgcond)
+	e3:SetTarget(s.dmgtg)
+	e3:SetOperation(s.dmgop)
 	c:RegisterEffect(e3)
 end
-function c210777064.spcon(e,c)
+function s.spcon(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 	and Duel.IsExistingMatchingCard(aux.TRUE,tp,LOCATION_HAND,0,1,c)
 end
-function c210777064.spop(e,tp,eg,ep,ev,re,r,rp,c)
+function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)
 	local g=Duel.SelectMatchingCard(tp,aux.TRUE,tp,LOCATION_HAND,0,1,1,c)
 	Duel.SendtoGrave(g,REASON_COST+REASON_DISCARD)
 end
-function c210777064.efilter(e,re)
+function s.efilter(e,re)
 	local cg=e:GetHandler():GetColumnGroup()
 	local typecheck=0
 	for tc in aux.Next(cg) do
@@ -53,19 +53,19 @@ function c210777064.efilter(e,re)
 	end
 	return typecheck~=0 and re:IsActiveType(typecheck)
 end
-function c210777064.cfilter(c)
+function s.cfilter(c)
 	return c:IsFaceup() and c:IsSetCard(0xf10) and not c:IsCode(210777064)
 end
-function c210777064.dmgcond(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.IsExistingMatchingCard(c210777064.cfilter,tp,LOCATION_MZONE,0,1,nil)
+function s.dmgcond(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(s.cfilter,tp,LOCATION_MZONE,0,1,nil)
 end
-function c210777064.dmgtg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.dmgtg(e,tp,eg,ep,ev,re,r,rp,chk)
  	if chk==0 then return true end
 	local ct=Duel.GetFieldGroupCount(tp,0xc,0xc)
 	Duel.SetTargetPlayer(1-tp)
 	Duel.SetOperationInfo(0,CATEGORY_DAMAGE,nil,0,1-tp,ct*200)
 end
-function c210777064.dmgop(e,tp,eg,ep,ev,re,r,rp)
+function s.dmgop(e,tp,eg,ep,ev,re,r,rp)
 	local p=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER)
 	local ct=Duel.GetFieldGroupCount(tp,0xc,0xc)
 	Duel.Damage(p,ct*200,REASON_EFFECT)

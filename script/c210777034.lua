@@ -1,31 +1,32 @@
 --Form of Chaos
 --designed by Xeno Disturbia#5235
 --scripted by edo9300 & Larry (ritual summon procedure) and Naim (second effect)
-function c210777034.initial_effect(c)
+local s,id=GetID()
+function s.initial_effect(c)
 	--ritual summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetTarget(c210777034.target)
-	e1:SetOperation(c210777034.activate)
+	e1:SetTarget(s.target)
+	e1:SetOperation(s.activate)
 	c:RegisterEffect(e1)
 	if not AshBlossomTable then AshBlossomTable={} end
 	table.insert(AshBlossomTable,e1)
 	--spsummon from hand or gy
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(210777034,0))
+	e2:SetDescription(aux.Stringid(id,0))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
 	e2:SetCondition(aux.exccon)
 	e2:SetCost(aux.bfgcost)
-	e2:SetTarget(c210777034.sptg)
-	e2:SetOperation(c210777034.spop)
+	e2:SetTarget(s.sptg)
+	e2:SetOperation(s.spop)
 	c:RegisterEffect(e2)
 end
-c210777034.listed_names={89631139}
-function c210777034.filter(c,e,tp,m1,m2,ft)
+s.listed_names={89631139}
+function s.filter(c,e,tp,m1,m2,ft)
 	if not c:IsSetCard(0xdd) or (c:GetType()&0x81)~=0x81
 		or not c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true) then return false end
 	local lv=c:GetLevel()
@@ -48,7 +49,7 @@ function c210777034.filter(c,e,tp,m1,m2,ft)
 																									end,1,nil,c)
 	end
 end
-function c210777034.checkvalid(c,rc,tp,sg,mg,mg2,ft)
+function s.checkvalid(c,rc,tp,sg,mg,mg2,ft)
 	local deck = (mg2-sg)<mg2
 	if mg2:IsContains(c) and deck then return false end
 	local lv=rc:GetLevel()
@@ -81,31 +82,31 @@ function c210777034.checkvalid(c,rc,tp,sg,mg,mg2,ft)
 	end
 	return res
 end
-function c210777034.exfilter0(c)
+function s.exfilter0(c)
 	return c:IsCode(89631139) and c:IsLevelAbove(1) and c:IsAbleToGrave()
 end
-function c210777034.target(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		local mg=Duel.GetRitualMaterial(tp)
 		local sg=Group.CreateGroup()
 		if Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==0 then
-			sg=Duel.GetMatchingGroup(c210777034.exfilter0,tp,LOCATION_DECK,0,nil)-mg
+			sg=Duel.GetMatchingGroup(s.exfilter0,tp,LOCATION_DECK,0,nil)-mg
 		end
 		local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
-		return Duel.IsExistingMatchingCard(c210777034.filter,tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp,mg,sg,ft)
+		return Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp,mg,sg,ft)
 	end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)
 end
-function c210777034.activate(e,tp,eg,ep,ev,re,r,rp)
+function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local mg=Duel.GetRitualMaterial(tp)
 	local sg=Group.CreateGroup()
 	if Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==0 then 
-		sg=Duel.GetMatchingGroup(c210777034.exfilter0,tp,LOCATION_DECK,0,nil)-mg
+		sg=Duel.GetMatchingGroup(s.exfilter0,tp,LOCATION_DECK,0,nil)-mg
 	end
 	local full=mg+sg
 	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local tg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(c210777034.filter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,tp,mg,sg,ft)
+	local tg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.filter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,tp,mg,sg,ft)
 	local rc=tg:GetFirst()
 	if rc then
 	local lv=rc:GetLevel()
@@ -115,7 +116,7 @@ function c210777034.activate(e,tp,eg,ep,ev,re,r,rp)
 		end
 		local mat=Group.CreateGroup()
 		while true do
-			local cg=full:Filter(c210777034.checkvalid,mat,rc,tp,mat,mg,sg,ft)
+			local cg=full:Filter(s.checkvalid,mat,rc,tp,mat,mg,sg,ft)
 			if #cg==0 then break end
 			local cancelable=(function()Duel.SetSelectedCard(mat)return Group.CreateGroup():CheckWithSumGreater(Card.GetRitualLevel,lv,rc)end)() and (ft>0 or mat:IsExists(function(c)
 																																						return c:IsControler(tp) and c:IsLocation(LOCATION_MZONE) and c:GetSequence()<5
@@ -138,18 +139,18 @@ function c210777034.activate(e,tp,eg,ep,ev,re,r,rp)
 		rc:CompleteProcedure()
 	end
 end
-function c210777034.spfilter(c,e,tp)
+function s.spfilter(c,e,tp)
 	return c:IsSetCard(0xdd) and c:IsCanBeSpecialSummoned(e,0,tp,true,false)
 end
-function c210777034.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingMatchingCard(c210777034.spfilter,tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp) end
+		and Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)
 end
-function c210777034.spop(e,tp,eg,ep,ev,re,r,rp)
+function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectMatchingCard(tp,c210777034.spfilter,tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,tp)
+	local g=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,tp)
 	if g:GetCount()>0 then
 		Duel.SpecialSummon(g,0,tp,tp,true,false,POS_FACEUP)
 	end

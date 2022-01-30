@@ -1,6 +1,7 @@
 --Thor, Guardian of the Aesir
 --designed by Thaumablazer#4134, scripted by Naim
-function c210777094.initial_effect(c)
+local s,id=GetID()
+function s.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,0x42),1,1,aux.NonTuner(nil),2,99)
 	c:EnableReviveLimit()
@@ -13,9 +14,9 @@ function c210777094.initial_effect(c)
 	e1:SetCode(EVENT_CHAINING)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetCountLimit(1)
-	e1:SetCondition(c210777094.negcond)
-	e1:SetTarget(c210777094.negtg)
-	e1:SetOperation(c210777094.negoper)
+	e1:SetCondition(s.negcond)
+	e1:SetTarget(s.negtg)
+	e1:SetOperation(s.negoper)
 	c:RegisterEffect(e1)
 	--shuffle
 	local e2=Effect.CreateEffect(c)
@@ -24,16 +25,16 @@ function c210777094.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1,210777094)
-	e2:SetCost(c210777094.sflcost)
-	e2:SetTarget(c210777094.shftg)
-	e2:SetOperation(c210777094.sflop)
+	e2:SetCost(s.sflcost)
+	e2:SetTarget(s.shftg)
+	e2:SetOperation(s.sflop)
 	c:RegisterEffect(e2)
 	--special summon
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
 	e3:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e3:SetCode(EVENT_TO_GRAVE)
-	e3:SetOperation(c210777094.regop)
+	e3:SetOperation(s.regop)
 	c:RegisterEffect(e3)
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(210777094,2))
@@ -42,42 +43,42 @@ function c210777094.initial_effect(c)
 	e4:SetCode(EVENT_PHASE+PHASE_END)
 	e4:SetRange(LOCATION_GRAVE)
 	e4:SetCountLimit(1)
-	e4:SetCondition(c210777094.spcon)
-	e4:SetCost(c210777094.spcost)
-	e4:SetTarget(c210777094.sptg)
-	e4:SetOperation(c210777094.spop)
+	e4:SetCondition(s.spcon)
+	e4:SetCost(s.spcost)
+	e4:SetTarget(s.sptg)
+	e4:SetOperation(s.spop)
 	c:RegisterEffect(e4)
 end
-function c210777094.negcond(e,tp,eg,ep,ev,re,r,rp)
+function s.negcond(e,tp,eg,ep,ev,re,r,rp)
 	return not e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED) and ep~=tp and re:IsActiveType(TYPE_MONSTER) and Duel.IsChainNegatable(ev)
 end
-function c210777094.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	Duel.SetOperationInfo(0,CATEGORY_NEGATE,eg,1,0,0)
 	if re:GetHandler():IsDestructable() and re:GetHandler():IsRelateToEffect(re) then
 		Duel.SetOperationInfo(0,CATEGORY_DESTROY,eg,1,0,0)
 	end
 end
-function c210777094.negoper(e,tp,eg,ep,ev,re,r,rp)
+function s.negoper(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.NegateActivation(ev) and re:GetHandler():IsRelateToEffect(re) then
 		Duel.Destroy(eg,REASON_EFFECT)
 	end
 end
-function c210777094.rmvspfilter(c)
+function s.rmvspfilter(c)
 	return c:IsSetCard(0x42) and c:IsAbleToRemoveAsCost() and aux.SpElimFilter(c,true)
 end
-function c210777094.sflcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(c210777094.rmvspfilter,tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,e:GetHandler()) end
+function s.sflcost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.rmvspfilter,tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,e:GetHandler()) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local g=Duel.SelectMatchingCard(tp,c210777094.rmvspfilter,tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,1,e:GetHandler())
+	local g=Duel.SelectMatchingCard(tp,s.rmvspfilter,tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,1,e:GetHandler())
 	Duel.Remove(g,POS_FACEUP,REASON_COST)
 end
-function c210777094.shftg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.shftg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsAbleToDeck,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
 	local g=Duel.GetMatchingGroup(Card.IsAbleToDeck,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,nil)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,g,1,0,0)
 end
-function c210777094.sflop(e,tp,eg,ep,ev,re,r,rp)
+function s.sflop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local sg=Duel.SelectMatchingCard(tp,Card.IsAbleToDeck,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
 	if sg:GetCount()>0 then
@@ -85,7 +86,7 @@ function c210777094.sflop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SendtoDeck(sg,nil,2,REASON_EFFECT)
 	end
 end
-function c210777094.regop(e,tp,eg,ep,ev,re,r,rp)
+function s.regop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local pos=c:GetPreviousPosition()
 	if c:IsReason(REASON_BATTLE) then pos=c:GetBattlePosition() end
@@ -93,24 +94,24 @@ function c210777094.regop(e,tp,eg,ep,ev,re,r,rp)
 		c:RegisterFlagEffect(210777094,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 	end
 end
-function c210777094.spcon(e,tp,eg,ep,ev,re,r,rp)
+function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetFlagEffect(210777094)~=0
 end
-function c210777094.cfilter(c,tp)
+function s.cfilter(c,tp)
 	return c:IsSetCard(0x42) and c:IsType(TYPE_TUNER) and c:IsAbleToRemoveAsCost() and aux.SpElimFilter(c,true) 
 		and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or (c:IsLocation(LOCATION_MZONE) and c:GetSequence()<5))
 end
-function c210777094.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(c210777094.cfilter,tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,nil,tp) end
+function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.cfilter,tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,nil,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local g=Duel.SelectMatchingCard(tp,c210777094.cfilter,tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,1,nil,tp)
+	local g=Duel.SelectMatchingCard(tp,s.cfilter,tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,1,nil,tp)
 	Duel.Remove(g,POS_FACEUP,REASON_COST)
 end
-function c210777094.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsCanBeSpecialSummoned(e,1,tp,false,false) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
 end
-function c210777094.spop(e,tp,eg,ep,ev,re,r,rp)
+function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if e:GetHandler():IsRelateToEffect(e) then
 		Duel.SpecialSummon(e:GetHandler(),1,tp,tp,false,false,POS_FACEUP)
 	end

@@ -52,7 +52,7 @@ end
 function s.redirectcond(e)
 	return Duel.IsExistingMatchingCard(s.cfilter1,e:GetHandlerPlayer(),LOCATION_MZONE,0,2,nil)
 end
-function c22000201.indestg(e,c)
+function s.indestg(e,c)
 	return c:IsRace(RACE_SPELLCASTER)
 end
 function s.effcond(e)
