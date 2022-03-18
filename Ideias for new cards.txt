@@ -143,3 +143,41 @@ Once per turn: You can Fusion Summon 1 Fusion monster from your Extra Deck, by u
 ### Delay Fusion
 * Quick-Play Spell
 * Reveal 1 Fusion monster in your Extra Deck, and if you do, send to the GY Fusion Materials listed on it from your hand or field. During the End Phase of this turn, Special Summon from your Extra Deck a monster with the same name as the revealed monster. You can only activate 1 "Delay Fusion" per turn.
+
+### Polychimera Kraken
+* Monster/Fusion/Effect/Fiend/WATER/Level 5 ATK 2000 DEF 2000
+* 2 Fiend monsters with the same name
+* You can only control 1 "Polychimera Kraken". Once per turn (Quick effect): You can target 1 card you control and 1 face-up card on the field. Destroy the first target, and if you do, until the end of this turn negate the effects of the second target.
+
+### Polychimera Grypho
+* Monster/Fusion/Effect/Fiend/WIND/Level 6 ATK 2300 DEF 2300
+* 2 Fiend monsters with different names
+* You can only control 1 "Polychimera Grypho". Once per turn, when a card or effect that targets a card on the field is activated (Quick effect): You can target 1 card on the field; return it to the hand.
+
+### Polychimera Drago
+* Monster/Fusion/Effect/Fiend/FIRE/Level 7 ATK 2700 DEF 2700
+* 2 Fiend monsters with different attributes
+* You can only control 1 "Polychimera Drago". Once per turn (Quick effect): You can target 1 face-up card on the field; until the end of this turn it cannot be destroyed by battle or card effects or be banished.
+
+### Polychimera Cerberus
+* Monster/Fusion/Effect/Fiend/DARK/Level 8 ATK 3100 DEF 3100
+* 3 Fiend monsters with different levels
+* You can only control 1 "Polychimera Cerberus". Once per turn, if a monster(s) is Special Summoned: You can negate the effects of one those monsters then destroy it, and if you do, Special Summon to that player's field 1 "Polychimera Token" (Level 8/ATK 1000/DEF 1000) with the same Type/Attribute that monster had on the field.
+
+
+### Polychimera Lab
+* Field Spell
+* When this card is activated: Add 1 "Polychimera" Spell/Trap from your Deck to your hand. Each time a card in your hand or field is destroyed: all Fiend monsters on the field gain 100 ATK/DEF.
+
+
+### Polychimera Training
+* Continuous Trap
+* You can only control 1 "Polychimera Training". Once per turn, if a Fiend Fusion monster is Special Summoned: You can target 2 "Polychimera" monsters in your GY; your opponent chooses 1 for you to add to your hand, then Special Summon the other in Defense position, but it cannot activate its effects this turn. You can send this card already face-up on the field, then target 1 Fusion monster you control and 1 face-up card your opponent controls; destroy them.
+
+
+Polychimera Experiment
+Continuous Spell
+
+### Polychimera Fusion
+* Quick-Play Spell
+* Fusion Summon 1 Fiend monster form your Extra Deck using monster from your field or hand as Fusion Material
