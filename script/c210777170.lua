@@ -28,7 +28,7 @@ function s.filter(c)
 end
 function s.tgyfilter(c,tp)
 	return c:IsSetCard(0xeb) and c:IsAbleToGraveAsCost()
-		and Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_DECK,0,1,c)
+		and Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_DECK,0,1,nil,c)
 end
 function s.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.tgyfilter,tp,LOCATION_DECK,0,1,nil,tp) end
