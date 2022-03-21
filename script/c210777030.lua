@@ -2,10 +2,19 @@
 --Scripted and designed by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	--Fusion Summon procedure
 	c:EnableReviveLimit()
+	--Fusion Summon procedure (1 non-Pendulum "Performapal" + 1 Pendulum monster)
 	Fusion.AddProcMix(c,true,true,s.ffilter,aux.FilterBoolFunctionEx(Card.IsType,TYPE_PENDULUM))
-	Fusion.AddContactProc(c,s.contactfil,s.contactop,s.splimit,s.spcondition)
+	--Alternate summon procedure
+	local e0=Effect.CreateEffect(c)
+	e0:SetType(EFFECT_TYPE_FIELD)
+	e0:SetProperty(EFFECT_FLAG_UNCOPYABLE)
+	e0:SetCode(EFFECT_SPSUMMON_PROC)
+	e0:SetRange(LOCATION_EXTRA)
+	e0:SetCondition(s.edspcon)
+	e0:SetTarget(s.edsptg)
+	e0:SetOperation(s.edspop)
+	c:RegisterEffect(e0)
 	--Return 1 Spell to hand and activate 1 Continuous Spell
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(id,1))
@@ -22,17 +31,45 @@ end
 function s.ffilter(c,fc,sumtype,tp)
 	return c:IsSetCard(0x9f,fc,sumtype,tp) and not c:IsType(TYPE_PENDULUM,fc,sumtype,tp)
 end
-function s.splimit(e,se,sp,st)
-	return (st&SUMMON_TYPE_FUSION)==SUMMON_TYPE_FUSION
+function s.npendperf(c)
+	return c:IsSetCard(0x9f) and not c:IsType(TYPE_PENDULUM)
 end
-function s.contactfil(tp)
-	return Duel.GetReleaseGroup(tp)
+function s.rescon(sg,e,tp,mg)
+	return aux.ChkfMMZ(1)(sg,e,tp,mg) and sg:IsExists(s.chk,1,nil,sg)
 end
-function s.contactop(g)
-	Duel.Release(g,REASON_COST+REASON_MATERIAL)
+function s.chk(c,sg)
+	return c:IsType(TYPE_PENDULUM) and sg:IsExists(s.npendperf,1,c)
 end
-function s.spcondition(e,c)
-	return Duel.IsExistingTarget(aux.FilterFaceupFunction(Card.IsType,TYPE_SPELL),e:GetHandlerPlayer(),LOCATION_ONFIELD,0,1,nil)
+function s.edspcon(e,c)
+	if c==nil then return true end
+	local tp=c:GetControler()
+	local rg=Duel.GetReleaseGroup(tp)
+	local g1=rg:Filter(Card.IsType,nil,TYPE_PENDULUM)
+	local g2=rg:Filter(s.npendperf,nil)
+	local g=g1:Clone()
+	g:Merge(g2)
+	return Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_SPELL),e:GetHandlerPlayer(),LOCATION_ONFIELD,0,1,nil)
+		and Duel.GetLocationCount(tp,LOCATION_MZONE)>-2 and #g1>0 and #g2>0 and #g>1 
+		and aux.SelectUnselectGroup(g,e,tp,2,2,s.rescon,0)
+end
+function s.edsptg(e,tp,eg,ep,ev,re,r,rp,c)
+	local rg=Duel.GetReleaseGroup(tp)
+	local g1=rg:Filter(Card.IsType,nil,TYPE_PENDULUM)
+	local g2=rg:Filter(s.npendperf,nil)
+	g1:Merge(g2)
+	local sg=aux.SelectUnselectGroup(g1,e,tp,2,2,s.rescon,1,tp,HINTMSG_RELEASE,nil,nil,true)
+	if #sg>0 then
+		sg:KeepAlive()
+		e:SetLabelObject(sg)
+		return true
+	end
+	return false
+end
+function s.edspop(e,tp,eg,ep,ev,re,r,rp,c)
+	local g=e:GetLabelObject()
+	if not g then return end
+	Duel.Release(g,REASON_COST)
+	g:DeleteGroup()
 end
 function s.thfilter(c)
 	return c:IsFaceup() and c:GetType()==TYPE_SPELL and c:IsAbleToHand()
