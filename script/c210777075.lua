@@ -2,7 +2,7 @@
 --designed by Thaumablazer#4134, scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,0x4b),10,3,nil,nil,12)
+	Xyz.AddProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,0x4b),10,3,nil,nil,12)
 	c:EnableReviveLimit()
 	--spsummon limit
 	local e1=Effect.CreateEffect(c)

@@ -2,7 +2,7 @@
 --designed by Xeno Disturbia#5235, scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	aux.EnablePendulumAttribute(c,false)
+	Pendulum.AddProcedure(c)
 	--change name
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)
