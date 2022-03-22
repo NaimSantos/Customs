@@ -3,20 +3,13 @@
 local s,id=GetID()
 function s.initial_effect(c)
 	--Increase ATK/DEF
-	local e0=Effect.CreateEffect(c)
-	e0:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_FIELD)
-	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
-	e0:SetCode(EVENT_CHAINING)
-	e0:SetRange(LOCATION_MZONE)
-	e0:SetOperation(aux.chainreg)
-	c:RegisterEffect(e0)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(id,0))
 	e1:SetCategory(CATEGORY_ATKCHANGE)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
-	e1:SetCode(EVENT_CHAIN_SOLVED)
+	e1:SetCode(EVENT_CHAINING)
 	e1:SetRange(LOCATION_MZONE)
-	e1:SetCountLimit(1)
+	e1:SetCountLimit(1,0,EFFECT_COUNT_CODE_SINGLE)
 	e1:SetCondition(s.atkcon)
 	e1:SetOperation(s.atkop)
 	c:RegisterEffect(e1)
@@ -32,7 +25,7 @@ function s.initial_effect(c)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetHintTiming(TIMING_MAIN_END+TIMING_END_PHASE,TIMING_MAIN_END+TIMING_END_PHASE)
-	e3:SetCountLimit(1,id)
+	e3:SetCountLimit(1)
 	e3:SetTarget(s.thtg)
 	e3:SetOperation(s.thop)
 	c:RegisterEffect(e3)
@@ -51,7 +44,7 @@ end
 s.listed_series={0x98}
 function s.atkcon(e,tp,eg,ep,ev,re,r,rp)
 	return re:IsActiveType(TYPE_SPELL) and re:IsHasType(EFFECT_TYPE_ACTIVATE)
-		and rp==tp and e:GetHandler():GetFlagEffect(1)>0
+		and rp==tp
 end
 function s.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
@@ -62,16 +55,13 @@ function s.atkop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetValue(200)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD_DISABLE)
 		c:RegisterEffect(e1)
-		local e2=Effect.CreateEffect(c)
-		e2:SetType(EFFECT_TYPE_SINGLE)
+		local e2=e1:Clone()
 		e2:SetCode(EFFECT_UPDATE_DEFENSE)
-		e2:SetValue(200)
-		e2:SetReset(RESET_EVENT+RESETS_STANDARD_DISABLE)
 		c:RegisterEffect(e2)
 	end
 end
 function s.thfilter(c)
-	return c:IsFaceup() and c:GetType()==TYPE_SPELL and c:IsAbleToHand()
+	return c:IsFaceup() and c:GetType()==TYPE_SPELL+TYPE_CONTINUOUS and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_SZONE) and chkc:IsControler(tp) and s.thfilter(chkc) end
@@ -87,7 +77,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc and tc:IsRelateToEffect(e) and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
 		local g=Duel.GetMatchingGroup(s.tffilter,tp,LOCATION_HAND,0,nil,tp)
-		if #g>0 and Duel.SelectYesNo(tp,aux.Stringid(73734821,2)) then
+		if #g>0 and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
 			Duel.BreakEffect()
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
 			local sc=g:Select(tp,1,1,nil):GetFirst()
