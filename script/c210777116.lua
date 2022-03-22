@@ -2,17 +2,17 @@
 --designed and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	--fusion material
+	--Fusion Summon procedure
 	c:EnableReviveLimit()
 	Fusion.AddProcMix(c,true,true,s.matfilter,aux.FilterBoolFunctionEx(Card.IsType,TYPE_LINK))
-	--spsummon condition
+	--Must be Fusion summoned
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e1:SetCode(EFFECT_SPSUMMON_CONDITION)
 	e1:SetValue(s.splimit)
 	c:RegisterEffect(e1)
-	--search
+	--Add 1 "Trickstar" monster from deck to the hand
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(id,0))
 	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
@@ -22,7 +22,7 @@ function s.initial_effect(c)
 	e2:SetTarget(s.thtg)
 	e2:SetOperation(s.thop)
 	c:RegisterEffect(e2)
-	--immune
+	--Make a "Trickstar" card unaffected
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(id,1))
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
@@ -33,9 +33,10 @@ function s.initial_effect(c)
 	e3:SetTarget(s.imntg)
 	e3:SetOperation(s.imnop)
 	c:RegisterEffect(e3)
-	--send to deck
+	--If the opponent takes damage, shuffle cards into the deck
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(id,2))
+	e4:SetCategory(CATEGORY_TODECK+CATEGORY_DRAW)
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e4:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e4:SetCode(EVENT_DAMAGE)
@@ -45,7 +46,7 @@ function s.initial_effect(c)
 	e4:SetTarget(s.tdtg)
 	e4:SetOperation(s.tdop)
 	c:RegisterEffect(e4)
-	--burn
+	--Inflict damage
 	local e5=Effect.CreateEffect(c)
 	e5:SetDescription(aux.Stringid(id,4))
 	e5:SetCategory(CATEGORY_DAMAGE)
@@ -105,7 +106,7 @@ function s.efilter(e,re)
 	return e:GetHandler()~=re:GetOwner() and not e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED)
 end
 function s.tdcond(e,tp,eg,ep,ev,re,r,rp)
-	return ep~=tp and (r&REASON_EFFECT)~=0 and re:IsActiveType(TYPE_MONSTER) and re:GetHandler():IsSetCard(0xfb)
+	return ep==1-tp and (r&REASON_EFFECT)~=0 and re:IsActiveType(TYPE_MONSTER) and re:GetHandler():IsSetCard(0xfb)
 end
 function s.tdfilter(c)
 	return c:IsFaceup() and c:IsAbleToDeck()
@@ -115,14 +116,15 @@ function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_ONFIELD) and s.tdfilter(chkc) end
 	if chk==0 then return ct>0 and Duel.IsExistingTarget(s.tdfilter,tp,0,LOCATION_ONFIELD,1,nil,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=Duel.SelectTarget(tp,s.tdfilter,tp,LOCATION_GRAVE,0,1,ct,nil)
+	local g=Duel.SelectTarget(tp,s.tdfilter,tp,0,LOCATION_ONFIELD,1,ct,nil)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,g,#g,0,0)
 end
 function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tg=Duel.GetTargetCards(e)
 	if #tg>0 and Duel.SendtoDeck(tg,nil,2,REASON_EFFECT)>0 then
-		local ct=#(Duel.GetOperatedGroup():Filter(Card.IsLocation(LOCATION_DECK),nil,1-tp))
+		local dg=Duel.GetOperatedGroup()
+		local ct=#(dg:Filter(Card.IsLocation,nil,1-tp,LOCATION_DECK))
 		if ct>0 and Duel.IsPlayerCanDraw(1-tp,1) and Duel.SelectYesNo(1-tp,aux.Stringid(id,3)) then
 				Duel.BreakEffect()
 				Duel.Draw(1-tp,1,REASON_EFFECT)
@@ -131,7 +133,7 @@ function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.dmgcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	return rp~=tp and c:IsPreviousPosition(POS_FACEUP) and not c:IsLocation(LOCATION_DECK) and c:IsPreviousControler(tp)
+	return rp==1-tp and c:IsPreviousPosition(POS_FACEUP) and not c:IsLocation(LOCATION_DECK) and c:IsPreviousControler(tp)
 end
 function s.dmgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(aux.TRUE,tp,0,LOCATION_ONFIELD+LOCATION_HAND,1,nil) end
