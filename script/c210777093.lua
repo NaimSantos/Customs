@@ -7,7 +7,7 @@ function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Negate
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(210777093,0))
+	e1:SetDescription(aux.Stringid(id,0))
 	e1:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DAMAGE_CAL)
@@ -20,11 +20,11 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--special summon
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(210777093,1))
+	e2:SetDescription(aux.Stringid(id,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)
-	e2:SetCountLimit(1,210777093)
+	e2:SetCountLimit(1,id)
 	e2:SetCost(s.sscost)
 	e2:SetTarget(s.sstg)
 	e2:SetOperation(s.ssop)
@@ -37,7 +37,7 @@ function s.initial_effect(c)
 	e3:SetOperation(s.regop)
 	c:RegisterEffect(e3)
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(210777093,2))
+	e4:SetDescription(aux.Stringid(id,2))
 	e4:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_PHASE+PHASE_END)
@@ -95,12 +95,12 @@ function s.ssop(e,tp,eg,ep,ev,re,r,rp)
 		while tc do
 			Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
 			local fid=c:GetFieldID()
-			tc:RegisterFlagEffect(210777093,RESET_EVENT+0x1fe0000,0,1,fid)
+			tc:RegisterFlagEffect(id,RESET_EVENT+0x1fe0000,0,1,fid)
 			local e1=Effect.CreateEffect(c)
 			e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 			e1:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE)
 			e1:SetCode(EVENT_PHASE+PHASE_END)
-			e1:SetDescription(aux.Stringid(210777093,3))
+			e1:SetDescription(aux.Stringid(id,3))
 			e1:SetCountLimit(1)
 			e1:SetLabel(fid)
 			e1:SetLabelObject(tc)
@@ -115,7 +115,7 @@ function s.ssop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.rmcon(e,tp,eg,ep,ev,re,r,rp)
 	local tc=e:GetLabelObject()
-	if tc:GetFlagEffectLabel(210777093)~=e:GetLabel() then
+	if tc:GetFlagEffectLabel(id)~=e:GetLabel() then
 		e:Reset()
 		return false
 	else return true end
@@ -128,11 +128,11 @@ function s.regop(e,tp,eg,ep,ev,re,r,rp)
 	local pos=c:GetPreviousPosition()
 	if c:IsReason(REASON_BATTLE) then pos=c:GetBattlePosition() end
 	if c:GetPreviousControler()==tp and c:IsPreviousLocation(LOCATION_ONFIELD) and bit.band(pos,POS_FACEUP)~=0 then
-		c:RegisterFlagEffect(210777093,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
+		c:RegisterFlagEffect(id,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 	end
 end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():GetFlagEffect(210777093)~=0
+	return e:GetHandler():GetFlagEffect(id)~=0
 end
 function s.cfilter(c,tp)
 	return c:IsSetCard(0x42) and c:IsType(TYPE_TUNER) and c:IsAbleToRemoveAsCost() and aux.SpElimFilter(c,true) 

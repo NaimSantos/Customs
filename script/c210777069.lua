@@ -1,6 +1,5 @@
 --Great Swarm Hatchery
---designed byNitrogames#8002
---scripted by Naim (credits for Alphakretin, Larry126 and Andre for the help)
+--designed byNitrogames#8002, scripted by Naim (credits for Alphakretin, Larry126 and Andre for the help)
 local s,id=GetID()
 function s.initial_effect(c)
 	--Activate
@@ -11,18 +10,18 @@ function s.initial_effect(c)
 	e1:SetCost(s.cost)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
-	e1:SetCountLimit(1,210777069)
+	e1:SetCountLimit(1,id)
 	c:RegisterEffect(e1)
 end
 function s.spfilter1(c,e,tp)
 	return c:IsSetCard(0xf11) and c:IsCanBeSpecialSummoned(e,186,tp,false,false)
 end
 function s.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return  Duel.GetFlagEffect(tp,210777069)==0 
+	if chk==0 then return  Duel.GetFlagEffect(tp,id)==0 
 	and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,e:GetHandler())
 	and Duel.IsExistingMatchingCard(s.spfilter1,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,e,tp) end
 	local ct=Duel.DiscardHand(tp,Card.IsDiscardable,1,60,REASON_COST+REASON_DISCARD)
-	Duel.RegisterFlagEffect(tp,210777069,RESET_DISABLE,0,1)
+	Duel.RegisterFlagEffect(tp,id,RESET_DISABLE,0,1)
 	e:SetLabel(ct)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -47,13 +46,12 @@ function s.spfilter2(c,e,tp)
 	return c:IsSetCard(0xf11) and c:IsCanBeSpecialSummoned(e,186,tp,false,false)
 end
 function s.spop1(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-	and e:GetLabel()>0
-		and Duel.IsExistingMatchingCard(s.spfilter2,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,e,tp)
-		and Duel.SelectYesNo(tp,aux.Stringid(210777069,1)) then
-			e:SetLabel(e:GetLabel()-1)
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetLabel()>0
+	and Duel.IsExistingMatchingCard(s.spfilter2,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,e,tp)
+	and Duel.SelectYesNo(tp,aux.Stringid(id,1)) then
+		e:SetLabel(e:GetLabel()-1)
 		local e1=Effect.CreateEffect(e:GetHandler())
-		e1:SetDescription(aux.Stringid(210777069,2))
+		e1:SetDescription(aux.Stringid(id,2))
 		e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 		e1:SetCode(EVENT_PHASE+PHASE_STANDBY)
 		e1:SetCountLimit(1)
@@ -61,7 +59,7 @@ function s.spop1(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetOperation(s.spop2)
 		Duel.RegisterEffect(e1,tp)
 		if e:GetLabel()==0 then
-			Duel.ResetFlagEffect(tp,210777069)
+			Duel.ResetFlagEffect(tp,id)
 		end
 	else
 		e:Reset()

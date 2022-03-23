@@ -131,7 +131,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.rdcon(e,tp,eg,ep,ev,re,r,rp)
 	local tc=eg:GetFirst()
-	return ep~=tp and tc:IsSetCard(0x3b) and tc:GetBattleTarget()~=nil
+	return ep==1-tp and tc:IsSetCard(0x3b) and tc:GetBattleTarget()~=nil
 end
 function s.rdop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetFlagEffect(ep,id)==0 then

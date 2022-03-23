@@ -8,7 +8,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetHintTiming(0,TIMING_BATTLE_START)
-	e1:SetCountLimit(1,210777082)
+	e1:SetCountLimit(1,id)
 	e1:SetCost(s.cost)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
@@ -50,7 +50,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 		e2:SetReset(RESET_EVENT+0x1fe0000)
 		tc:RegisterEffect(e2)
 		local fid=c:GetFieldID()
-		tc:RegisterFlagEffect(210777082,RESET_EVENT+0x1fe0000,0,1,fid)
+		tc:RegisterFlagEffect(id,RESET_EVENT+0x1fe0000,0,1,fid)
 		local e3=Effect.CreateEffect(c)
 		e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 		e3:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE)
@@ -66,7 +66,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.rmcon(e,tp,eg,ep,ev,re,r,rp)
 	local tc=e:GetLabelObject()
-	if tc:GetFlagEffectLabel(210777082)~=e:GetLabel() then
+	if tc:GetFlagEffectLabel(id)~=e:GetLabel() then
 		e:Reset()
 		return false
 	else return true end

@@ -2,7 +2,7 @@
 --designed by Xeno, scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
---fusion material
+	--fusion material
 	c:EnableReviveLimit()
 	Fusion.AddProcMix(c,true,true,28297833,s.matfilter)
 	Fusion.AddContactProc(c,s.contactfil,s.contactop,s.splimit,s.contactcon,1)

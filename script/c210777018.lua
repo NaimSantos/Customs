@@ -94,7 +94,7 @@ function s.thfilter(c,tp)
 	return c:IsFaceup() and c:IsSetCard(0xaa) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
 end
 function s.thcd(e,tp,eg,ep,ev,re,r,rp)
-	return rp~=tp 
+	return rp==1-tp
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_EXTRA,0,1,nil,tp) end
@@ -107,5 +107,5 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	if tc then
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,tc)
-	end	
+	end
 end

@@ -9,7 +9,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--special summon
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(210777080,0))
+	e2:SetDescription(aux.Stringid(id,0))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetCountLimit(1)
@@ -54,9 +54,9 @@ function s.mtop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)
 	local sel=1
 	if g:GetCount()~=0 then
-		sel=Duel.SelectOption(tp,aux.Stringid(210777080,1),aux.Stringid(210777080,2))
+		sel=Duel.SelectOption(tp,aux.Stringid(id,1),aux.Stringid(id,2))
 	else
-		sel=Duel.SelectOption(tp,aux.Stringid(210777080,2))+1
+		sel=Duel.SelectOption(tp,aux.Stringid(id,2))+1
 	end
 	if sel==0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)

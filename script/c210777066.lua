@@ -27,7 +27,7 @@ function s.initial_effect(c)
 	e4:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
 	e4:SetCode(EVENT_DESTROYED)
 	e4:SetRange(LOCATION_SZONE)
-	e4:SetCountLimit(1,210777066)
+	e4:SetCountLimit(1,id)
 	e4:SetCondition(s.thcond)
 	e4:SetTarget(s.thtg)
 	e4:SetOperation(s.thop)
@@ -35,7 +35,7 @@ function s.initial_effect(c)
 end
 function s.target(e,c,tp,eg,ep,ev,re,r,rp)
 	local st=c:GetSummonType()
-	return c:IsSetCard(0xf11) and st==(SUMMON_TYPE_SPECIAL+186) --im registering the summons with 186
+	return c:IsSetCard(0xf11) and st==(SUMMON_TYPE_SPECIAL+186) --registering the summons with 186
 end
 function s.cfilter(c,tp)
 	return c:IsType(TYPE_MONSTER) and c:IsReason(REASON_BATTLE+REASON_EFFECT)

@@ -26,7 +26,7 @@ function s.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
 	e3:SetRange(LOCATION_GRAVE)
-	e3:SetCountLimit(1,210777063+100)
+	e3:SetCountLimit(1,id+100)
 	e3:SetCost(aux.bfgcost)
 	e3:SetCondition(s.tdcond)
 	e3:SetTarget(s.tdtg)
@@ -36,8 +36,7 @@ end
 function s.spcon(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-	and Duel.IsExistingMatchingCard(aux.TRUE,tp,LOCATION_HAND,0,1,c)
+	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(aux.TRUE,tp,LOCATION_HAND,0,1,c)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)
@@ -53,7 +52,7 @@ function s.efilter(e,re)
 	return typecheck~=0 and re:IsActiveType(typecheck)
 end
 function s.cfilter(c)
-	return c:IsFaceup() and c:IsSetCard(0xf10) and not c:IsCode(210777063)
+	return c:IsFaceup() and c:IsSetCard(0xf10) and not c:IsCode(id)
 end
 function s.tdcond(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(s.cfilter,tp,LOCATION_MZONE,0,1,nil)
