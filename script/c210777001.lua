@@ -1,10 +1,10 @@
---X-Cloudian - Storm Dragon
+--X-Cloudian - Storm Cloud
 --designed and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--link summon
-	Link.AddProcedure(c,aux.FilterBoolFunction(s.matfilter),2,2,s.lcheck)
+	Link.AddProcedure(c,s.matfilter,2,2)
 	--battle indestructable
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -43,10 +43,7 @@ end
 s.counter_place_list={0x109}
 s.listed_series={0x18}
 function s.matfilter(c,lc,sumtype,tp)
-	return c:IsAttribute(ATTRIBUTE_WATER,lc,sumtype,tp) or c:IsRace(RACE_FAIRY,lc,sumtype,tp)
-end
-function s.lcheck(g,lc)
-	return g:IsExists(Card.IsSetCard,1,nil,0x18)
+	return c:IsAttribute(ATTRIBUTE_WATER,lc,sumtype,tp) and c:IsRace(RACE_FAIRY,lc,sumtype,tp)
 end
 function s.sdcon(e)
 	return e:GetHandler():IsPosition(POS_FACEUP_DEFENSE)
