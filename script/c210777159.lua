@@ -7,7 +7,8 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SPSUMMON_PROC)
 	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
-	e1:SetRange(LOCATION_HAND)
+	e1:SetRange(LOCATION_HAND+LOCATION_GRAVE)
+	e1:SetCountLimit(1,id)
 	e1:SetCondition(s.spcon)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
@@ -22,6 +23,7 @@ function s.initial_effect(c)
 	e2:SetOperation(s.disop)
 	c:RegisterEffect(e2)
 end
+s.listed_names={16067089}
 s.counter_list={0x1009}
 function s.spcon(e,c)
 	if c==nil then return true end
@@ -34,7 +36,9 @@ function s.disfilter(c)
 	return c:IsType(TYPE_MONSTER) and c:IsRace(RACE_REPTILE) and c:IsAbleToGrave()
 end
 function s.distg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.disfilter,tp,LOCATION_DECK,0,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.disfilter,tp,LOCATION_DECK,0,1,nil)
+		and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil)
+	end
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK+LOCATION_GRAVE)
 end
