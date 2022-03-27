@@ -64,10 +64,10 @@ function s.adctop(e,tp,eg,ep,ev,re,r,rp)
 	local tg=Duel.GetFieldGroup(tp,LOCATION_MZONE,LOCATION_MZONE)
 	local tc=tg:GetFirst()
 	for tc in aux.Next(tg) do
-		if tc:IsCanAddCounter(0x1009,1) and not tc:IsSetCard(0x50) then
+		if tc:IsCanAddCounter(0x1009,1) then
 			local atk=tc:GetAttack()
 			tc:AddCounter(0x1009,1)
-			if atk>0 and tc:GetAttack()==0 then
+			if atk>0 and not tc:IsSetCard(0x50) and tc:GetAttack()==0 then
 				g:AddCard(tc)
 			end
 		end
@@ -128,7 +128,7 @@ function s.tfop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 		tc:RegisterEffect(e1)
 		--Cannot be targeted or destroyed by card effects
-		local e2=Effect.CreateEffect(c)
+		local e2=Effect.CreateEffect(e:GetHandler())
 		e2:SetDescription(aux.Stringid(id,5))
 		e2:SetProperty(EFFECT_FLAG_CLIENT_HINT)
 		e2:SetType(EFFECT_TYPE_SINGLE)
