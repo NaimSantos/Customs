@@ -46,8 +46,8 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local dstg=e:GetLabelObject() --to destroy
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	local ngtg=g:GetFirst() --to negate
-	if dstg==ngtg then
-		dstg=g:GetNext()
+	if ngtg==dstg then
+		ngtg=g:GetNext()
 	end
 	if Duel.Destroy(dstg,REASON_EFFECT)~=0 and ngtg and ((ngtg:IsFaceup() and not ngtg:IsDisabled()) or ngtg:IsType(TYPE_TRAPMONSTER)) and ngtg:IsRelateToEffect(e) then
 		Duel.NegateRelatedChain(ngtg,RESET_TURN_SET)
