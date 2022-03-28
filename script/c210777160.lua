@@ -21,7 +21,7 @@ function s.initial_effect(c)
 	e2:SetTarget(s.cttg)
 	e2:SetOperation(s.ctop)
 	c:RegisterEffect(e2)
-	--Search
+	--Add 1 "Venom" card to the hand
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(id,2))
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
@@ -33,6 +33,15 @@ function s.initial_effect(c)
 	e3:SetTarget(s.thtg)
 	e3:SetOperation(s.thop)
 	c:RegisterEffect(e3)
+	--Prevent monsters with "Venom" counter from being Materials
+	local e4=Effect.CreateEffect(c)
+	e4:SetType(EFFECT_TYPE_FIELD)
+	e4:SetRange(LOCATION_MZONE)
+	e4:SetCode(EFFECT_CANNOT_BE_MATERIAL)
+	e4:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
+	e4:SetTarget(s.matfilter)
+	e4:SetValue(aux.cannotmatfilter(SUMMON_TYPE_FUSION,SUMMON_TYPE_SYNCHRO,SUMMON_TYPE_XYZ,SUMMON_TYPE_LINK))
+	c:RegisterEffect(e4)
 end
 s.listed_series={0x50}
 s.counter_place_list={0x1009}
@@ -48,25 +57,18 @@ function s.sumop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.RegisterEffect(e1,tp)
 	Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,0,1)
 end
-function s.cfilter(c)
-	return c:IsFaceup() and c:IsCanAddCounter(0x1009,1)
-end
-function s.rptlfilter(c)
-	return c:IsFaceup() and c:IsRace(RACE_REPTILE)
+function s.addctfilter(c)
+	return c:IsFaceup() and not c:IsSetCard(0x50) and c:IsCanAddCounter(0x1009,1)
 end
 function s.cttg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.cfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil)
-		and Duel.IsExistingMatchingCard(s.rptlfilter,tp,LOCATION_MZONE,0,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.addctfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end
 end
 function s.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	local ct=Duel.GetMatchingGroupCount(s.rptlfilter,tp,LOCATION_MZONE,0,nil)
-	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
-	if ct>0 then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
-		local sg=g:Select(tp,1,ct,nil)
-		local ac=sg:GetFirst()
-		for tc in aux.Next(sg) do
+	local g=Duel.GetMatchingGroup(c.addctfilter,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
+	if #g>0 then
+		local tc=g:GetFirst()
+		for tc in aux.Next(g) do
 			local atk=tc:GetAttack()
 			tc:AddCounter(0x1009,1)
 			if atk>0 and tc:GetAttack()==0 then
@@ -92,4 +94,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SendtoHand(g,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,g)
 	end
+end
+function s.matfilter(e,c)
+	return c:GetCounter(0x1009)>0
 end
