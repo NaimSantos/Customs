@@ -100,22 +100,20 @@ function s.operation(fustg,fusop)
 		end
 	end
 end
-
-
-
-
-
 function s.pencon1(e,tp,eg,ep,ev,re,r,rp)
 	return rp==1-tp and e:GetHandler():IsFaceup()
 end
 function s.pencon2(e,tp,eg,ep,ev,re,r,rp)
 	return (r&REASON_FUSION)==REASON_FUSION and e:GetHandler():IsFaceup()
 end
+function s.pzcheck(tp)
+	return Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1)
+end
 function s.pentg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return s.pzcheck(tp) end
 end
 function s.penop(e,tp,eg,ep,ev,re,r,rp)
-	if not Duel.CheckLocation(tp,LOCATION_PZONE,0) and not Duel.CheckLocation(tp,LOCATION_PZONE,1) then return false end
+	if not s.pzcheck(tp) then return false end
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) then
 		Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)
