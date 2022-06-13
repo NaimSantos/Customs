@@ -66,15 +66,12 @@ function s.sptg2(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.spfilter2,tp,LOCATION_EXTRA,0,1,nil,e,tp) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
-function s.pzcheck(tp)
-	return Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1)
-end
 function s.spop2(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local g=Duel.SelectMatchingCard(tp,s.spfilter2,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)
 	if #g>0 and Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)>0 then
 		local c=e:GetHandler()
-		if c:IsRelateToEffect(e) and c:IsFaceup() and s.pzcheck(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
+		if c:IsRelateToEffect(e) and c:IsFaceup() and aux.CheckPendulumZones(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
 			Duel.BreakEffect()
 			Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)
 		end
@@ -95,7 +92,7 @@ end
 function s.selfedop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) and Duel.SendtoExtraP(c,tp,REASON_EFFECT)>0 then
-		if Duel.IsExistingMatchingCard(s.polyfilter,tp,LOCATION_GRAVE,0,1,nil) and s.pzcheck(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,4)) then
+		if Duel.IsExistingMatchingCard(s.polyfilter,tp,LOCATION_GRAVE,0,1,nil) and aux.CheckPendulumZones(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,4)) then
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 			local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.polyfilter),tp,LOCATION_GRAVE,0,1,1,nil)
 			if #g>0 then
