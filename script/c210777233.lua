@@ -14,8 +14,8 @@ function s.initial_effect(c)
 	e1:SetTarget(s.sptg)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
-	--Fusion Summon
-	local params = {nil,aux.FilterBoolFunction(Card.IsAttribute,ATTRIBUTE_FIRE),aux.FALSE,s.fextra,Fusion.ShuffleMaterial}
+	--Fusion Summon 1 FIRE monster
+	local params = {aux.FilterBoolFunction(Card.IsAttribute,ATTRIBUTE_FIRE),aux.FALSE,s.fextra,Fusion.ShuffleMaterial}
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(id,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
@@ -48,6 +48,9 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		end
 	end
 end
+function s.matfilter(c)
+	return c:IsFaceup() and c:IsAbleToDeck() and (c:IsMonster() and not c:IsLocation(LOCATION_PZONE)) or (c:IsOriginalType(TYPE_MONSTER))
+end
 function s.fextra(e,tp,mg)
-	return Duel.GetMatchingGroup(aux.NecroValleyFilter(Fusion.IsMonsterFilter(Card.IsFaceup,Card.IsAbleToDeck)),tp,LOCATION_GRAVE+LOCATION_REMOVED+LOCATION_PZONE+LOCATION_EXTRA,0,nil)
+	return Duel.GetMatchingGroup(aux.NecroValleyFilter(s.matfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED+LOCATION_PZONE+LOCATION_EXTRA,0,nil)
 end
