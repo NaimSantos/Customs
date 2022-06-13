@@ -30,9 +30,9 @@ end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_REMOVED) and s.filter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(s.filter,tp,LOCATION_REMOVED,0,1,nil)
-		and Duel.IsPlayerCanDiscardDeck(tp,count)
+		and Duel.IsPlayerCanDiscardDeck(tp,1)
 	end
-	local ct=Duel.GetFieldGroup(tp,LOCATION_DECK,0)
+	local ct=Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)
 	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(id,2))
 	local g=Duel.SelectTarget(tp,s.filter,tp,LOCATION_REMOVED,0,1,ct,nil)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,g,#g,tp,LOCATION_REMOVED)
