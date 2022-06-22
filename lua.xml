@@ -1,0 +1,4121 @@
+<?xml version="1.0" encoding="Windows-1252" ?>
+<NotepadPlus>
+    <Environment ignoreCase="yes" startFunc="(" stopFunc=")" paramSeparator="," terminal=";" additionalWordChar=".:" />
+    <AutoComplete language="LUA">
+        <KeyWord name="and" func="no" />
+        <KeyWord name="assert" func="yes">
+            <Overload retVal="void" descr="
+Issues an error when the value of its argument v is false (i.e., nil or false);
+otherwise, returns all its arguments. message is an error message; when absent, it 
+defaults to 'assertion failed!'">
+                <Param name="Bool:v" />
+                <Param name="String:[message]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="break" func="no" />
+        <KeyWord name="collectgarbage" func="yes">
+            <Overload retVal="void" descr="This function is a generic interface to the garbage collector.
+It performs different functions according to its first argument, opt:
+
+    * 'stop': stops the garbage collector.
+    * 'restart': restarts the garbage collector.
+    * 'collect': performs a full garbage-collection cycle.
+    * 'count': returns the total memory in use by Lua (in Kbytes).
+    * 'step': performs a garbage-collection step. The step 'size' is controlled by arg
+        (larger values mean more steps) in a non-specified way. If you want to control
+        the step size you must experimentally tune the value of arg. Returns true if
+        the step finished a collection cycle.
+    * 'setpause': sets arg as the new value for the pause of the collector (see §2.10).
+        Returns the previous value for pause.
+    * 'setstepmul': sets arg as the new value for the step multiplier of the collector
+        (see §2.10). Returns the previous value for step.
+">
+                <Param name="String:opt" />
+                <Param name="[arg]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="coroutine.create" func="yes">
+            <Overload retVal="void" descr="
+Creates a new coroutine, with body f. f must be a Lua function. Returns this new
+coroutine, an object with type 'thread'.
+">
+                <Param name="Function:f" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="coroutine.resume" func="yes">
+            <Overload retVal="void" descr="
+Starts or continues the execution of coroutine co. The first time you resume a
+coroutine, it starts running its body. The values val1, ··· are passed as the 
+arguments to the body function. If the coroutine has yielded, resume restarts it; the 
+values val1, ··· are passed as the results from the yield.
+
+If the coroutine runs without any errors, resume returns true plus any values passed 
+to yield (if the coroutine yields) or any values returned by the body function (if the
+coroutine terminates). If there is any error, resume returns false plus the error 
+message.
+">
+                <Param name="co" />
+                <Param name="[, val, ...]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="coroutine.running" func="yes">
+            <Overload retVal="void" descr="
+Returns the running coroutine, or nil when called by the main thread. 
+        "></Overload>
+        </KeyWord>
+        <KeyWord name="coroutine.status" func="yes">
+            <Overload retVal="void" descr="
+Returns the status of coroutine co, as a string: 'running', if the coroutine is running (that is, it called status); 
+'suspended', if the coroutine is suspended in a call to yield, or if it has not started running yet; 
+'normal' if the coroutine is active but not running (that is, it has resumed another coroutine); and 
+'dead' if the coroutine has finished its body function, or if it has stopped with an error. 
+        ">
+                <Param name="co" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="coroutine.wrap" func="yes">
+            <Overload retVal="void" descr="
+Creates a new coroutine, with body f. f must be a Lua function. Returns a function that resumes 
+the coroutine each time it is called. Any arguments passed to the function behave as the extra 
+arguments to resume. Returns the same values returned by resume, except the first boolean. In 
+case of error, propagates the error. 
+        ">
+                <Param name="f" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="coroutine.yield" func="yes">
+            <Overload retVal="void" descr="
+Suspends the execution of the calling coroutine. The coroutine cannot be running a C function, a 
+metamethod, or an iterator. Any arguments to yield are passed as extra results to resume. 
+        ">
+                <Param name="..." />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.debug" func="yes">
+            <Overload retVal="void" descr="
+Enters an interactive mode with the user, running each string that the user enters. Using 
+simple commands and other debug facilities, the user can inspect global and local variables, 
+change their values, evaluate expressions, and so on. A line containing only the word cont 
+finishes this function, so that the caller continues its execution.
+
+Note that commands for debug.debug are not lexically nested within any function, and so 
+have no direct access to local variables. 
+        "></Overload>
+        </KeyWord>
+        <KeyWord name="debug.getfenv" func="yes">
+            <Overload retVal="void" descr="
+Returns the environment of object o. 
+        ">
+                <Param name="o" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.gethook" func="yes">
+            <Overload retVal="void" descr="
+Returns the current hook settings of the thread, as three values: the current hook function, the 
+current hook mask, and the current hook count (as set by the debug.sethook function). 
+        ">
+                <Param name="[thread]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.getinfo" func="yes">
+            <Overload retVal="void" descr="
+Returns a table with information about a function. You can give the function directly, or you 
+can give a number as the value of function, which means the function running at level function 
+of the call stack of the given thread: level 0 is the current function (getinfo itself); level 1 
+is the function that called getinfo; and so on. If function is a number larger than the number 
+of active functions, then getinfo returns nil.
+
+The returned table can contain all the fields returned by lua_getinfo, with the string what 
+describing which fields to fill in. The default for what is to get all information available, 
+except the table of valid lines. If present, the option 'f' adds a field named func with the 
+function itself. If present, the option 'L' adds a field named activelines with the table of 
+valid lines.
+
+For instance, the expression debug.getinfo(1,'n').name returns a table with a name for the current 
+function, if a reasonable name can be found, and the expression debug.getinfo(print) returns a table 
+with all available information about the print function. 
+        ">
+                <Param name="[thread,]" />
+                <Param name="function" />
+                <Param name="[, what]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.getlocal" func="yes">
+            <Overload retVal="void" descr="
+This function returns the name and the value of the local variable with index local of the function 
+at level level of the stack. (The first parameter or local variable has index 1, and so on, until the 
+last active local variable.) The function returns nil if there is no local variable with the given index, 
+and raises an error when called with a level out of range. (You can call debug.getinfo to check whether 
+the level is valid.)
+
+Variable names starting with '(' (open parentheses) represent internal variables (loop control variables, 
+temporaries, and C function locals). 
+        ">
+                <Param name="[thread,]" />
+                <Param name="level" />
+                <Param name="local" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.getmetatable" func="yes">
+            <Overload retVal="void" descr="
+Returns the metatable of the given object or nil if it does not have a metatable. 
+        ">
+                <Param name="object" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.getregistry" func="yes">
+            <Overload retVal="void" descr="
+Returns the registry table (see §3.5). 
+        "></Overload>
+        </KeyWord>
+        <KeyWord name="debug.getupvalue" func="yes">
+            <Overload retVal="void" descr="
+This function returns the name and the value of the upvalue with index up of the function 
+func. The function returns nil if there is no upvalue with the given index. 
+        ">
+                <Param name="func" />
+                <Param name="up" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.setfenv" func="yes">
+            <Overload retVal="void" descr="
+Sets the environment of the given object to the given table. Returns object. 
+        ">
+                <Param name="object" />
+                <Param name="table" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.sethook" func="yes">
+            <Overload retVal="void" descr="
+Sets the given function as a hook. The string mask and the number count describe when the hook 
+will be called. The string mask may have the following characters, with the given meaning:
+
+    * 'c': the hook is called every time Lua calls a function;
+    * 'r': the hook is called every time Lua returns from a function;
+    * 'l': the hook is called every time Lua enters a new line of code.
+
+With a count different from zero, the hook is called after every count instructions.
+
+When called without arguments, debug.sethook turns off the hook.
+
+When the hook is called, its first parameter is a string describing the event that has triggered 
+its call: 'call', 'return' (or 'tail return', when simulating a return from a tail call), 'line', 
+and 'count'. For line events, the hook also gets the new line number as its second parameter. 
+Inside a hook, you can call getinfo with level 2 to get more information about the running function 
+(level 0 is the getinfo function, and level 1 is the hook function), unless the event is 'tail return'. 
+In this case, Lua is only simulating the return, and a call to getinfo will return invalid data. 
+        ">
+                <Param name="[thread,]" />
+                <Param name="hook" />
+                <Param name="mask" />
+                <Param name="[, count]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.setlocal" func="yes">
+            <Overload retVal="void" descr="
+This function assigns the value value to the local variable with index local of the function at level 
+level of the stack. The function returns nil if there is no local variable with the given index, and 
+raises an error when called with a level out of range. (You can call getinfo to check whether the level 
+is valid.) Otherwise, it returns the name of the local variable. 
+        ">
+                <Param name="[thread,]" />
+                <Param name="level" />
+                <Param name="local" />
+                <Param name="value" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.setmetatable" func="yes">
+            <Overload retVal="void" descr="
+Sets the metatable for the given object to the given table (which can be nil). 
+        ">
+                <Param name="object" />
+                <Param name="table" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.setupvalue" func="yes">
+            <Overload retVal="void" descr="
+This function assigns the value value to the upvalue with index up of the function func. The function 
+returns nil if there is no upvalue with the given index. Otherwise, it returns the name of the upvalue. 
+        ">
+                <Param name="func" />
+                <Param name="up" />
+                <Param name="value" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="debug.traceback" func="yes">
+            <Overload retVal="void" descr="
+Returns a string with a traceback of the call stack. An optional message string is appended at the 
+beginning of the traceback. An optional level number tells at which level to start the traceback 
+(default is 1, the function calling traceback). 
+        ">
+                <Param name="[thread,]" />
+                <Param name="[message]" />
+                <Param name="[, level]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="do" func="no" />
+        <KeyWord name="dofile" func="yes">
+            <Overload retVal="void" descr="
+Opens the named file and executes its contents as a Lua chunk. When called without arguments, dofile 
+executes the contents of the standard input (stdin). Returns all values returned by the chunk. In case 
+of errors, dofile propagates the error to its caller (that is, dofile does not run in protected mode). 
+        ">
+                <Param name="filename" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="else" func="no" />
+        <KeyWord name="elseif" func="no" />
+        <KeyWord name="end" func="no" />
+        <KeyWord name="error" func="yes">
+            <Overload retVal="void" descr="
+Terminates the last protected function called and returns message as the error message. 
+Function error never returns.
+
+Usually, error adds some information about the error position at the beginning of the message. 
+The level argument specifies how to get the error position. With level 1 (the default), the error 
+position is where the error function was called. Level 2 points the error to where the function 
+that called error was called; and so on. Passing a level 0 avoids the addition of error position 
+information to the message. 
+        ">
+                <Param name="message" />
+                <Param name="[, level]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="false" func="no" />
+        <KeyWord name="file:close" func="yes">
+            <Overload retVal="void" descr="
+Closes file. Note that files are automatically closed when their handles are garbage collected, 
+but that takes an unpredictable amount of time to happen. 
+        "></Overload>
+        </KeyWord>
+        <KeyWord name="file:flush" func="yes">
+            <Overload retVal="void" descr="
+Saves any written data to file. 
+        "></Overload>
+        </KeyWord>
+        <KeyWord name="file:lines" func="yes">
+            <Overload retVal="void" descr="
+Returns an iterator function that, each time it is called, returns a new line from the file. 
+Therefore, the construction
+for line in file:lines() do body end
+will iterate over all lines of the file. (Unlike io.lines, this function does not close the file when the loop ends.) 
+        "></Overload>
+        </KeyWord>
+        <KeyWord name="file:read" func="yes">
+            <Overload retVal="void" descr="
+Reads the file file, according to the given formats, which specify what to read. For each format, 
+the function returns a string (or a number) with the characters read, or nil if it cannot read data 
+with the specified format. When called without formats, it uses a default format that reads the entire 
+next line (see below).
+
+The available formats are
+
+    * '*n': reads a number; this is the only format that returns a number instead of a string.
+    * '*a': reads the whole file, starting at the current position. On end of file, it returns the empty string.
+    * '*l': reads the next line (skipping the end of line), returning nil on end of file. This is the default format.
+    * number: reads a string with up to this number of characters, returning nil on end of file. If number is zero, it 
+            reads nothing and returns an empty string, or nil on end of file.
+
+        ">
+                <Param name="···" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="file:seek" func="yes">
+            <Overload retVal="void" descr="
+Sets and gets the file position, measured from the beginning of the file, to the position given by offset 
+plus a base specified by the string whence, as follows:
+
+    * 'set': base is position 0 (beginning of the file);
+    * 'cur': base is current position;
+    * 'end': base is end of file;
+
+In case of success, function seek returns the final file position, measured in bytes from the beginning of the 
+file. If this function fails, it returns nil, plus a string describing the error.
+
+The default value for whence is 'cur', and for offset is 0. Therefore, the call file:seek() returns the 
+current file position, without changing it; the call file:seek('set') sets the position to the beginning 
+of the file (and returns 0); and the call file:seek('end') sets the position to the end of the file, and 
+returns its size. 
+        ">
+                <Param name="[whence]" />
+                <Param name="[, offset]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="file:setvbuf" func="yes">
+            <Overload retVal="void" descr="
+Sets the buffering mode for an output file. There are three available modes:
+
+    * 'no': no buffering; the result of any output operation appears immediately.
+    * 'full': full buffering; output operation is performed only when the buffer is full 
+            (or when you explicitly flush the file (see io.flush)).
+    * 'line': line buffering; output is buffered until a newline is output or there is any input 
+            from some special files (such as a terminal device).
+
+For the last two cases, size specifies the size of the buffer, in bytes. The default is an appropriate size. 
+        ">
+                <Param name="mode" />
+                <Param name="[, size]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="file:write" func="yes">
+            <Overload retVal="void" descr="
+Writes the value of each of its arguments to the file. The arguments must be strings or numbers. To write 
+other values, use tostring or string.format before write. 
+        ">
+                <Param name="···" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="for" func="no" />
+        <KeyWord name="function" func="no" />
+        <KeyWord name="getfenv" func="yes">
+            <Overload retVal="void" descr="
+Returns the current environment in use by the function. f can be a Lua function or a number that specifies 
+the function at that stack level: Level 1 is the function calling getfenv. If the given function is not a 
+Lua function, or if f is 0, getfenv returns the global environment. The default for f is 1. 
+        ">
+                <Param name="[f]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="getmetatable" func="yes">
+            <Overload retVal="void" descr="
+If object does not have a metatable, returns nil. Otherwise, if the object's metatable has a '__metatable' 
+field, returns the associated value. Otherwise, returns the metatable of the given object. 
+        ">
+                <Param name="object" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="if" func="no" />
+        <KeyWord name="in" func="no" />
+        <KeyWord name="io.close" func="yes">
+            <Overload retVal="void" descr="
+Equivalent to file:close(). Without a file, closes the default output file. 
+        ">
+                <Param name="[file]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="io.flush" func="yes">
+            <Overload retVal="void" descr="
+Equivalent to file:flush over the default output file. 
+        "></Overload>
+        </KeyWord>
+        <KeyWord name="io.input" func="yes">
+            <Overload retVal="void" descr="
+When called with a file name, it opens the named file (in text mode), and sets its handle as the default 
+input file. When called with a file handle, it simply sets this file handle as the default input file. When 
+called without parameters, it returns the current default input file.
+
+In case of errors this function raises the error, instead of returning an error code. 
+        ">
+                <Param name="[file]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="io.lines" func="yes">
+            <Overload retVal="void" descr="
+Opens the given file name in read mode and returns an iterator function that, each time it is called, 
+returns a new line from the file. Therefore, the construction
+
+     for line in io.lines(filename) do body end
+
+will iterate over all lines of the file. When the iterator function detects the end of file, it returns 
+nil (to finish the loop) and automatically closes the file.
+
+The call io.lines() (with no file name) is equivalent to io.input():lines(); that is, it iterates over 
+the lines of the default input file. In this case it does not close the file when the loop ends. 
+        ">
+                <Param name="[filename]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="io.open" func="yes">
+            <Overload retVal="void" descr="
+This function opens a file, in the mode specified in the string mode. It returns a new file handle, 
+or, in case of errors, nil plus an error message.
+
+The mode string can be any of the following:
+
+    * 'r': read mode (the default);
+    * 'w': write mode;
+    * 'a': append mode;
+    * 'r+': update mode, all previous data is preserved;
+    * 'w+': update mode, all previous data is erased;
+    * 'a+': append update mode, previous data is preserved, writing is only allowed at the end of file.
+
+The mode string can also have a 'b' at the end, which is needed in some systems to open the file in 
+binary mode. This string is exactly what is used in the standard C function fopen. 
+        ">
+                <Param name="filename" />
+                <Param name="[, mode]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="io.output" func="yes">
+            <Overload retVal="void" descr="
+Similar to io.input, but operates over the default output file. 
+        ">
+                <Param name="[file]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="io.popen" func="yes">
+            <Overload retVal="void" descr="
+Starts program prog in a separated process and returns a file handle that you can use to read data from 
+this program (if mode is 'r', the default) or to write data to this program (if mode is 'w').
+
+This function is system dependent and is not available on all platforms. 
+        ">
+                <Param name="prog" />
+                <Param name="[, mode]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="io.read" func="yes">
+            <Overload retVal="void" descr="
+Equivalent to io.input():read. 
+        ">
+                <Param name="···" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="io.tmpfile" func="yes">
+            <Overload retVal="void" descr="
+Returns a handle for a temporary file. This file is opened in update mode and it is automatically 
+removed when the program ends. 
+        "></Overload>
+        </KeyWord>
+        <KeyWord name="io.type" func="yes">
+            <Overload retVal="void" descr="
+Checks whether obj is a valid file handle. Returns the string 'file' if obj is an open file handle, 
+'closed file' if obj is a closed file handle, or nil if obj is not a file handle. 
+        ">
+                <Param name="obj" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="io.write" func="yes">
+            <Overload retVal="void" descr="
+Equivalent to io.output():write. 
+        ">
+                <Param name="···" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="ipairs" func="yes">
+            <Overload retVal="void" descr="
+Returns three values: an iterator function, the table t, and 0, so that the construction
+
+     for i,v in ipairs(t) do body end
+
+will iterate over the pairs (1,t[1]), (2,t[2]), ···, up to the first integer key absent from the table. 
+        ">
+                <Param name="t" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="load" func="yes">
+            <Overload retVal="void" descr="
+Loads a chunk using function func to get its pieces. Each call to func must return a string that 
+concatenates with previous results. A return of an empty string, nil, or no value signals the end of 
+the chunk.
+
+If there are no errors, returns the compiled chunk as a function; otherwise, returns nil plus the error 
+message. The environment of the returned function is the global environment.
+
+chunkname is used as the chunk name for error messages and debug information. When absent, 
+it defaults to '=(load)'. 
+        ">
+                <Param name="func" />
+                <Param name="[, chunkname]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="loadfile" func="yes">
+            <Overload retVal="void" descr="
+Similar to load, but gets the chunk from file filename or from the standard input, 
+if no file name is given. 
+        ">
+                <Param name="[filename]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="loadstring" func="yes">
+            <Overload retVal="void" descr="
+Similar to load, but gets the chunk from the given string.
+To load and run a given string, use the idiom
+     assert(loadstring(s))()
+When absent, chunkname defaults to the given string. 
+        ">
+                <Param name="string" />
+                <Param name="[, chunkname]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="local" func="no" />
+        <KeyWord name="math.abs" func="yes">
+            <Overload retVal="void" descr="
+Returns the absolute value of x. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.acos" func="yes">
+            <Overload retVal="void" descr="
+Returns the arc cosine of x (in radians). 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.asin" func="yes">
+            <Overload retVal="void" descr="
+Returns the arc sine of x (in radians). 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.atan" func="yes">
+            <Overload retVal="void" descr="
+Returns the arc tangent of x (in radians). 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.atan2" func="yes">
+            <Overload retVal="void" descr="
+Returns the arc tangent of y/x (in radians), but uses the signs of both parameters to 
+find the quadrant of the result. (It also handles correctly the case of x being zero.) 
+        ">
+                <Param name="y" />
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.ceil" func="yes">
+            <Overload retVal="void" descr="
+Returns the smallest integer larger than or equal to x. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.cos" func="yes">
+            <Overload retVal="void" descr="
+Returns the cosine of x (assumed to be in radians). 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.cosh" func="yes">
+            <Overload retVal="void" descr="
+Returns the hyperbolic cosine of x. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.deg" func="yes">
+            <Overload retVal="void" descr="
+Returns the angle x (given in radians) in degrees. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.exp" func="yes">
+            <Overload retVal="void" descr="
+Returns the value ex. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.floor" func="yes">
+            <Overload retVal="void" descr="
+Returns the largest integer smaller than or equal to x. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.fmod" func="yes">
+            <Overload retVal="void" descr="
+Returns the remainder of the division of x by y that rounds the quotient towards zero. 
+        ">
+                <Param name="x" />
+                <Param name="y" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.frexp" func="yes">
+            <Overload retVal="void" descr="
+Returns m and e such that x = m2e, e is an integer and the absolute value of m is in 
+the range [0.5, 1) (or zero when x is zero). 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.huge" func="no" />
+        <KeyWord name="math.ldexp" func="yes">
+            <Overload retVal="void" descr="
+Returns m2e (e should be an integer). 
+        ">
+                <Param name="m" />
+                <Param name="e" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.log" func="yes">
+            <Overload retVal="void" descr="
+Returns the natural logarithm of x. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.log10" func="yes">
+            <Overload retVal="void" descr="
+Returns the base-10 logarithm of x. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.max" func="yes">
+            <Overload retVal="void" descr="
+Returns the maximum value among its arguments. 
+        ">
+                <Param name="x" />
+                <Param name="..." />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.min" func="yes">
+            <Overload retVal="void" descr="
+Returns the minimum value among its arguments. 
+        ">
+                <Param name="x" />
+                <Param name="..." />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.modf" func="yes">
+            <Overload retVal="void" descr="
+Returns two numbers, the integral part of x and the fractional part of x. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.pi" func="no" />
+        <KeyWord name="math.pow" func="yes">
+            <Overload retVal="void" descr="
+Returns xy. (You can also use the expression x^y to compute this value.) 
+        ">
+                <Param name="x" />
+                <Param name="y" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.rad" func="yes">
+            <Overload retVal="void" descr="
+Returns the angle x (given in degrees) in radians. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.random" func="yes">
+            <Overload retVal="void" descr="
+This function is an interface to the simple pseudo-random generator function rand 
+provided by ANSI C. (No guarantees can be given for its statistical properties.)
+
+When called without arguments, returns a uniform pseudo-random real number in the 
+range [0,1). When called with an integer number m, math.random returns a uniform 
+pseudo-random integer in the range [1, m]. When called with two integer numbers m and 
+n, math.random returns a uniform pseudo-random integer in the range [m, n]. 
+        ">
+                <Param name="[m [, n]]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.randomseed" func="yes">
+            <Overload retVal="void" descr="
+Sets x as the 'seed' for the pseudo-random generator: equal seeds produce equal 
+sequences of numbers. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.sin" func="yes">
+            <Overload retVal="void" descr="
+Returns the sine of x (assumed to be in radians). 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.sinh" func="yes">
+            <Overload retVal="void" descr="
+Returns the hyperbolic sine of x. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.sqrt" func="yes">
+            <Overload retVal="void" descr="
+Returns the square root of x. (You can also use the expression x^0.5 to compute this value.) 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.tan" func="yes">
+            <Overload retVal="void" descr="
+Returns the tangent of x (assumed to be in radians). 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="math.tanh" func="yes">
+            <Overload retVal="void" descr="
+Returns the hyperbolic tangent of x. 
+        ">
+                <Param name="x" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="module" func="yes">
+            <Overload retVal="void" descr="
+Creates a module. If there is a table in package.loaded[name], this table is the module. 
+Otherwise, if there is a global table t with the given name, this table is the module. 
+Otherwise creates a new table t and sets it as the value of the global name and the value 
+of package.loaded[name]. This function also initializes t._NAME with the given name, t._M 
+with the module (t itself), and t._PACKAGE with the package name (the full module name 
+minus last component; see below). Finally, module sets t as the new environment of the 
+current function and the new value of package.loaded[name], so that require returns t.
+
+If name is a compound name (that is, one with components separated by dots), module creates 
+(or reuses, if they already exist) tables for each component. For instance, if name is a.b.c, 
+then module stores the module table in field c of field b of global a.
+
+This function can receive optional options after the module name, where each option is a 
+function to be applied over the module. 
+        ">
+                <Param name="name" />
+                <Param name="[, ···]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="next" func="yes">
+            <Overload retVal="void" descr="
+Allows a program to traverse all fields of a table. Its first argument is a table and its second 
+argument is an index in this table. next returns the next index of the table and its associated 
+value. When called with nil as its second argument, next returns an initial index and its associated 
+value. When called with the last index, or with nil in an empty table, next returns nil. If the 
+second argument is absent, then it is interpreted as nil. In particular, you can use next(t) to 
+check whether a table is empty.
+
+The order in which the indices are enumerated is not specified, even for numeric indices. (To 
+traverse a table in numeric order, use a numerical for or the ipairs function.)
+
+The behavior of next is undefined if, during the traversal, you assign any value to a non-existent 
+field in the table. You may however modify existing fields. In particular, you may clear existing 
+fields. 
+        ">
+                <Param name="table" />
+                <Param name="[, index]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="nil" func="no" />
+        <KeyWord name="not" func="no" />
+        <KeyWord name="or" func="no" />
+        <KeyWord name="os.clock" func="yes">
+            <Overload retVal="void" descr="
+Returns an approximation of the amount in seconds of CPU time used by the program. 
+        "></Overload>
+        </KeyWord>
+        <KeyWord name="os.date" func="yes">
+            <Overload retVal="void" descr="
+Returns a string or a table containing date and time, formatted according to the given string format.
+
+If the time argument is present, this is the time to be formatted (see the os.time function 
+for a description of this value). Otherwise, date formats the current time.
+
+If format starts with '!', then the date is formatted in Coordinated Universal Time. After this 
+optional character, if format is the string '*t', then date returns a table with the following fields: 
+year (four digits), 
+month (1--12), 
+day (1--31), 
+hour (0--23), 
+min (0--59), 
+sec (0--61), 
+wday (weekday, Sunday is 1), 
+yday (day of the year), and 
+isdst (daylight saving flag, a boolean).
+
+If format is not '*t', then date returns the date as a string, formatted according to the same 
+rules as the C function strftime.
+
+When called without arguments, date returns a reasonable date and time representation that 
+depends on the host system and on the current locale (that is, os.date() is equivalent to os.date('%c')). 
+        ">
+                <Param name="[format [, time]]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="os.difftime" func="yes">
+            <Overload retVal="void" descr="
+Returns the number of seconds from time t1 to time t2. In POSIX, Windows, and some other systems, 
+this value is exactly t2-t1. 
+        ">
+                <Param name="t2" />
+                <Param name="t1" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="os.execute" func="yes">
+            <Overload retVal="void" descr="
+This function is equivalent to the C function system. It passes command to be executed by an operating 
+system shell. It returns a status code, which is system-dependent. If command is absent, then it returns 
+nonzero if a shell is available and zero otherwise. 
+        ">
+                <Param name="[command]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="os.exit" func="yes">
+            <Overload retVal="void" descr="
+Calls the C function exit, with an optional code, to terminate the host program. The default 
+value for code is the success code. 
+        ">
+                <Param name="[code]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="os.getenv" func="yes">
+            <Overload retVal="void" descr="
+Returns the value of the process environment variable varname, or nil if the variable is not defined. 
+        ">
+                <Param name="varname" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="os.remove" func="yes">
+            <Overload retVal="void" descr="
+Deletes the file or directory with the given name. Directories must be empty to be removed. If this 
+function fails, it returns nil, plus a string describing the error. 
+        ">
+                <Param name="filename" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="os.rename" func="yes">
+            <Overload retVal="void" descr="
+Renames file or directory named oldname to newname. If this function fails, it returns nil, plus a 
+string describing the error. 
+        ">
+                <Param name="oldname" />
+                <Param name="newname" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="os.setlocale" func="yes">
+            <Overload retVal="void" descr="
+Sets the current locale of the program. locale is a string specifying a locale; category is an optional 
+string describing which category to change: 'all', 'collate', 'ctype', 'monetary', 'numeric', or 'time'; 
+the default category is 'all'. The function returns the name of the new locale, or nil if the request 
+cannot be honored.
+
+If locale is the empty string, the current locale is set to an implementation-defined native locale. If 
+locale is the string 'C', the current locale is set to the standard C locale.
+
+When called with nil as the first argument, this function only returns the name of the current locale 
+for the given category. 
+        ">
+                <Param name="locale" />
+                <Param name="[, category]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="os.time" func="yes">
+            <Overload retVal="void" descr="
+Returns the current time when called without arguments, or a time representing the date and time specified 
+by the given table. This table must have fields year, month, and day, and may have fields hour, min, sec, 
+and isdst (for a description of these fields, see the os.date function).
+
+The returned value is a number, whose meaning depends on your system. In POSIX, Windows, and some other 
+systems, this number counts the number of seconds since some given start time (the 'epoch'). 
+In other systems, the meaning is not specified, and the number returned by time can be used only as an 
+argument to date and difftime. 
+        ">
+                <Param name="[table]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="os.tmpname" func="yes">
+            <Overload retVal="void" descr="
+Returns a string with a file name that can be used for a temporary file. The file must be explicitly 
+opened before its use and explicitly removed when no longer needed.
+
+On some systems (POSIX), this function also creates a file with that name, to avoid security risks. 
+(Someone else might create the file with wrong permissions in the time between getting the name and 
+creating the file.) You still have to open the file to use it and to remove it (even if you do not use it).
+
+When possible, you may prefer to use io.tmpfile, which automatically removes the file when the program ends. 
+        "></Overload>
+        </KeyWord>
+        <KeyWord name="package.cpath" func="no" />
+        <KeyWord name="package.loaded" func="no" />
+        <KeyWord name="package.loaders" func="no" />
+        <KeyWord name="package.loadlib" func="yes">(libname, funcname)
+            <Overload retVal="void" descr="
+Dynamically links the host program with the C library libname. Inside this library, looks for a function 
+funcname and returns this function as a C function. (So, funcname must follow the protocol (see lua_CFunction)).
+
+This is a low-level function. It completely bypasses the package and module system. Unlike require, it 
+does not perform any path searching and does not automatically adds extensions. libname must be the complete 
+file name of the C library, including if necessary a path and extension. funcname must be the exact name 
+exported by the C library (which may depend on the C compiler and linker used).
+
+This function is not supported by ANSI C. As such, it is only available on some platforms (Windows, 
+Linux, Mac OS X, Solaris, BSD, plus other Unix systems that support the dlfcn standard). 
+        ">
+                <Param name="libname" />
+                <Param name="funcname" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="package.path" func="no" />
+        <KeyWord name="package.preload" func="no" />
+        <KeyWord name="package.seeall" func="yes">(module)
+            <Overload retVal="void" descr="
+Sets a metatable for module with its __index field referring to the global environment, so that this 
+module inherits values from the global environment. To be used as an option to function module. 
+        ">
+                <Param name="module" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="pairs" func="yes">
+            <Overload retVal="void" descr="
+Returns three values: the next function, the table t, and nil, so that the construction
+
+     for k,v in pairs(t) do body end
+
+will iterate over all key–value pairs of table t.
+
+See function next for the caveats of modifying the table during its traversal. 
+        ">
+                <Param name="t" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="pcall" func="yes">
+            <Overload retVal="void" descr="
+Calls function f with the given arguments in protected mode. This means that any error 
+inside f is not propagated; instead, pcall catches the error and returns a status code. 
+Its first result is the status code (a boolean), which is true if the call succeeds without 
+errors. In such case, pcall also returns all results from the call, after this first result. 
+In case of any error, pcall returns false plus the error message. 
+        ">
+                <Param name="f" />
+                <Param name="arg1" />
+                <Param name="···" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="print" func="yes">
+            <Overload retVal="void" descr="
+Receives any number of arguments, and prints their values to stdout, using the tostring 
+function to convert them to strings. print is not intended for formatted output, but only 
+as a quick way to show a value, typically for debugging. For formatted output, use string.format. 
+        ">
+                <Param name="···" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="rawequal" func="yes">
+            <Overload retVal="void" descr="
+Checks whether v1 is equal to v2, without invoking any metamethod. Returns a boolean. 
+        ">
+                <Param name="v1" />
+                <Param name="v2" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="rawget" func="yes">
+            <Overload retVal="void" descr="
+Gets the real value of table[index], without invoking any metamethod. table must be a 
+table; index may be any value. 
+        ">
+                <Param name="table" />
+                <Param name="index" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="rawset" func="yes">
+            <Overload retVal="void" descr="
+Sets the real value of table[index] to value, without invoking any metamethod. table must 
+be a table, index any value different from nil, and value any Lua value.
+
+This function returns table. 
+        ">
+                <Param name="table" />
+                <Param name="index" />
+                <Param name="value" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="repeat" func="no" />
+        <KeyWord name="require" func="yes">
+            <Overload retVal="void" descr="
+Loads the given module. The function starts by looking into the package.loaded table to 
+determine whether modname is already loaded. If it is, then require returns the value stored 
+at package.loaded[modname]. Otherwise, it tries to find a loader for the module.
+
+To find a loader, require is guided by the package.loaders array. By changing this array, 
+we can change how require looks for a module. The following explanation is based on the 
+default configuration for package.loaders.
+
+First require queries package.preload[modname]. If it has a value, this value (which should 
+be a function) is the loader. Otherwise require searches for a Lua loader using the path 
+stored in package.path. If that also fails, it searches for a C loader using the path stored 
+in package.cpath. If that also fails, it tries an all-in-one loader (see package.loaders).
+
+Once a loader is found, require calls the loader with a single argument, modname. If the 
+loader returns any value, require assigns the returned value to package.loaded[modname]. 
+If the loader returns no value and has not assigned any value to package.loaded[modname], 
+then require assigns true to this entry. In any case, require returns the final value of 
+package.loaded[modname].
+
+If there is any error loading or running the module, or if it cannot find any loader for 
+the module, then require signals an error. 
+        ">
+                <Param name="modname" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="return" func="no" />
+        <KeyWord name="select" func="yes">
+            <Overload retVal="void" descr="
+If index is a number, returns all arguments after argument number index. Otherwise, index 
+must be the string '#', and select returns the total number of extra arguments it received. 
+        ">
+                <Param name="index" />
+                <Param name="···" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="setfenv" func="yes">
+            <Overload retVal="void" descr="
+Sets the environment to be used by the given function. f can be a Lua function or a number 
+that specifies the function at that stack level: Level 1 is the function calling setfenv. 
+setfenv returns the given function.
+
+As a special case, when f is 0 setfenv changes the environment of the running thread. 
+In this case, setfenv returns no values. 
+        ">
+                <Param name="f" />
+                <Param name="table" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="setmetatable" func="yes">
+            <Overload retVal="void" descr="
+Sets the metatable for the given table. (You cannot change the metatable of other types 
+from Lua, only from C.) If metatable is nil, removes the metatable of the given table. 
+If the original metatable has a '__metatable' field, raises an error.
+
+This function returns table. 
+        ">
+                <Param name="table" />
+                <Param name="metatable" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.byte" func="yes">
+            <Overload retVal="void" descr="
+Returns the internal numerical codes of the characters s[i], s[i+1], ···, s[j]. The default 
+value for i is 1; the default value for j is i.
+
+Note that numerical codes are not necessarily portable across platforms. 
+        ">
+                <Param name="s [, i [, j]]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.char" func="yes">
+            <Overload retVal="void" descr="
+Receives zero or more integers. Returns a string with length equal to the number of arguments, 
+in which each character has the internal numerical code equal to its corresponding argument.
+
+Note that numerical codes are not necessarily portable across platforms. 
+        ">
+                <Param name="···" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.dump" func="yes">
+            <Overload retVal="void" descr="
+Returns a string containing a binary representation of the given function, so that a later 
+loadstring on this string returns a copy of the function. function must be a Lua function 
+without upvalues. 
+        ">
+                <Param name="function" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.find" func="yes">
+            <Overload retVal="void" descr="
+Looks for the first match of pattern in the string s. If it finds a match, then find returns 
+the indices of s where this occurrence starts and ends; otherwise, it returns nil. A third, 
+optional numerical argument init specifies where to start the search; its default value is 1 
+and can be negative. A value of true as a fourth, optional argument plain turns off the 
+pattern matching facilities, so the function does a plain 'find substring' operation, with 
+no characters in pattern being considered 'magic'. Note that if plain is given, then init 
+must be given as well.
+
+If the pattern has captures, then in a successful match the captured values are also returned, 
+after the two indices. 
+        ">
+                <Param name="s" />
+                <Param name="pattern" />
+                <Param name="[, init [, plain]]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.format" func="yes">
+            <Overload retVal="void" descr="
+Returns a formatted version of its variable number of arguments following the description 
+given in its first argument (which must be a string). The format string follows the same 
+rules as the printf family of standard C functions. The only differences are that the options/modifiers 
+*, l, L, n, p, and h are not supported and that there is an extra option, q. The q option formats 
+a string in a form suitable to be safely read back by the Lua interpreter: the string is 
+written between double quotes, and all double quotes, newlines, embedded zeros, and backslashes 
+in the string are correctly escaped when written. For instance, the call
+
+     string.format('%q', 'a string with ''quotes'' and \n new line')
+
+will produce the string:
+
+     'a string with \''quotes\'' and \
+      new line'
+
+The options c, d, E, e, f, g, G, i, o, u, X, and x all expect a number as argument, whereas 
+q and s expect a string.
+
+This function does not accept string values containing embedded zeros, except as arguments 
+to the q option. 
+        ">
+                <Param name="formatstring" />
+                <Param name="···" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.gmatch" func="yes">
+            <Overload retVal="void" descr="
+Returns an iterator function that, each time it is called, returns the next captures from 
+pattern over string s. If pattern specifies no captures, then the whole match is produced 
+in each call.
+
+As an example, the following loop
+
+     s = 'hello world from Lua'
+     for w in string.gmatch(s, '%a+') do
+       print(w)
+     end
+
+will iterate over all the words from string s, printing one per line. The next example collects 
+all pairs key=value from the given string into a table:
+
+     t = {}
+     s = 'from=world, to=Lua'
+     for k, v in string.gmatch(s, '(%w+)=(%w+)') do
+       t[k] = v
+     end
+
+For this function, a '^' at the start of a pattern does not work as an anchor, as this would 
+prevent the iteration. 
+        ">
+                <Param name="s" />
+                <Param name="pattern" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.gsub" func="yes">
+            <Overload retVal="void" descr="
+Returns a copy of s in which all (or the first n, if given) occurrences of the pattern have 
+been replaced by a replacement string specified by repl, which can be a string, a table, or 
+a function. gsub also returns, as its second value, the total number of matches that occurred.
+
+Look at the online documentation for this function.
+">
+                <Param name="s" />
+                <Param name="pattern" />
+                <Param name="repl" />
+                <Param name="[, n]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.len" func="yes">
+            <Overload retVal="void" descr="
+Receives a string and returns its length. The empty string '' has length 0. Embedded zeros are 
+counted, so 'a\000bc\000' has length 5. 
+        ">
+                <Param name="s" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.lower" func="yes">
+            <Overload retVal="void" descr="
+Receives a string and returns a copy of this string with all uppercase letters changed to 
+lowercase. All other characters are left unchanged. The definition of what an uppercase 
+letter is depends on the current locale. 
+        ">
+                <Param name="s" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.match" func="yes">
+            <Overload retVal="void" descr="
+Looks for the first match of pattern in the string s. If it finds one, then match returns the 
+captures from the pattern; otherwise it returns nil. If pattern specifies no captures, then 
+the whole match is returned. A third, optional numerical argument init specifies where to 
+start the search; its default value is 1 and can be negative. 
+        ">
+                <Param name="s" />
+                <Param name="pattern" />
+                <Param name="[, init]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.rep" func="yes">
+            <Overload retVal="void" descr="
+Returns a string that is the concatenation of n copies of the string s. 
+        ">
+                <Param name="s" />
+                <Param name="n" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.reverse" func="yes">
+            <Overload retVal="void" descr="
+Returns a string that is the string s reversed. 
+        ">
+                <Param name="s" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.sub" func="yes">
+            <Overload retVal="void" descr="
+Returns the substring of s that starts at i and continues until j; i and j can be negative. 
+If j is absent, then it is assumed to be equal to -1 (which is the same as the string length). 
+In particular, the call string.sub(s,1,j) returns a prefix of s with length j, and string.sub(s, -i) 
+returns a suffix of s with length i. 
+        ">
+                <Param name="s" />
+                <Param name="i" />
+                <Param name="[, j]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="string.upper" func="yes">
+            <Overload retVal="void" descr="
+Receives a string and returns a copy of this string with all lowercase letters changed to 
+uppercase. All other characters are left unchanged. The definition of what a lowercase letter 
+is depends on the current locale. 
+        ">
+                <Param name="s" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="table.concat" func="yes">
+            <Overload retVal="void" descr="
+Given an array where all elements are strings or numbers, returns table[i]..sep..table[i+1] ··· sep..table[j]. 
+The default value for sep is the empty string, the default for i is 1, and the default for j is the length 
+of the table. If i is greater than j, returns the empty string. 
+        ">
+                <Param name="table" />
+                <Param name="[, sep [, i [, j]]]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="table.insert" func="yes">
+            <Overload retVal="void" descr="
+Inserts element value at position pos in table, shifting up other elements to open space, 
+if necessary. The default value for pos is n+1, where n is the length of the table (see §2.5.5), 
+so that a call table.insert(t,x) inserts x at the end of table t. 
+        ">
+                <Param name="table" />
+                <Param name="[pos,]" />
+                <Param name="value" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="table.maxn" func="yes">
+            <Overload retVal="void" descr="
+Returns the largest positive numerical index of the given table, or zero if the table has no 
+positive numerical indices. (To do its job this function does a linear traversal of the whole table.) 
+        ">
+                <Param name="table" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="table.remove" func="yes">
+            <Overload retVal="void" descr="
+Removes from table the element at position pos, shifting down other elements to close the space, 
+if necessary. Returns the value of the removed element. The default value for pos is n, where n 
+is the length of the table, so that a call table.remove(t) removes the last element of table t. 
+        ">
+                <Param name="table" />
+                <Param name="[, pos]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="table.sort" func="yes">
+            <Overload retVal="void" descr="
+Sorts table elements in a given order, in-place, from table[1] to table[n], where n is the length 
+of the table. If comp is given, then it must be a function that receives two table elements, and 
+returns true when the first is less than the second (so that not comp(a[i+1],a[i]) will be true 
+after the sort). If comp is not given, then the standard Lua operator lessthan is used instead.
+
+The sort algorithm is not stable; that is, elements considered equal by the given order may have 
+their relative positions changed by the sort. 
+        ">
+                <Param name="table" />
+                <Param name="[, comp]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="then" func="no" />
+        <KeyWord name="tonumber" func="yes">
+            <Overload retVal="void" descr="
+Tries to convert its argument to a number. If the argument is already a number or a string 
+convertible to a number, then tonumber returns this number; otherwise, it returns nil.
+
+An optional argument specifies the base to interpret the numeral. The base may be any integer 
+between 2 and 36, inclusive. In bases above 10, the letter 'A' (in either upper or lower case) 
+represents 10, 'B' represents 11, and so forth, with 'Z' representing 35. In base 10 (the default), 
+the number can have a decimal part, as well as an optional exponent part (see §2.1). In other 
+bases, only unsigned integers are accepted. 
+        ">
+                <Param name="e" />
+                <Param name="[, base]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="tostring" func="yes">
+            <Overload retVal="void" descr="
+Receives an argument of any type and converts it to a string in a reasonable format. For complete 
+control of how numbers are converted, use string.format.
+
+If the metatable of e has a '__tostring' field, then tostring calls the corresponding value with 
+e as argument, and uses the result of the call as its result. 
+        ">
+                <Param name="e" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="true" func="no" />
+        <KeyWord name="type" func="yes">
+            <Overload retVal="void" descr="
+Returns the type of its only argument, coded as a string. The possible results of this function 
+are 'nil' (a string, not the value nil), 'number', 'string', 'boolean', 'table', 'function', 'thread', and 'userdata'. 
+        ">
+                <Param name="v" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="unpack" func="yes">
+            <Overload retVal="void" descr="
+Returns the elements from the given table. This function is equivalent to
+
+     return list[i], list[i+1], ···, list[j]
+
+except that the above code can be written only for a fixed number of elements. By default, i is 1 and 
+j is the length of the list, as defined by the length operator (see §2.5.5). 
+        ">
+                <Param name="list" />
+                <Param name="[, i [, j]]" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="until" func="no" />
+        <KeyWord name="while" func="no" />
+        <KeyWord name="xpcall" func="yes">
+            <Overload retVal="void" descr="
+This function is similar to pcall, except that you can set a new error handler.
+
+xpcall calls function f in protected mode, using err as the error handler. Any error inside f is 
+not propagated; instead, xpcall catches the error, calls the err function with the original error 
+object, and returns a status code. Its first result is the status code (a boolean), which is true 
+if the call succeeds without errors. In this case, xpcall also returns all results from the call, 
+after this first result. In case of any error, xpcall returns false plus the result from err. 
+        ">
+                <Param name="f" />
+                <Param name="err" />
+            </Overload>
+        </KeyWord>
+        <KeyWord name="Bitmap Masks for tableViews and scrollViews" />
+        <KeyWord name="SQLite3" />
+        <KeyWord name="Scene Template" />
+        <KeyWord name="Slider ()" />
+        <KeyWord name="_G" />
+        <KeyWord name="ads.hide()" />
+        <KeyWord name="ads.init()" />
+        <KeyWord name="ads.show()" />
+        <KeyWord name="analytics.init()" />
+        <KeyWord name="analytics.logEvent()" />
+        <KeyWord name="assert()" />
+        <KeyWord name="audio.dispose()" />
+        <KeyWord name="audio.fade()" />
+        <KeyWord name="audio.fadeOut()" />
+        <KeyWord name="audio.findFreeChannel()" />
+        <KeyWord name="audio.freeChannels" />
+        <KeyWord name="audio.getDuration()" />
+        <KeyWord name="audio.getMaxVolume()" />
+        <KeyWord name="audio.getMinVolume()" />
+        <KeyWord name="audio.getVolume()" />
+        <KeyWord name="audio.isChannelActive()" />
+        <KeyWord name="audio.isChannelPaused()" />
+        <KeyWord name="audio.isChannelPlaying()" />
+        <KeyWord name="audio.loadSound()" />
+        <KeyWord name="audio.loadStream()" />
+        <KeyWord name="audio.pause()" />
+        <KeyWord name="audio.play()" />
+        <KeyWord name="audio.reserveChannels()" />
+        <KeyWord name="audio.reservedChannels" />
+        <KeyWord name="audio.resume()" />
+        <KeyWord name="audio.rewind()" />
+        <KeyWord name="audio.seek()" />
+        <KeyWord name="audio.setMaxVolume()" />
+        <KeyWord name="audio.setMinVolume()" />
+        <KeyWord name="audio.setVolume()" />
+        <KeyWord name="audio.stop()" />
+        <KeyWord name="audio.stopWithDelay()" />
+        <KeyWord name="audio.totalChannels" />
+        <KeyWord name="audio.unreservedFreeChannels" />
+        <KeyWord name="audio.unreservedUsedChannels" />
+        <KeyWord name="audio.usedChannels" />
+        <KeyWord name="body.angularDamping" />
+        <KeyWord name="body.angularVelocity" />
+        <KeyWord name="body.bodyType" />
+        <KeyWord name="body.isAwake" />
+        <KeyWord name="body.isBodyActive" />
+        <KeyWord name="body.isBullet" />
+        <KeyWord name="body.isFixedRotation" />
+        <KeyWord name="body.isSensor" />
+        <KeyWord name="body.isSleepingAllowed" />
+        <KeyWord name="body.linearDamping" />
+        <KeyWord name="body:applyAngularImpulse()" />
+        <KeyWord name="body:applyForce()" />
+        <KeyWord name="body:applyLinearImpulse()" />
+        <KeyWord name="body:applyTorque()" />
+        <KeyWord name="body:getLinearVelocity()" />
+        <KeyWord name="body:resetMassData()" />
+        <KeyWord name="body:setLinearVelocity" />
+        <KeyWord name="credits.init()" />
+        <KeyWord name="credits.requestUpdate()" />
+        <KeyWord name="credits.showOffers()" />
+        <KeyWord name="crypto.digest()" />
+        <KeyWord name="crypto.hmac()" />
+        <KeyWord name="crypto.md4" />
+        <KeyWord name="crypto.md5" />
+        <KeyWord name="crypto.sha1" />
+        <KeyWord name="crypto.sha224" />
+        <KeyWord name="crypto.sha256" />
+        <KeyWord name="crypto.sha384" />
+        <KeyWord name="crypto.sha512" />
+        <KeyWord name="display.captureScreen()" />
+        <KeyWord name="display.contentCenterX" />
+        <KeyWord name="display.contentCenterY" />
+        <KeyWord name="display.contentHeight" />
+        <KeyWord name="display.contentScaleX" />
+        <KeyWord name="display.contentScaleY" />
+        <KeyWord name="display.contentWidth" />
+        <KeyWord name="display.getCurrentStage()" />
+        <KeyWord name="display.loadRemoteImage()" />
+        <KeyWord name="display.newCircle()" />
+        <KeyWord name="display.newEmbossedText()" />
+        <KeyWord name="display.newGroup()" />
+        <KeyWord name="display.newImage()" />
+        <KeyWord name="display.newImageRect()" />
+        <KeyWord name="display.newLine()" />
+        <KeyWord name="display.newRect()" />
+        <KeyWord name="display.newRetinaText()" />
+        <KeyWord name="display.newRoundedRect()" />
+        <KeyWord name="display.newText()" />
+        <KeyWord name="display.remove()" />
+        <KeyWord name="display.save()" />
+        <KeyWord name="display.screenOriginX" />
+        <KeyWord name="display.screenOriginY" />
+        <KeyWord name="display.setDefault()" />
+        <KeyWord name="display.setStatusBar()" />
+        <KeyWord name="display.statusBarHeight" />
+        <KeyWord name="display.viewableContentHeight" />
+        <KeyWord name="display.viewableContentWidth" />
+        <KeyWord name="easing.inExpo()" />
+        <KeyWord name="easing.inOutExpo()" />
+        <KeyWord name="easing.inOutQuad()" />
+        <KeyWord name="easing.inQuad()" />
+        <KeyWord name="easing.linear()" />
+        <KeyWord name="easing.outExpo()" />
+        <KeyWord name="easing.outQuad()" />
+        <KeyWord name="error()" />
+        <KeyWord name="event.accuracy" />
+        <KeyWord name="event.action" />
+        <KeyWord name="event.address" />
+        <KeyWord name="event.altitude" />
+        <KeyWord name="event.blob" />
+        <KeyWord name="event.channel" />
+        <KeyWord name="event.city" />
+        <KeyWord name="event.cityDetail" />
+        <KeyWord name="event.completed" />
+        <KeyWord name="event.count" />
+        <KeyWord name="event.country" />
+        <KeyWord name="event.countryCode" />
+        <KeyWord name="event.custom" />
+        <KeyWord name="event.data" />
+        <KeyWord name="event.delta" />
+        <KeyWord name="event.deltaTime" />
+        <KeyWord name="event.deltaTime" />
+        <KeyWord name="event.direction" />
+        <KeyWord name="event.errorCode" />
+        <KeyWord name="event.errorCode" />
+        <KeyWord name="event.errorCode" />
+        <KeyWord name="event.errorMessage" />
+        <KeyWord name="event.errorMessage" />
+        <KeyWord name="event.errorMessage" />
+        <KeyWord name="event.errorMessage" />
+        <KeyWord name="event.force" />
+        <KeyWord name="event.friction" />
+        <KeyWord name="event.geographic" />
+        <KeyWord name="event.handle" />
+        <KeyWord name="event.id" />
+        <KeyWord name="event.index" />
+        <KeyWord name="event.invalidProducts" />
+        <KeyWord name="event.isConnectionOnDemand" />
+        <KeyWord name="event.isConnectionRequired" />
+        <KeyWord name="event.isError" />
+        <KeyWord name="event.isInteractionRequired" />
+        <KeyWord name="event.isReachable" />
+        <KeyWord name="event.isReachableViaCellular" />
+        <KeyWord name="event.isReachableViaWiFi" />
+        <KeyWord name="event.isShake" />
+        <KeyWord name="event.keyName" />
+        <KeyWord name="event.latitude" />
+        <KeyWord name="event.localPlayerScore" />
+        <KeyWord name="event.longitude" />
+        <KeyWord name="event.magnetic" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.name" />
+        <KeyWord name="event.newCredits" />
+        <KeyWord name="event.numTaps" />
+        <KeyWord name="event.object1" />
+        <KeyWord name="event.object2" />
+        <KeyWord name="event.other" />
+        <KeyWord name="event.other" />
+        <KeyWord name="event.phase" />
+        <KeyWord name="event.phase" />
+        <KeyWord name="event.phase" />
+        <KeyWord name="event.phase" />
+        <KeyWord name="event.postalCode" />
+        <KeyWord name="event.products" />
+        <KeyWord name="event.provider" />
+        <KeyWord name="event.region" />
+        <KeyWord name="event.regionDetail" />
+        <KeyWord name="event.source" />
+        <KeyWord name="event.speed" />
+        <KeyWord name="event.sprite" />
+        <KeyWord name="event.street" />
+        <KeyWord name="event.streetDetail" />
+        <KeyWord name="event.target" />
+        <KeyWord name="event.target" />
+        <KeyWord name="event.time" />
+        <KeyWord name="event.time" />
+        <KeyWord name="event.time" />
+        <KeyWord name="event.time" />
+        <KeyWord name="event.totalCredits" />
+        <KeyWord name="event.transaction" />
+        <KeyWord name="event.type" />
+        <KeyWord name="event.type" />
+        <KeyWord name="event.type" />
+        <KeyWord name="event.type" />
+        <KeyWord name="event.url" />
+        <KeyWord name="event.x" />
+        <KeyWord name="event.x" />
+        <KeyWord name="event.xGravity" />
+        <KeyWord name="event.xInstant" />
+        <KeyWord name="event.xRotation" />
+        <KeyWord name="event.xStart" />
+        <KeyWord name="event.y" />
+        <KeyWord name="event.y" />
+        <KeyWord name="event.yGravity" />
+        <KeyWord name="event.yInstant" />
+        <KeyWord name="event.yRotation" />
+        <KeyWord name="event.yStart" />
+        <KeyWord name="event.zGravity" />
+        <KeyWord name="event.zInstant" />
+        <KeyWord name="event.zRotation" />
+        <KeyWord name="facebook.login()" />
+        <KeyWord name="facebook.logout()" />
+        <KeyWord name="facebook.request()" />
+        <KeyWord name="facebook.showDialog()" />
+        <KeyWord name="file:close()" />
+        <KeyWord name="file:flush()" />
+        <KeyWord name="file:lines()" />
+        <KeyWord name="file:read()" />
+        <KeyWord name="file:seek()" />
+        <KeyWord name="file:setvbuf()" />
+        <KeyWord name="file:write()" />
+        <KeyWord name="gameNetwork.init()" />
+        <KeyWord name="gameNetwork.request()" />
+        <KeyWord name="gameNetwork.show()" />
+        <KeyWord name="getfenv()" />
+        <KeyWord name="getmetatable()" />
+        <KeyWord name="graphics.newGradient()" />
+        <KeyWord name="graphics.newMask()" />
+        <KeyWord name="group.numChildren" />
+        <KeyWord name="group:insert()" />
+        <KeyWord name="group:remove()" />
+        <KeyWord name="io.close()" />
+        <KeyWord name="io.flush()" />
+        <KeyWord name="io.input()" />
+        <KeyWord name="io.lines()" />
+        <KeyWord name="io.open()" />
+        <KeyWord name="io.output()" />
+        <KeyWord name="io.read()" />
+        <KeyWord name="io.tmpfile()" />
+        <KeyWord name="io.type()" />
+        <KeyWord name="io.write()" />
+        <KeyWord name="ipairs()" />
+        <KeyWord name="joint.dampingRatio" />
+        <KeyWord name="joint.frequency" />
+        <KeyWord name="joint.isLimitEnabled" />
+        <KeyWord name="joint.isMotorEnabled" />
+        <KeyWord name="joint.jointAngle" />
+        <KeyWord name="joint.jointSpeed" />
+        <KeyWord name="joint.jointTranslation" />
+        <KeyWord name="joint.length" />
+        <KeyWord name="joint.length1" />
+        <KeyWord name="joint.length2" />
+        <KeyWord name="joint.maxForce" />
+        <KeyWord name="joint.maxMotorForce" />
+        <KeyWord name="joint.maxMotorTorque" />
+        <KeyWord name="joint.maxTorque" />
+        <KeyWord name="joint.motorForce" />
+        <KeyWord name="joint.motorSpeed" />
+        <KeyWord name="joint.motorTorque" />
+        <KeyWord name="joint.ratio" />
+        <KeyWord name="joint.reactionTorque" />
+        <KeyWord name="joint:getAnchorA()" />
+        <KeyWord name="joint:getAnchorB()" />
+        <KeyWord name="joint:getLimits()" />
+        <KeyWord name="joint:getReactionForce()" />
+        <KeyWord name="joint:getRotationLimits()" />
+        <KeyWord name="joint:setLimits()" />
+        <KeyWord name="joint:setRotationLimits()" />
+        <KeyWord name="json.decode()" />
+        <KeyWord name="json.encode()" />
+        <KeyWord name="json.null()" />
+        <KeyWord name="math.abs()" />
+        <KeyWord name="math.acos()" />
+        <KeyWord name="math.asin()" />
+        <KeyWord name="math.atan()" />
+        <KeyWord name="math.atan2()" />
+        <KeyWord name="math.ceil()" />
+        <KeyWord name="math.cos()" />
+        <KeyWord name="math.cosh()" />
+        <KeyWord name="math.deg()" />
+        <KeyWord name="math.exp()" />
+        <KeyWord name="math.floor()" />
+        <KeyWord name="math.fmod()" />
+        <KeyWord name="math.frexp()" />
+        <KeyWord name="math.inf" />
+        <KeyWord name="math.ldexp()" />
+        <KeyWord name="math.log()" />
+        <KeyWord name="math.log10()" />
+        <KeyWord name="math.max()" />
+        <KeyWord name="math.min()" />
+        <KeyWord name="math.modf()" />
+        <KeyWord name="math.pi" />
+        <KeyWord name="math.pow()" />
+        <KeyWord name="math.rad()" />
+        <KeyWord name="math.random()" />
+        <KeyWord name="math.randomseed()" />
+        <KeyWord name="math.round()" />
+        <KeyWord name="math.sin()" />
+        <KeyWord name="math.sinh()" />
+        <KeyWord name="math.sqrt()" />
+        <KeyWord name="math.tan()" />
+        <KeyWord name="math.tanh()" />
+        <KeyWord name="media.getSoundVolume" />
+        <KeyWord name="media.newEventSound()" />
+        <KeyWord name="media.newRecording()" />
+        <KeyWord name="media.pauseSound()" />
+        <KeyWord name="media.playEventSound()" />
+        <KeyWord name="media.playSound()" />
+        <KeyWord name="media.playVideo()" />
+        <KeyWord name="media.setSoundVolume()" />
+        <KeyWord name="media.show()" />
+        <KeyWord name="media.stopSound()" />
+        <KeyWord name="memoryWarning *iOS only*" />
+        <KeyWord name="module()" />
+        <KeyWord name="movieclip.newAnim()" />
+        <KeyWord name="myMap.isLocationVisible" />
+        <KeyWord name="myMap.isScrollEnabled" />
+        <KeyWord name="myMap.isZoomEnabled" />
+        <KeyWord name="myMap.mapType" />
+        <KeyWord name="myMap:addMarker()" />
+        <KeyWord name="myMap:getAddressLocation()" />
+        <KeyWord name="myMap:getUserLocation()" />
+        <KeyWord name="myMap:nearestAddress()" />
+        <KeyWord name="myMap:removeAllMarkers()" />
+        <KeyWord name="myMap:setCenter()" />
+        <KeyWord name="myMap:setRegion()" />
+        <KeyWord name="native.cancelAlert()" />
+        <KeyWord name="native.cancelWebPopup()" />
+        <KeyWord name="native.getFontNames()" />
+        <KeyWord name="native.getSync()" />
+        <KeyWord name="native.newFont()" />
+        <KeyWord name="native.newMapView()" />
+        <KeyWord name="native.newTextBox()" />
+        <KeyWord name="native.newTextField()" />
+        <KeyWord name="native.newVideo()" />
+        <KeyWord name="native.newWebView()" />
+        <KeyWord name="native.setActivityIndicator()" />
+        <KeyWord name="native.setKeyboardFocus()" />
+        <KeyWord name="native.setSync()" />
+        <KeyWord name="native.showAlert()" />
+        <KeyWord name="native.showPopup()" />
+        <KeyWord name="native.showWebPopup()" />
+        <KeyWord name="native.systemFont" />
+        <KeyWord name="network.canDetectNetworkStatusChanges" />
+        <KeyWord name="network.download()" />
+        <KeyWord name="network.request()" />
+        <KeyWord name="network.setStatusListener" />
+        <KeyWord name="next()" />
+        <KeyWord name="object.align" />
+        <KeyWord name="object.align" />
+        <KeyWord name="object.alpha" />
+        <KeyWord name="object.contentBounds" />
+        <KeyWord name="object.contentHeight" />
+        <KeyWord name="object.contentWidth" />
+        <KeyWord name="object.font" />
+        <KeyWord name="object.font" />
+        <KeyWord name="object.hasBackground" />
+        <KeyWord name="object.height" />
+        <KeyWord name="object.inputType" />
+        <KeyWord name="object.isEditable" />
+        <KeyWord name="object.isHitTestMasked" />
+        <KeyWord name="object.isHitTestable" />
+        <KeyWord name="object.isSecure" />
+        <KeyWord name="object.isVisible" />
+        <KeyWord name="object.length **old**" />
+        <KeyWord name="object.maskRotation" />
+        <KeyWord name="object.maskScaleX" />
+        <KeyWord name="object.maskScaleY" />
+        <KeyWord name="object.maskX" />
+        <KeyWord name="object.maskY" />
+        <KeyWord name="object.parent" />
+        <KeyWord name="object.rotation" />
+        <KeyWord name="object.size" />
+        <KeyWord name="object.size" />
+        <KeyWord name="object.size" />
+        <KeyWord name="object.stageBounds **old**" />
+        <KeyWord name="object.stageHeight **old**" />
+        <KeyWord name="object.stageWidth **old**" />
+        <KeyWord name="object.strokeWidth" />
+        <KeyWord name="object.text" />
+        <KeyWord name="object.text" />
+        <KeyWord name="object.text" />
+        <KeyWord name="object.width" />
+        <KeyWord name="object.x" />
+        <KeyWord name="object.xOrigin" />
+        <KeyWord name="object.xReference" />
+        <KeyWord name="object.xScale" />
+        <KeyWord name="object.y" />
+        <KeyWord name="object.yOrigin" />
+        <KeyWord name="object.yReference" />
+        <KeyWord name="object.yScale" />
+        <KeyWord name="object:addEventListener" />
+        <KeyWord name="object:append()" />
+        <KeyWord name="object:contentToLocal()" />
+        <KeyWord name="object:dispatchEvent()" />
+        <KeyWord name="object:getParent() **old**" />
+        <KeyWord name="object:getSampleRate()" />
+        <KeyWord name="object:getTunerFrequency()" />
+        <KeyWord name="object:getTunerVolume()" />
+        <KeyWord name="object:isRecording()" />
+        <KeyWord name="object:localToContent()" />
+        <KeyWord name="object:nextFrame()" />
+        <KeyWord name="object:play()" />
+        <KeyWord name="object:previousFrame()" />
+        <KeyWord name="object:removeEventListener()" />
+        <KeyWord name="object:removeSelf()" />
+        <KeyWord name="object:reverse()" />
+        <KeyWord name="object:rotate()" />
+        <KeyWord name="object:scale()" />
+        <KeyWord name="object:setColor()" />
+        <KeyWord name="object:setDrag()" />
+        <KeyWord name="object:setFillColor()" />
+        <KeyWord name="object:setLabels()" />
+        <KeyWord name="object:setMask()" />
+        <KeyWord name="object:setReferencePoint()" />
+        <KeyWord name="object:setSampleRate()" />
+        <KeyWord name="object:setStrokeColor()" />
+        <KeyWord name="object:setTextColor()" />
+        <KeyWord name="object:setTextColor()" />
+        <KeyWord name="object:setTextColor()" />
+        <KeyWord name="object:startRecording()" />
+        <KeyWord name="object:startTuner()" />
+        <KeyWord name="object:stop()" />
+        <KeyWord name="object:stopAtFrame()" />
+        <KeyWord name="object:stopRecording()" />
+        <KeyWord name="object:stopTuner()" />
+        <KeyWord name="object:toBack()" />
+        <KeyWord name="object:toFront()" />
+        <KeyWord name="object:translate()" />
+        <KeyWord name="openfeint.downloadBlob()" />
+        <KeyWord name="openfeint.init()" />
+        <KeyWord name="openfeint.launchDashboard()" />
+        <KeyWord name="openfeint.setHighScore()" />
+        <KeyWord name="openfeint.unlockAchievement()" />
+        <KeyWord name="openfeint.uploadBlob()" />
+        <KeyWord name="os.clock()" />
+        <KeyWord name="os.date()" />
+        <KeyWord name="os.difftime()" />
+        <KeyWord name="os.execute()" />
+        <KeyWord name="os.exit()" />
+        <KeyWord name="os.remove()" />
+        <KeyWord name="os.rename()" />
+        <KeyWord name="os.time()" />
+        <KeyWord name="package.loaded" />
+        <KeyWord name="package.loaders" />
+        <KeyWord name="package.seeall" />
+        <KeyWord name="pairs()" />
+        <KeyWord name="pcall()" />
+        <KeyWord name="physics.addBody()" />
+        <KeyWord name="physics.getGravity()" />
+        <KeyWord name="physics.newJoint()" />
+        <KeyWord name="physics.pause()" />
+        <KeyWord name="physics.removeBody()" />
+        <KeyWord name="physics.setDrawMode()" />
+        <KeyWord name="physics.setGravity()" />
+        <KeyWord name="physics.setPositionIterations()" />
+        <KeyWord name="physics.setScale()" />
+        <KeyWord name="physics.setVelocityIterations()" />
+        <KeyWord name="physics.start()" />
+        <KeyWord name="physics.stop()" />
+        <KeyWord name="print()" />
+        <KeyWord name="rawequal()" />
+        <KeyWord name="rawget()" />
+        <KeyWord name="rawset()" />
+        <KeyWord name="require()" />
+        <KeyWord name="Runtime:addEventListener()" />
+        <KeyWord name="Runtime:hasEventSource()" />
+        <KeyWord name="Runtime:removeEventListener()" />
+        <KeyWord name="scrollView ()" />
+        <KeyWord name="select()" />
+        <KeyWord name="setfenv()" />
+        <KeyWord name="setmetatable()" />
+        <KeyWord name="sprite.add()" />
+        <KeyWord name="sprite.newSprite()" />
+        <KeyWord name="sprite.newSpriteMultiSet()" />
+        <KeyWord name="sprite.newSpriteSet()" />
+        <KeyWord name="sprite.newSpriteSheet()" />
+        <KeyWord name="sprite.newSpriteSheetFromData()" />
+        <KeyWord name="spriteInstance.animating" />
+        <KeyWord name="spriteInstance.currentFrame" />
+        <KeyWord name="spriteInstance.sequence" />
+        <KeyWord name="spriteInstance.timeScale" />
+        <KeyWord name="spriteInstance:addEventListener()" />
+        <KeyWord name="spriteInstance:pause()" />
+        <KeyWord name="spriteInstance:play()" />
+        <KeyWord name="spriteInstance:prepare()" />
+        <KeyWord name="spriteSheet:dispose()" />
+        <KeyWord name="stage:setFocus()" />
+        <KeyWord name="store.canMakePurchases" />
+        <KeyWord name="store.finishTransaction()" />
+        <KeyWord name="store.init()" />
+        <KeyWord name="store.loadProducts()" />
+        <KeyWord name="store.purchase()" />
+        <KeyWord name="store.restore()" />
+        <KeyWord name="storyboard.disableAutoPurge" />
+        <KeyWord name="storyboard.getCurrentSceneName()" />
+        <KeyWord name="storyboard.getPrevious()" />
+        <KeyWord name="storyboard.getScene()" />
+        <KeyWord name="storyboard.gotoScene()" />
+        <KeyWord name="storyboard.hideOverlay()" />
+        <KeyWord name="storyboard.isDebug" />
+        <KeyWord name="storyboard.loadScene()" />
+        <KeyWord name="storyboard.newScene()" />
+        <KeyWord name="storyboard.printMemUsage()" />
+        <KeyWord name="storyboard.purgeAll()" />
+        <KeyWord name="storyboard.purgeOnSceneChange" />
+        <KeyWord name="storyboard.purgeScene()" />
+        <KeyWord name="storyboard.reloadScene()" />
+        <KeyWord name="storyboard.removeAll()" />
+        <KeyWord name="storyboard.removeScene()" />
+        <KeyWord name="storyboard.showOverlay()" />
+        <KeyWord name="storyboard.stage" />
+        <KeyWord name="string.byte()" />
+        <KeyWord name="string.char()" />
+        <KeyWord name="string.find()" />
+        <KeyWord name="string.format()" />
+        <KeyWord name="string.gmatch()" />
+        <KeyWord name="string.gsub()" />
+        <KeyWord name="string.len()" />
+        <KeyWord name="string.lower()" />
+        <KeyWord name="string.match()" />
+        <KeyWord name="string.rep()" />
+        <KeyWord name="string.reverse()" />
+        <KeyWord name="string.sub()" />
+        <KeyWord name="string.upper()" />
+        <KeyWord name="system.DocumentsDirectory" />
+        <KeyWord name="system.ResourceDirectory" />
+        <KeyWord name="system.TemporaryDirectory" />
+        <KeyWord name="system.activate()" />
+        <KeyWord name="system.cancelNotification()" />
+        <KeyWord name="system.deactivate()" />
+        <KeyWord name="system.getInfo()" />
+        <KeyWord name="system.getPreference()" />
+        <KeyWord name="system.getTimer()" />
+        <KeyWord name="system.openURL()" />
+        <KeyWord name="system.orientation" />
+        <KeyWord name="system.pathForFile()" />
+        <KeyWord name="system.scheduleNotification()" />
+        <KeyWord name="system.setAccelerometerInterval()" />
+        <KeyWord name="system.setGyroscopeInterval()" />
+        <KeyWord name="system.setIdleTimer()" />
+        <KeyWord name="system.setLocationAccuracy()" />
+        <KeyWord name="system.setLocationThreshold()" />
+        <KeyWord name="system.vibrate()" />
+        <KeyWord name="table.concat()" />
+        <KeyWord name="table.copy()" />
+        <KeyWord name="table.indexOf()" />
+        <KeyWord name="table.insert()" />
+        <KeyWord name="table.maxn()" />
+        <KeyWord name="table.remove()" />
+        <KeyWord name="table.sort()" />
+        <KeyWord name="timer.cancel()" />
+        <KeyWord name="timer.pause()" />
+        <KeyWord name="timer.performWithDelay()" />
+        <KeyWord name="timer.resume()" />
+        <KeyWord name="tonumber()" />
+        <KeyWord name="tostring()" />
+        <KeyWord name="transition.cancel()" />
+        <KeyWord name="transition.dissolve()" />
+        <KeyWord name="transition.from()" />
+        <KeyWord name="transition.to()" />
+        <KeyWord name="type()" />
+        <KeyWord name="unpack()" />
+        <KeyWord name="widget.newButton()" />
+        <KeyWord name="widget.newPickerWheel()" />
+        <KeyWord name="widget.newTabBar()" />
+        <KeyWord name="widget.newTableView()" />
+        <KeyWord name="widget.setTheme()" />
+		<!-- Inicio das fun��es no escopo "Duel" -->
+		<KeyWord name="Duel"/>
+		<KeyWord name="Activate" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Effec e" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddCustomActivityCounter" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int counter_id" />
+				<Param name="int activity_type" />
+				<Param name="function f" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AdjustInstantly" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="[Card c]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AnnounceAttribute" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="int count" />
+				<Param name="int available" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AnnounceCard" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="[...]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AnnounceCoin" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AnnounceLevel" func="yes" >
+			<Overload retVal="int|nil,int|nil" descr="">
+				<Param name="int player" />
+				<Param name="[int min=1" />
+				<Param name="int max=12" />
+				<Param name="int except=nil" />
+				<Param name="....]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AnnounceNumber" func="yes" >
+			<Overload retVal="int,int" descr="">
+				<Param name="int player" />
+				<Param name="int number" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AnnounceNumberRange" func="yes" >
+			<Overload retVal="int|nil,int|nil" descr="">
+				<Param name="int player" />
+				<Param name="[int min=1" />
+				<Param name="int max=12" />
+				<Param name="int except=nil" />
+				<Param name="...]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AnnounceRace" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="int count" />
+				<Param name="int available" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AnnounceType" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AssumeReset" func="yes" >
+			<Overload retVal="void" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AttackCostPaid" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="[int paid=1]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="BreakEffect" func="yes" >
+			<Overload retVal="void" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CalculateDamage" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card c1" />
+				<Param name="Card c2|nil" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CanPlayerSetMonster" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="[Card sumcard c" />
+				<Param name="int sumtype]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CanPlayerSetSpellTrap" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="[Card setcard c" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChainAttack" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="[Card ]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChangeAttacker" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card c" />
+				<Param name="[int ign=false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChangeAttackTarget" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Card c|nil" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChangeBattleDamage" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="int value" />
+				<Param name="[bool check=true]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChangeChainOperation" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int chain_idx" />
+				<Param name="function f" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChangePosition" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int au" />
+				<Param name="[int ad=au" />
+				<Param name="[int du=au" />
+				<Param name="[int ad=au" />
+				<Param name="[int dd=au" />
+				<Param name="bool noflip=false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChangeTargetCard" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int chainc" />
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChangeTargetParameter" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int chainc" />
+				<Param name="int param" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChangeTargetPlayer" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int chainc" />
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckChainTarget" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int chainc" />
+				<Param name="Card c" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckChainUniqueness" func="yes" >
+			<Overload retVal="bool" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckEvent" func="yes" >
+			<Overload retVal="bool,Group,in,int,effect,int" descr="">
+				<Param name="int event" />
+				<Param name="[bool get_info]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckLocation" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="int location" />
+				<Param name="int seq" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckLPCost" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="int cost" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckPhaseActivity" func="yes" >
+			<Overload retVal="bool" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckReleaseGroup" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="function f" />
+				<Param name="int count" />
+				<Param name="[bool use_hand=false" />
+				<Param name="int max=min" />
+				<Param name="bool check_field=false" />
+				<Param name="Card card_to_check=nil" />
+				<Param name="int to_player=player" />
+				<Param name="int zone=0xff" />
+				<Param name="bool use_oppo=false]" />
+				<Param name="Group|Card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckReleaseGroupCost" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="function f" />
+				<Param name="int minc" />
+				<Param name="[int maxc=minc]" />
+				<Param name="bool use_hand=false" />
+				<Param name="function spcheck" />
+				<Param name="Group|Card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckReleaseGroupEx" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="function f" />
+				<Param name="int count" />
+				<Param name="[bool use_hand=true" />
+				<Param name="int max=min" />
+				<Param name="bool check_field=false" />
+				<Param name="Card card_to_check=nil" />
+				<Param name="int to_player=player" />
+				<Param name="int zone=0xff" />
+				<Param name="bool use_oppo=false]" />
+				<Param name="Group|Card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckReleaseGroupSummon" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Card c" />
+				<Param name="int player" />
+				<Param name="effect e" />
+				<Param name="function filter" />
+				<Param name="int min" />
+				<Param name="int max" />
+				<Param name="function last" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckRemoveOverlayCard" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="int s" />
+				<Param name="int o" />
+				<Param name="int count" />
+				<Param name="int reason" />
+				<Param name="[Group onthis]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckSummonedCount" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="[Card c]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckTiming" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int timing" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckTribute" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Card c" />
+				<Param name="int min" />
+				<Param name="[int max" />
+				<Param name="Group|nil mg" />
+				<Param name="int tp=c:GetControler()" />
+				<Param name="int zone=0x1f]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ClearOperationInfo" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int chainc" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ClearTargetCard" func="yes" >
+			<Overload retVal="void" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ConfirmCards" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="Card|Group tagets" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ConfirmDecktop" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="int count" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ConfirmExtratop" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int tp" />
+				<Param name="int count" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CreateToken" func="yes" >
+			<Overload retVal="Card" descr="">
+				<Param name="int player" />
+				<Param name="int code" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Damage" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="int value" />
+				<Param name="int reason" />
+				<Param name="[bool is_step=false" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Destroy" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int reason" />
+				<Param name="[int dest=LOCATION_GRAVE]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DisableSelfDestroyCheck" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="[disable=true]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DisableShuffleCheck" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DiscardDeck" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="int count" />
+				<Param name="int reason" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DiscardHand" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="function f|nil" />
+				<Param name="int min" />
+				<Param name="int max" />
+				<Param name="int reason" />
+				<Param name="Group|Card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Draw" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="int count" />
+				<Param name="int reason" />
+			</Overload>
+		</KeyWord>
+		<!-- LIMITES EXISTEM -->
+		<KeyWord name="GetFusionMaterial" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetZoneWithLinkedCount" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int count" />
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="EnableGlobalFlag" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int global_flag" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetStartingHand" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetLP" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetLP" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetTurnPlayer" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetTurnCount" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetDrawCount" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Duel.RegisterEffect" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Effect e" />
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RegisterFlagEffect" func="yes" >
+			<Overload retVal="Effect" descr="">
+				<Param name="int player" />
+				<Param name="int code" />
+				<Param name="int reset_flag" />
+				<Param name="int reset_count" />
+				<Param name="[int label=0]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFlagEffect" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="int code" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ResetFlagEffect" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="int code" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Remove" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int|nil pos" />
+				<Param name="int reason" />
+				<Param name="[int player]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RemoveCards" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card|Group targets" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SendtoGrave" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int reason" />
+				<Param name="[int player]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SendtoHand" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int player|nil" />
+				<Param name="int reason" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SendtoDeck" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int player|nil" />
+				<Param name="int seq" />
+				<Param name="int reason" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SendtoExtraP" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int player|nil" />
+				<Param name="int reason" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Sendto" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int location" />
+				<Param name="int reason" />
+				<Param name="[int pos=POS_FACEUP" />
+				<Param name="int player=PLAYER_NONE" />
+				<Param name="int seq=0]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetOperatedGroup" func="yes" >
+			<Overload retVal="Group" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Summon" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="Card c" />
+				<Param name="bool ignore_count" />
+				<Param name="Effect e|nil" />
+				<Param name="[int min=0]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SpecialSummonRule" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="Card c" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SynchroSummon" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="Card c" />
+				<Param name="[Group|Card|nil must_use" />
+				<Param name="[Group|Card|nil mg" />
+				<Param name="int minc=0" />
+				<Param name="int maxc=0]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="XyzSummon" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="Card c" />
+				<Param name="[Group|Card|nil must_use" />
+				<Param name="[Group|Card|nil mg" />
+				<Param name="int minc=0" />
+				<Param name="int maxc=0]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LinkSummon" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="Card c" />
+				<Param name="[Group|Card|nil must_use" />
+				<Param name="[Group|Card|nil mg" />
+				<Param name="int minc=0" />
+				<Param name="int maxc=0]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PendulumSummon" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ProcedureSummonGroup" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="int sumtype" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ProcedureSummon" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="int sumtype" />
+				<Param name="Card c" />
+				<Param name="[Group|Card|nil must_use" />
+				<Param name="[Group|Card|nil mg" />
+				<Param name="int minc=0" />
+				<Param name="int maxc=0]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LoadScript" func="yes" >
+			<Overload retVal="bool,object/nil" descr="">
+				<Param name="string file_name" />
+				<Param name="[bool forced=false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LoadCardScript" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="string|int ccode" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MSet" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="Card c" />
+				<Param name="bool ignore_count" />
+				<Param name="Effect e|nil" />
+				<Param name="[int minc=0" />
+				<Param name="int zone=0x1f]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SSet" func="yes" >
+			<Overload retVal="void|int" descr="">
+				<Param name="int player" />
+				<Param name="Card|Group targets" />
+				<Param name="[int targetplayer=player" />
+				<Param name="bool confirm=true]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SpecialSummon" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int sumtype" />
+				<Param name="int sumplayer" />
+				<Param name="int targetplayer" />
+				<Param name="bool nocheck" />
+				<Param name="bool nolimit" />
+				<Param name="int pos" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SpecialSummonStep" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int sumtype" />
+				<Param name="int sumplayer" />
+				<Param name="int targetplayer" />
+				<Param name="bool nocheck" />
+				<Param name="bool nolimit" />
+				<Param name="int pos" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SpecialSummonComplete" func="yes" >
+			<Overload retVal="void|int" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="LinkSummon" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="Card c" />
+				<Param name="[Group|Card|nil must_use" />
+				<Param name="[Group|Card|nil mg" />
+				<Param name="int minc=0" />
+				<Param name="int maxc=0]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsCanAddCounter" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="[int counter_type" />
+				<Param name="int count" />
+				<Param name="Card c]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsDuelType" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int flag" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RemoveCounter" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="int s" />
+				<Param name="int o" />
+				<Param name="int counter_type" />
+				<Param name="int count" />
+				<Param name="int reason" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsCanRemoveCounter" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="int s" />
+				<Param name="int o" />
+				<Param name="int counter_type" />
+				<Param name="int count" />
+				<Param name="int reason" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCounter" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="int s" />
+				<Param name="int o" />
+				<Param name="int counter_type" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Release" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int reason" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MoveToField" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Card c" />
+				<Param name="int moveplayer" />
+				<Param name="int targetplayer" />
+				<Param name="int dest" />
+				<Param name="int pos" />
+				<Param name="bool enabled" />
+				<Param name="[int zone=0xff]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ReturnToField" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Card c" />
+				<Param name="[int pos" />
+				<Param name="int zone=0xff]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="MoveSequence" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Card c" />
+				<Param name="int seq" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetChainLimit" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="function f" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetChainLimitTillChainEnd" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="function f" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetChainMaterial" func="yes" >
+			<Overload retVal="Effect" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+
+		<KeyWord name="SortDecktop" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int sortplayer" />
+				<Param name="int targetplayer" />
+				<Param name="int count" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RaiseEvent" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Group|Card eg" />
+				<Param name="int code" />
+				<Param name="Effect re" />
+				<Param name="int r" />
+				<Param name="int rp" />
+				<Param name="int ep" />
+				<Param name="int ev" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RaiseSingleEvent" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Group|Card eg" />
+				<Param name="int code" />
+				<Param name="Effect re" />
+				<Param name="int r" />
+				<Param name="int rp" />
+				<Param name="int ep" />
+				<Param name="int ev" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetEnvironment" func="yes" >
+			<Overload retVal="int,int" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsEnvironment" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int code" />
+				<Param name="[int player=PLAYER_ALL" />
+				<Param name="int location=LOCATION_ONFIELD|LOCATION_FZONE" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Win" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="int win_reason" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Recover" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="int value" />
+				<Param name="int reason" />
+				<Param name="[bool is_step=false" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RDComplete" func="yes" >
+			<Overload retVal="void" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Equip" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int player" />
+				<Param name="Card c1" />
+				<Param name="Card c2" />
+				<Param name="[bool up=true" />
+				<Param name="bool is_step=false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="EquipComplete" func="yes" >
+			<Overload retVal="void" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ForceAttack" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card c1" />
+				<Param name="Card c2" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCardFromCardID" func="yes" >
+			<Overload retVal="Card|nil" descr="">
+				<Param name="int cardID" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetControl" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Card|Group targets" />
+				<Param name="int player" />
+				<Param name="[int resetphase" />
+				<Param name="int resetcount" />
+				<Param name="int zone" />
+				<Param name="int choseplayer]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SwapControl" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Card c1" />
+				<Param name="Card c2" />
+				<Param name="[int reset_phase" />
+				<Param name="int reset_count]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PayLPCost" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="int cost" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ShuffleExtra" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ShuffleDeck" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ShuffleHand" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ShuffleSetCard" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ReplaceAttacker" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card c" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ReplaceAttackTarget" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card c" />
+			</Overload>
+		</KeyWord>
+		
+		<KeyWord name="GetBattleDamage" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+			</Overload>
+		</KeyWord>
+		
+		<KeyWord name="NegateActivation" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int chainc" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="NegateEffect" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="int chainc" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="NegateRelatedChain" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card c" />
+				<Param name="int reset" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="NegateSummon" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card|Group targets" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IncreaseSummonedCount" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="[Card c]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetLocationCount" func="yes" >
+			<Overload retVal="int,int flag" descr="">
+				<Param name="int player" />
+				<Param name="int location" />
+				<Param name="[int use_player=reason player" />
+				<Param name="int reason=LOCATION_REASON_TOFIELD" />
+				<Param name="int zone=0xff]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFieldCard" func="yes" >
+			<Overload retVal="Card" descr="">
+				<Param name="int player" />
+				<Param name="int location" />
+				<Param name="int seq" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCurrentChain" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="[bool real_chain=false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetChainInfo" func="yes" >
+			<Overload retVal="..." descr="">
+				<Param name="int chainc" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFirstTarget" func="yes" >
+			<Overload retVal="Card,..." descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCurrentPhase" func="yes" >
+			<Overload retVal="int" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SkipPhase" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int player" />
+				<Param name="int phase" />
+				<Param name="int reset_phase" />
+				<Param name="int reset_count" />
+				<Param name="[int value=0]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsAttackCostPaid" func="yes" >
+			<Overload retVal="int" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsDamageCalculated" func="yes" >
+			<Overload retVal="bool" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAttacker" func="yes" >
+			<Overload retVal="Card" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetAttackTarget" func="yes" >
+			<Overload retVal="Card|nil" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetBattleMonster" func="yes" >
+			<Overload retVal="Card|nil, Card|nil" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="NegateAttack" func="yes" >
+			<Overload retVal="bool" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ChainAttack" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="[Card c]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Readjust" func="yes" >
+			<Overload retVal="void" descr="">
+			</Overload>
+		</KeyWord>
+		
+		<KeyWord name="GetFieldGroup" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="int player" />
+				<Param name="int s" />
+				<Param name="int o" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFieldGroupCount" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="int s" />
+				<Param name="int o" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFieldGroupCountRush" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="int player" />
+				<Param name="int s" />
+				<Param name="int o" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetDecktopGroup" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="int player" />
+				<Param name="int count" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetExtraTopGroup" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="int player" />
+				<Param name="int count" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetMatchingGroup" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="function f" />
+				<Param name="int player" />
+				<Param name="int loc_s" />
+				<Param name="int loc_o" />
+				<Param name="Group|Card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetMatchingGroupCount" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="function f" />
+				<Param name="int player" />
+				<Param name="int loc_s" />
+				<Param name="int loc_o" />
+				<Param name="Group|Card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetMatchingGroupCountRush" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="function f" />
+				<Param name="int player" />
+				<Param name="int loc_s" />
+				<Param name="int loc_o" />
+				<Param name="Group|Card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFirstMatchingCard" func="yes" >
+			<Overload retVal="Card" descr="">
+				<Param name="function f" />
+				<Param name="int player" />
+				<Param name="int loc_s" />
+				<Param name="int loc_o" />
+				<Param name="Group|Card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsExistingMatchingCard" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="function f" />
+				<Param name="int player" />
+				<Param name="int loc_s" />
+				<Param name="int loc_o" />
+				<Param name="int count" />
+				<Param name="Group|Card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SelectMatchingCard" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="int sel_player" />
+				<Param name="function f" />
+				<Param name="int player" />
+				<Param name="int loc_s" />
+				<Param name="int loc_o" />
+				<Param name="int min" />
+				<Param name="int max" />
+				<Param name="Group|Card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SelectCardsFromCode" func="yes" >
+			<Overload retVal="table[int,int],...|int" descr="">
+				<Param name="int sel_player" />
+				<Param name="int min" />
+				<Param name="int max" />
+				<Param name="bool cancelable" />
+				<Param name="bool return_index" />
+				<Param name="int code1" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetReleaseGroup" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="int player" />
+				<Param name="[bool use_hand=false" />
+				<Param name="[bool use_opp=false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetReleaseGroupCount" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="int player" />
+				<Param name="[bool use_hand=false" />
+				<Param name="[bool use_opp=false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetTributeGroup" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Card c" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetTributeCount" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Card c" />
+				<Param name="[Group mg=nil" />
+				<Param name="bool ex=false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GrabSelectedCard" func="yes" >
+			<Overload retVal="Group" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SelectTribute" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="int player" />
+				<Param name="Card c" />
+				<Param name="int min" />
+				<Param name="int max" />
+				<Param name="[Group mg=nil" />
+				<Param name="int to_player=player" />
+				<Param name="int zone=0x1f" />
+				<Param name="bool cancelable=false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetTargetCount" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="function f" />
+				<Param name="int player" />
+				<Param name="int s" />
+				<Param name="int o" />
+				<Param name="Group|Card ex=nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsExistingTarget" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="function f" />
+				<Param name="int player" />
+				<Param name="int s" />
+				<Param name="int o" />
+				<Param name="int count" />
+				<Param name="Group|Card ex=nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SelectTarget" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="int sel_player" />
+				<Param name="function f" />
+				<Param name="int player" />
+				<Param name="int s" />
+				<Param name="int o" />
+				<Param name="int min" />
+				<Param name="int max" />
+				<Param name="Group|Card ex=nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		
+		
+		<!-- Inicio das fun��es no escopo "Effect" -->
+		<KeyWord name="Effect" />
+		<KeyWord name="GetLuaRef" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Card" />
+		<!-- Inicio das fun��es no escopo "Card" -->
+		<KeyWord name="Group" />
+		<!-- Inicio das fun��es no escopo "Group" -->
+		<KeyWord name="GetLuaRef" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FromLuaRef" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="int ref" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsDeleted" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetToBeLinkedZone" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Card tc" />
+				<Param name="Card c" />
+				<Param name="int tp" />
+				<Param name="[bool click=false" />
+				<Param name="bool emz = false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CreateGroup" func="yes" >
+			<Overload retVal="Group" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="KeepAlive" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="DeleteGroup" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Clone" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FromCards" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Card c" />
+				<Param name="[...]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Clear" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AddCard" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+				<Param name="Card|Group other" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RemoveCard" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+				<Param name="Card|Group other" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetFirst" func="yes" >
+			<Overload retVal="Card/nil" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetNext" func="yes" >
+			<Overload retVal="Card/nil" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TakeatPos" func="yes" >
+			<Overload retVal="Card/nil" descr="">
+				<Param name="Group g" />
+				<Param name="int pos" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetCount" func="yes" >
+			<Overload retVal=int" descr="">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ForEach" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Filter" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="Group|card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Match" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="Group|card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FilterCount" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="Group|card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="FilterSelect" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+				<Param name="int player" />
+				<Param name="function f" />
+				<Param name="int min" />
+				<Param name="int max" />
+				<Param name="[bool cancelable=false]" />
+				<Param name="Group|card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Select" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+				<Param name="int player" />
+				<Param name="int min" />
+				<Param name="int max" />
+				<Param name="[bool cancelable=false]" />
+				<Param name="Group|card ex|nil" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="RandomSelect" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+				<Param name="int player" />
+				<Param name="int count" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsExists" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="int count" />
+				<Param name="Group|card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckWithSumEqual" func="yes" >
+			<Overload retVal="bool,bool" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="int sum" />
+				<Param name="int min" />
+				<Param name="int max" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SelectWithSumEqual" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+				<Param name="int player" />
+				<Param name="function f" />
+				<Param name="int count" />
+				<Param name="Group|card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckWithSumGreater" func="yes" >
+			<Overload retVal="bool,bool" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="int sum" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SelectWithSumGreater" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+				<Param name="int player" />
+				<Param name="function f" />
+				<Param name="int sum" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetMinGroup" func="yes" >
+			<Overload retVal="Group, int/nil" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetMaxGroup" func="yes" >
+			<Overload retVal="Group, int/nil" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetSum" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetClass" func="yes" >
+			<Overload retVal="{int, int, ...}" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetClassCount" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Remove" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="Group|card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Merge" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g1" />
+				<Param name="Card|Group other" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Sub" func="yes" >
+			<Overload retVal="Group" descr="">
+				<Param name="Group g1" />
+				<Param name="Card|Group other" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Equal" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Group g1" />
+				<Param name="Group g2" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="IsContains" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Group g" />
+				<Param name="Card c" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SearchCard" func="yes" >
+			<Overload retVal="Card" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Split" func="yes" >
+			<Overload retVal="Group, Group" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="Group|card ex|nil" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Includes" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Group g1" />
+				<Param name="Group g2" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetLinkedZone" func="yes" >
+			<Overload retVal="int" descr="">
+				<Param name="Group g" />
+				<Param name="int cp" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Iter" func="yes" >
+			<Overload retVal="iterator" descr="Iterates over the cards in (Group g) for use with for loops">
+				<Param name="Group g" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckSameProperty" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckDifferentPropertyBinary" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CheckDifferentProperty" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Group g" />
+				<Param name="function f" />
+				<Param name="..." />
+			</Overload>
+		</KeyWord>
+		<!-- Fun��es no escopo "Debug" -->
+		<KeyWord name="Debug" />
+		<KeyWord name="AddCard" func="yes" >
+			<Overload retVal="Card" descr="">
+				<Param name="int code" />
+				<Param name="int owner" />
+				<Param name="int player" />
+				<Param name="int location" />
+				<Param name="int seq" />
+				<Param name="int pos" />
+				<Param name="[bool pos=false]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Message" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="string msg" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PreAddCounter" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card c" />
+				<Param name="int counter_type" />
+				<Param name="int count" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PreEquip" func="yes" >
+			<Overload retVal="bool" descr="">
+				<Param name="Card equip_card" />
+				<Param name="Card target" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PreSetTarget" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card c" />
+				<Param name="Card target" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PreSummon" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="Card c" />
+				<Param name="int sum_type" />
+				<Param name="[int sum_location=0]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ReloadFieldBegin" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int flag" />
+				<Param name="int rule" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ReloadFieldEnd" func="yes" >
+			<Overload retVal="void" descr="">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetAIName" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="string name" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetPlayerInfo" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="int playerid" />
+				<Param name="int LP" />
+				<Param name="int startcount" />
+				<Param name="int drawcount" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="ShowHint" func="yes" >
+			<Overload retVal="void" descr="">
+				<Param name="string msg" />
+			</Overload>
+		</KeyWord>
+		<!-- Fun��es no escopo "aux" -->
+		<KeyWord name="Auxiliary" />
+		<KeyWord name="SelectUnselectGroup" func="yes" >
+			<Overload retVal="bool|group" descr="">
+				<Param name="Group g" />
+				<Param name="Effect e" />
+				<Param name="int tp" />
+				<Param name="int minc=1" />
+				<Param name="int max=99" />
+				<Param name="function|nil rescon" />
+				<Param name="int chk" />
+				<Param name="int sel_tp" />
+				<Param name="int hint_msg" />
+				<Param name="function|nil cancelcon" />
+				<Param name="function|nil breakcon" />
+				<Param name="bool cancelable" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="Fusion" />
+		<KeyWord name="Ritual" />
+		<KeyWord name="Synchro" />
+		<KeyWord name="Xyz" />
+		<KeyWord name="Pendulum" />
+		<KeyWord name="Link" />
+		<!-- Inicio das constantes -->
+		<KeyWord name="LOCATION_DECK" />
+		<KeyWord name="LOCATION_HAND" />
+		<KeyWord name="LOCATION_MZONE" />
+		<KeyWord name="LOCATION_SZONE" />
+		<KeyWord name="LOCATION_GRAVE" />
+		<KeyWord name="LOCATION_REMOVED" />
+		<KeyWord name="LOCATION_EXTRA" />
+		<KeyWord name="LOCATION_OVERLAY" />
+		<KeyWord name="LOCATION_ONFIELD" />
+		<KeyWord name="LOCATION_PUBLIC" />
+		<KeyWord name="LOCATION_ALL" />
+		<KeyWord name="LOCATION_DECKBOT" />
+		<KeyWord name="LOCATION_DECKSHF" />
+		<KeyWord name="LOCATION_FZONE" />
+		<KeyWord name="LOCATION_PZONE" />
+		<KeyWord name="SEQ_DECKTOP" />
+		<KeyWord name="SEQ_DECKBOTTOM" />
+		<KeyWord name="SEQ_DECKSHUFFLE" />
+		<KeyWord name="POS_FACEUP" />
+		<KeyWord name="POS_FACEDOWN" />
+		<KeyWord name="POS_FACEDOWN" />
+		<KeyWord name="POS_FACEDOWN_ATTACK" />
+		<KeyWord name="POS_FACEUP_DEFENSE" />
+		<KeyWord name="POS_FACEDOWN_DEFENSE" />
+		<KeyWord name="POS_ATTACK" />
+		<KeyWord name="POS_DEFENSE" />
+		<KeyWord name="NO_FLIP_EFFECT" />
+		<KeyWord name="TYPE_MONSTER" />
+		<KeyWord name="TYPE_SPELL" />
+		<KeyWord name="TYPE_TRAP" />
+		<KeyWord name="TYPE_NORMAL" />
+		<KeyWord name="TYPE_EFFECT" />
+		<KeyWord name="TYPE_FUSION" />
+		<KeyWord name="TYPE_RITUAL" />
+		<KeyWord name="TYPE_TRAPMONSTER" />
+		<KeyWord name="TYPE_SPIRIT" />
+		<KeyWord name="TYPE_UNION" />
+		<KeyWord name="TYPE_GEMINI" />
+		<KeyWord name="TYPE_TUNER" />
+		<KeyWord name="TYPE_SYNCHRO" />
+		<KeyWord name="TYPE_TOKEN" />
+		<KeyWord name="TYPE_MAXIMUM" />
+		<KeyWord name="TYPE_QUICKPLAY" />
+		<KeyWord name="TYPE_CONTINUOUS" />
+		<KeyWord name="TYPE_EQUIP" />
+		<KeyWord name="TYPE_FIELD" />
+		<KeyWord name="TYPE_COUNTER" />
+		<KeyWord name="TYPE_FLIP" />
+		<KeyWord name="TYPE_TOON" />
+		<KeyWord name="TYPE_XYZ" />
+		<KeyWord name="TYPE_PENDULUM" />
+		<KeyWord name="TYPE_SPSUMMON" />
+		<KeyWord name="TYPE_LINK" />
+		<KeyWord name="TYPE_SKILL" />
+		<KeyWord name="TYPE_ACTION" />
+		<KeyWord name="TYPES_TOKEN" />
+		<KeyWord name="TYPE_EXTRA" />
+		<KeyWord name="TYPE_PLUS" />
+		<KeyWord name="TYPE_MINUS" />
+		<KeyWord name="TYPE_ARMOR" />
+		<KeyWord name="ATTRIBUTE_EARTH" />
+		<KeyWord name="ATTRIBUTE_WATER" />
+		<KeyWord name="ATTRIBUTE_FIRE" />
+		<KeyWord name="ATTRIBUTE_WIND" />
+		<KeyWord name="ATTRIBUTE_LIGHT" />
+		<KeyWord name="ATTRIBUTE_DARK" />
+		<KeyWord name="ATTRIBUTE_DIVINE" />
+		<KeyWord name="ATTRIBUTE_LAUGH" />
+		<KeyWord name="RACE_ALL" />
+		<KeyWord name="RACE_WARRIOR" />
+		<KeyWord name="RACE_SPELLCASTER" />
+		<KeyWord name="RACE_FAIRY" />
+		<KeyWord name="RACE_FIEND" />
+		<KeyWord name="RACE_ZOMBIE" />
+		<KeyWord name="RACE_MACHINE" />
+		<KeyWord name="RACE_AQUA" />
+		<KeyWord name="RACE_PYRO" />
+		<KeyWord name="RACE_ROCK" />
+		<KeyWord name="RACE_WINGEDBEAST" />
+		<KeyWord name="RACE_PLANT" />
+		<KeyWord name="RACE_INSECT" />
+		<KeyWord name="RACE_THUNDER" />
+		<KeyWord name="RACE_DRAGON" />
+		<KeyWord name="RACE_BEAST" />
+		<KeyWord name="RACE_BEASTWARRIOR" />
+		<KeyWord name="RACE_DINOSAUR" />
+		<KeyWord name="RACE_FISH" />
+		<KeyWord name="RACE_SEASERPENT" />
+		<KeyWord name="RACE_REPTILE" />
+		<KeyWord name="RACE_PSYCHIC" />
+		<KeyWord name="RACE_DIVINE" />
+		<KeyWord name="RACE_CREATORGOD" />
+		<KeyWord name="RACE_WYRM" />
+		<KeyWord name="RACE_CYBERSE" />
+		<KeyWord name="RACE_CYBORG" />
+		<KeyWord name="RACE_MAGICALKNIGHT" />
+		<KeyWord name="RACE_HIGHDRAGON" />
+		<KeyWord name="RACE_OMEGAPSYCHIC" />
+		<KeyWord name="RACE_CELESTIALWARRIOR" />
+		<KeyWord name="RACE_GALAXY" />
+		<KeyWord name="RACE_YOKAI" />
+		<KeyWord name="RACES_BEAST_BWARRIOR_WINGB" />
+		<KeyWord name="REASON_DESTROY" />
+		<KeyWord name="REASON_RELEASE" />
+		<KeyWord name="REASON_TEMPORARY" />
+		<KeyWord name="REASON_MATERIAL" />
+		<KeyWord name="REASON_SUMMON" />
+		<KeyWord name="REASON_BATTLE" />
+		<KeyWord name="REASON_EFFECT" />
+		<KeyWord name="REASON_COST" />
+		<KeyWord name="REASON_ADJUST" />
+		<KeyWord name="REASON_LOST_TARGET" />
+		<KeyWord name="REASON_RULE" />
+		<KeyWord name="REASON_SPSUMMON" />
+		<KeyWord name="REASON_DISSUMMON" />
+		<KeyWord name="REASON_FLIP" />
+		<KeyWord name="REASON_DISCARD" />
+		<KeyWord name="REASON_RDAMAGE" />
+		<KeyWord name="REASON_RRECOVER" />
+		<KeyWord name="REASON_RETURN" />
+		<KeyWord name="REASON_FUSION" />
+		<KeyWord name="REASON_SYNCHRO " />
+		<KeyWord name="REASON_RITUAL" />
+		<KeyWord name="REASON_XYZ" />
+		<KeyWord name="REASON_REPLACE" />
+		<KeyWord name="REASON_DRAW" />
+		<KeyWord name="REASON_REDIRECT" />
+		<KeyWord name="REASON_REVEAL" />
+		<KeyWord name="REASON_LINK" />
+		<KeyWord name="LOCATION_REASON_TOFIELD" />
+		<KeyWord name="LOCATION_REASON_CONTRO" />
+		<KeyWord name="LOCATION_REASON_COUNT " />
+		<KeyWord name="SUMMON_TYPE_NORMAL" />
+		<KeyWord name="SUMMON_TYPE_TRIBUTE" />
+		<KeyWord name="SUMMON_TYPE_GEMINI" />
+		<KeyWord name="SUMMON_TYPE_FLIP" />
+		<KeyWord name="SUMMON_TYPE_SPECIAL" />
+		<KeyWord name="SUMMON_TYPE_FUSION" />
+		<KeyWord name="SUMMON_TYPE_RITUAL" />
+		<KeyWord name="SUMMON_TYPE_SYNCHRO" />
+		<KeyWord name="SUMMON_TYPE_XYZ" />
+		<KeyWord name="SUMMON_TYPE_PENDULUM" />
+		<KeyWord name="SUMMON_TYPE_LINK" />
+		<KeyWord name="SUMMON_TYPE_MAXIMUM" />
+		<KeyWord name="STATUS_DISABLED" />
+		<KeyWord name="STATUS_TO_ENABLE" />
+		<KeyWord name="STATUS_TO_DISABLE" />
+		<KeyWord name="STATUS_PROC_COMPLETE" />
+		<KeyWord name="STATUS_SET_TURN" />
+		<KeyWord name="STATUS_NO_LEVEL" />
+		<KeyWord name="STATUS_BATTLE_RESULT" />
+		<KeyWord name="STATUS_SPSUMMON_STEP" />
+		<KeyWord name="STATUS_FORM_CHANGED" />
+		<KeyWord name="STATUS_SUMMONING" />
+		<KeyWord name="STATUS_EFFECT_ENABLED" />
+		<KeyWord name="STATUS_SUMMON_TURN" />
+		<KeyWord name="STATUS_DESTROY_CONFIRMED" />
+		<KeyWord name="STATUS_LEAVE_CONFIRMED" />
+		<KeyWord name="STATUS_BATTLE_DESTROYED" />
+		<KeyWord name="STATUS_COPYING_EFFECT" />
+		<KeyWord name="STATUS_CHAINING" />
+		<KeyWord name="STATUS_SUMMON_DISABLED" />
+		<KeyWord name="STATUS_ACTIVATE_DISABLED" />
+		<KeyWord name="STATUS_EFFECT_REPLACED" />
+		<KeyWord name="STATUS_FUTURE_FUSION" />
+		<KeyWord name="STATUS_ATTACK_CANCELED" />
+		<KeyWord name="STATUS_INITIALIZING" />
+		<KeyWord name="STATUS_ACTIVATED" />
+		<KeyWord name="STATUS_JUST_POS" />
+		<KeyWord name="STATUS_CONTINUOUS_POS" />
+		<KeyWord name="STATUS_FORBIDDEN" />
+		<KeyWord name="STATUS_ACT_FROM_HAND" />
+		<KeyWord name="STATUS_OPPO_BATTLE" />
+		<KeyWord name="STATUS_FLIP_SUMMON_TURN" />
+		<KeyWord name="STATUS_SPSUMMON_TURN" />
+		<KeyWord name="ASSUME_CODE" />
+		<KeyWord name="ASSUME_TYPE" />
+		<KeyWord name="ASSUME_LEVEL" />
+		<KeyWord name="ASSUME_RANK" />
+		<KeyWord name="ASSUME_ATTRIBUTE" />
+		<KeyWord name="ASSUME_RACE" />
+		<KeyWord name="ASSUME_ATTACK" />
+		<KeyWord name="ASSUME_DEFENSE" />
+		<KeyWord name="ASSUME_LINK" />
+		<KeyWord name="ASSUME_LINKMARKER" />
+		<KeyWord name="LINK_MARKER_BOTTOM_LEFT" />
+		<KeyWord name="LINK_MARKER_BOTTOM" />
+		<KeyWord name="LINK_MARKER_BOTTOM_RIGHT" />
+		<KeyWord name="LINK_MARKER_LEFT" />
+		<KeyWord name="LINK_MARKER_RIGHT" />
+		<KeyWord name="LINK_MARKER_TOP_LEFT" />
+		<KeyWord name="LINK_MARKER_TOP" />
+		<KeyWord name="LINK_MARKER_TOP_RIGHT" />
+		<KeyWord name="COUNTER_WITHOUT_PERMIT" />
+		<KeyWord name="COUNTER_NEED_ENABLE" />
+		<KeyWord name="PHASE_DRAW" />
+		<KeyWord name="PHASE_STANDBY" />
+		<KeyWord name="PHASE_MAIN1" />
+		<KeyWord name="PHASE_BATTLE_START" />
+		<KeyWord name="PHASE_BATTLE_STEP" />
+		<KeyWord name="PHASE_DAMAGE" />
+		<KeyWord name="PHASE_DAMAGE_CAL" />
+		<KeyWord name="PHASE_BATTLE" />
+		<KeyWord name="PHASE_MAIN2" />
+		<KeyWord name="PHASE_END" />
+		<KeyWord name="PLAYER_NONE" />
+		<KeyWord name="PLAYER_ALL" />
+		<KeyWord name="PLAYER_EITHER" />
+		<KeyWord name="CHAININFO_CHAIN_COUNT" />
+		<KeyWord name="CHAININFO_TRIGGERING_EFFECT" />
+		<KeyWord name="CHAININFO_TRIGGERING_PLAYER" />
+		<KeyWord name="CHAININFO_TRIGGERING_CONTROLER" />
+		<KeyWord name="CHAININFO_TRIGGERING_LOCATION" />
+		<KeyWord name="CHAININFO_TRIGGERING_SEQUENCE" />
+		<KeyWord name="CHAININFO_TARGET_CARDS" />
+		<KeyWord name="CHAININFO_TARGET_PLAYER" />
+		<KeyWord name="CHAININFO_TARGET_PARAM" />
+		<KeyWord name="CHAININFO_DISABLE_REASON" />
+		<KeyWord name="CHAININFO_DISABLE_PLAYER" />
+		<KeyWord name="CHAININFO_CHAIN_ID" />
+		<KeyWord name="CHAININFO_TYPE" />
+		<KeyWord name="CHAININFO_EXTTYPE" />
+		<KeyWord name="CHAININFO_TRIGGERING_POSITION" />
+		<KeyWord name="CHAININFO_TRIGGERING_CODE" />
+		<KeyWord name="CHAININFO_TRIGGERING_CODE2" />
+		<KeyWord name="CHAININFO_TRIGGERING_LEVEL" />
+		<KeyWord name="CHAININFO_TRIGGERING_RANK" />
+		<KeyWord name="CHAININFO_TRIGGERING_ATTRIBUTE" />
+		<KeyWord name="CHAININFO_TRIGGERING_RACE" />
+		<KeyWord name="CHAININFO_TRIGGERING_ATTACK" />
+		<KeyWord name="CHAININFO_TRIGGERING_DEFENSE" />
+		<KeyWord name="RESET_EVENT" />
+		<KeyWord name="RESET_CARD" />
+		<KeyWord name="RESET_CODE" />
+		<KeyWord name="RESET_COPY" />
+		<KeyWord name="RESET_DISABLE" />
+		<KeyWord name="RESET_TURN_SET" />
+		<KeyWord name="RESET_TOGRAVE" />
+		<KeyWord name="RESET_REMOVE" />
+		<KeyWord name="RESET_TEMP_REMOVE" />
+		<KeyWord name="RESET_TOHAND" />
+		<KeyWord name="RESET_TODECK" />
+		<KeyWord name="RESET_LEAVE" />
+		<KeyWord name="RESET_TOFIELD" />
+		<KeyWord name="RESET_CONTROL" />
+		<KeyWord name="RESET_OVERLAY" />
+		<KeyWord name="RESET_MSCHANGE" />
+		<KeyWord name="RESET_SELF_TURN" />
+		<KeyWord name="RESET_OPPO_TURN" />
+		<KeyWord name="RESET_PHASE" />
+		<KeyWord name="RESET_CHAIN" />
+		<KeyWord name="RESETS_STANDARD" />
+		<KeyWord name="RESETS_STANDARD_DISABLE" />
+		<KeyWord name="RESETS_REDIRECT" />
+		<KeyWord name="RESETS_CANNOT_ACT" />
+		<KeyWord name="RESETS_STANDARD_EXC_GRAVE" />
+		<KeyWord name="EFFECT_TYPE_SINGLE" />
+		<KeyWord name="EFFECT_TYPE_FIELD" />
+		<KeyWord name="EFFECT_TYPE_EQUIP" />
+		<KeyWord name="EFFECT_TYPE_ACTIONS" />
+		<KeyWord name="EFFECT_TYPE_ACTIVATE" />
+		<KeyWord name="EFFECT_TYPE_FLIP" />
+		<KeyWord name="EFFECT_TYPE_IGNITION" />
+		<KeyWord name="EFFECT_TYPE_TRIGGER_O" />
+		<KeyWord name="EFFECT_TYPE_QUICK_O" />
+		<KeyWord name="EFFECT_TYPE_TRIGGER_F" />
+		<KeyWord name="EFFECT_TYPE_QUICK_F" />
+		<KeyWord name="EFFECT_TYPE_CONTINUOUS" />
+		<KeyWord name="EFFECT_TYPE_XMATERIAL" />
+		<KeyWord name="EFFECT_TYPE_GRANT" />
+		<KeyWord name="EFFECT_TYPE_TARGET" />
+		<KeyWord name="EFFECT_FLAG_INITIAL" />
+		<KeyWord name="EFFECT_FLAG_FUNC_VALUE" />
+		<KeyWord name="EFFECT_FLAG_COUNT_LIMIT" />
+		<KeyWord name="EFFECT_FLAG_FIELD_ONLY" />
+		<KeyWord name="EFFECT_FLAG_CARD_TARGET" />
+		<KeyWord name="EFFECT_FLAG_IGNORE_RANGE" />
+		<KeyWord name="EFFECT_FLAG_ABSOLUTE_TARGET" />
+		<KeyWord name="EFFECT_FLAG_IGNORE_IMMUNE" />
+		<KeyWord name="EFFECT_FLAG_SET_AVAILABLE" />
+		<KeyWord name="EFFECT_FLAG_CANNOT_NEGATE" />
+		<KeyWord name="EFFECT_FLAG_CANNOT_DISABLE" />
+		<KeyWord name="EFFECT_FLAG_PLAYER_TARGET" />
+		<KeyWord name="EFFECT_FLAG_BOTH_SIDE" />
+		<KeyWord name="EFFECT_FLAG_COPY_INHERIT" />
+		<KeyWord name="EFFECT_FLAG_DAMAGE_STEP" />
+		<KeyWord name="EFFECT_FLAG_DAMAGE_CAL" />
+		<KeyWord name="EFFECT_FLAG_DELAY" />
+		<KeyWord name="EFFECT_FLAG_SINGLE_RANGE" />
+		<KeyWord name="EFFECT_FLAG_UNCOPYABLE" />
+		<KeyWord name="EFFECT_FLAG_OATH" />
+		<KeyWord name="EFFECT_FLAG_SPSUM_PARAM" />
+		<KeyWord name="EFFECT_FLAG_REPEAT" />
+		<KeyWord name="EFFECT_FLAG_NO_TURN_RESET" />
+		<KeyWord name="EFFECT_FLAG_EVENT_PLAYER" />
+		<KeyWord name="EFFECT_FLAG_OWNER_RELATE" />
+		<KeyWord name="EFFECT_FLAG_CANNOT_INACTIVATE" />
+		<KeyWord name="EFFECT_FLAG_CLIENT_HINT" />
+		<KeyWord name="EFFECT_FLAG_CONTINUOUS_TARGET" />
+		<KeyWord name="EFFECT_FLAG_LIMIT_ZONE" />
+		<KeyWord name="EFFECT_FLAG_IMMEDIATELY_APPLY" />
+		<KeyWord name="EFFECT_FLAG2_NAGA" />
+		<KeyWord name="EFFECT_FLAG2_COF" />
+		<KeyWord name="EFFECT_FLAG2_CHECK_SIMULTANEOUS" />
+		<KeyWord name="EFFECT_FLAG2_MAJESTIC_MUST_COPY" />
+		<KeyWord name="EVENT_STARTUP" />
+		<KeyWord name="EVENT_FLIP" />
+		<KeyWord name="EVENT_FREE_CHAIN" />
+		<KeyWord name="EVENT_DESTROY" />
+		<KeyWord name="EVENT_REMOVE" />
+		<KeyWord name="EVENT_TO_HAND" />
+		<KeyWord name="EVENT_TO_DECK" />
+		<KeyWord name="EVENT_TO_GRAVE" />
+		<KeyWord name="EVENT_LEAVE_FIELD" />
+		<KeyWord name="EVENT_CHANGE_POS" />
+		<KeyWord name="EVENT_RELEASE" />
+		<KeyWord name="EVENT_DISCARD" />
+		<KeyWord name="EVENT_LEAVE_FIELD_P" />
+		<KeyWord name="EVENT_CHAIN_SOLVING" />
+		<KeyWord name="EVENT_CHAIN_ACTIVATING" />
+		<KeyWord name="EVENT_CHAIN_SOLVED" />
+		<KeyWord name="EVENT_CHAIN_NEGATED" />
+		<KeyWord name="EVENT_CHAIN_DISABLED" />
+		<KeyWord name="EVENT_CHAIN_END" />
+		<KeyWord name="EVENT_CHAINING" />
+		<KeyWord name="EVENT_BECOME_TARGET" />
+		<KeyWord name="EVENT_DESTROYED" />
+		<KeyWord name="EVENT_MOVE" />
+		<KeyWord name="EVENT_LEAVE_GRAVE" />
+		<KeyWord name="EVENT_ADJUST" />
+		<KeyWord name="EVENT_BREAK_EFFECT" />
+		<KeyWord name="EVENT_SUMMON_SUCCESS" />
+		<KeyWord name="EVENT_FLIP_SUMMON_SUCCESS" />
+		<KeyWord name="EVENT_SPSUMMON_SUCCESS" />
+		<KeyWord name="EVENT_SUMMON" />
+		<KeyWord name="EVENT_FLIP_SUMMON" />
+		<KeyWord name="EVENT_SPSUMMON" />
+		<KeyWord name="EVENT_MSET" />
+		<KeyWord name="EVENT_SSET" />
+		<KeyWord name="EVENT_BE_MATERIAL" />
+		<KeyWord name="EVENT_BE_PRE_MATERIAL" />
+		<KeyWord name="EVENT_DRAW" />
+		<KeyWord name="EVENT_DAMAGE" />
+		<KeyWord name="EVENT_RECOVER" />
+		<KeyWord name="EVENT_PREDRAW" />
+		<KeyWord name="EVENT_SUMMON_NEGATED" />
+		<KeyWord name="EVENT_FLIP_SUMMON_NEGATED" />
+		<KeyWord name="EVENT_SPSUMMON_NEGATED" />
+		<KeyWord name="EVENT_CONTROL_CHANGED" />
+		<KeyWord name="EVENT_EQUIP" />
+		<KeyWord name="EVENT_ATTACK_ANNOUNCE" />
+		<KeyWord name="EVENT_BE_BATTLE_TARGET" />
+		<KeyWord name="EVENT_BATTLE_START" />
+		<KeyWord name="EVENT_BATTLE_CONFIRM" />
+		<KeyWord name="EVENT_PRE_DAMAGE_CALCULATE" />
+		<KeyWord name="EVENT_DAMAGE_CALCULATING" />
+		<KeyWord name="EVENT_PRE_BATTLE_DAMAGE" />
+		<KeyWord name="EVENT_BATTLE_END" />
+		<KeyWord name="EVENT_BATTLED" />
+		<KeyWord name="EVENT_BATTLE_DESTROYING" />
+		<KeyWord name="EVENT_BATTLE_DESTROYED" />
+		<KeyWord name="EVENT_DAMAGE_STEP_END" />
+		<KeyWord name="EVENT_ATTACK_DISABLED" />
+		<KeyWord name="EVENT_BATTLE_DAMAGE" />
+		<KeyWord name="EVENT_TOSS_DICE" />
+		<KeyWord name="EVENT_TOSS_COIN" />
+		<KeyWord name="EVENT_TOSS_COIN_NEGATE" />
+		<KeyWord name="EVENT_TOSS_DICE_NEGATE" />
+		<KeyWord name="EVENT_LEVEL_UP" />
+		<KeyWord name="EVENT_PAY_LPCOST" />
+		<KeyWord name="EVENT_DETACH_MATERIAL" />
+		<KeyWord name="EVENT_TURN_END" />
+		<KeyWord name="EVENT_PHASE" />
+		<KeyWord name="EVENT_PHASE_START" />
+		<KeyWord name="EVENT_ADD_COUNTER" />
+		<KeyWord name="EVENT_REMOVE_COUNTER" />
+		<KeyWord name="EVENT_CUSTOM" />
+		<KeyWord name="EVENT_TOHAND_CONFIRM" />
+		<KeyWord name="CATEGORY_DESTROY" />
+		<KeyWord name="CATEGORY_RELEASE" />
+		<KeyWord name="CATEGORY_REMOVE" />
+		<KeyWord name="CATEGORY_TOHAND" />
+		<KeyWord name="CATEGORY_TODECK" />
+		<KeyWord name="CATEGORY_TOGRAVE" />
+		<KeyWord name="CATEGORY_DECKDES" />
+		<KeyWord name="CATEGORY_HANDES" />
+		<KeyWord name="CATEGORY_SUMMON" />
+		<KeyWord name="CATEGORY_SPECIAL_SUMMON" />
+		<KeyWord name="CATEGORY_TOKEN" />
+		<KeyWord name="CATEGORY_FLIP" />
+		<KeyWord name="CATEGORY_POSITION" />
+		<KeyWord name="CATEGORY_CONTROL" />
+		<KeyWord name="CATEGORY_DISABLE" />
+		<KeyWord name="CATEGORY_DISABLE_SUMMON" />
+		<KeyWord name="CATEGORY_DRAW" />
+		<KeyWord name="CATEGORY_SEARCH" />
+		<KeyWord name="CATEGORY_EQUIP" />
+		<KeyWord name="CATEGORY_DAMAGE" />
+		<KeyWord name="CATEGORY_RECOVER" />
+		<KeyWord name="CATEGORY_ATKCHANGE" />
+		<KeyWord name="CATEGORY_DEFCHANGE" />
+		<KeyWord name="CATEGORY_COUNTER" />
+		<KeyWord name="CATEGORY_COIN" />
+		<KeyWord name="CATEGORY_DICE" />
+		<KeyWord name="CATEGORY_LEAVE_GRAVE" />
+		<KeyWord name="CATEGORY_LVCHANGE" />
+		<KeyWord name="CATEGORY_NEGATE" />
+		<KeyWord name="CATEGORY_ANNOUNCE" />
+		<KeyWord name="CATEGORY_FUSION_SUMMON" />
+		<KeyWord name="CATEGORY_TOEXTRA" />
+		<KeyWord name="TIMING_DRAW_PHASE" />
+		<KeyWord name="TIMING_STANDBY_PHASE" />
+		<KeyWord name="TIMING_MAIN_END" />
+		<KeyWord name="TIMING_BATTLE_START" />
+		<KeyWord name="TIMING_BATTLE_END" />
+		<KeyWord name="TIMING_END_PHASE" />
+		<KeyWord name="TIMING_SUMMON" />
+		<KeyWord name="TIMING_SPSUMMON" />
+		<KeyWord name="TIMING_FLIPSUMMON" />
+		<KeyWord name="TIMING_MSET" />
+		<KeyWord name="TIMING_SSET" />
+		<KeyWord name="TIMING_POS_CHANGE" />
+		<KeyWord name="TIMING_ATTACK" />
+		<KeyWord name="TIMING_DAMAGE_STEP" />
+		<KeyWord name="TIMING_DAMAGE_CAL" />
+		<KeyWord name="TIMING_CHAIN_END" />
+		<KeyWord name="TIMING_DRAW" />
+		<KeyWord name="TIMING_DAMAGE" />
+		<KeyWord name="TIMING_RECOVER" />
+		<KeyWord name="TIMING_DESTROY" />
+		<KeyWord name="TIMING_REMOVE" />
+		<KeyWord name="TIMING_TOHAND" />
+		<KeyWord name="TIMING_TODECK" />
+		<KeyWord name="TIMING_TOGRAVE" />
+		<KeyWord name="TIMING_BATTLE_PHASE" />
+		<KeyWord name="TIMING_EQUIP" />
+		<KeyWord name="TIMING_BATTLE_STEP_END" />
+		<KeyWord name="TIMING_BATTLED" />
+		<KeyWord name="TIMINGS_CHECK_MONSTER" />
+		<KeyWord name="TIMINGS_CHECK_MONSTER_E" />
+		<KeyWord name="HINT_EVENT" />
+		<KeyWord name="HINT_MESSAGE" />
+		<KeyWord name="HINT_SELECTMSG" />
+		<KeyWord name="HINT_OPSELECTED" />
+		<KeyWord name="HINT_EFFECT" />
+		<KeyWord name="HINT_RACE" />
+		<KeyWord name="HINT_ATTRIB" />
+		<KeyWord name="HINT_CODE" />
+		<KeyWord name="HINT_NUMBER" />
+		<KeyWord name="HINT_CARD" />
+		<KeyWord name="HINT_ZONE" />
+		<KeyWord name="HINT_SKILL" />
+		<KeyWord name="HINT_SKILL_COVER" />
+		<KeyWord name="HINT_SKILL_FLIP" />
+		<KeyWord name="HINT_SKILL_REMOVE" />
+		<KeyWord name="CHINT_TURN" />
+		<KeyWord name="CHINT_CARD" />
+		<KeyWord name="CHINT_RACE" />
+		<KeyWord name="CHINT_ATTRIBUTE" />
+		<KeyWord name="CHINT_NUMBER" />
+		<KeyWord name="CHINT_DESC" />
+		<KeyWord name="OPCODE_ADD" />
+		<KeyWord name="OPCODE_SUB" />
+		<KeyWord name="OPCODE_MUL" />
+		<KeyWord name="OPCODE_DIV" />
+		<KeyWord name="OPCODE_AND" />
+		<KeyWord name="OPCODE_OR" />
+		<KeyWord name="OPCODE_NEG" />
+		<KeyWord name="OPCODE_NOT" />
+		<KeyWord name="OPCODE_BAND" />
+		<KeyWord name="OPCODE_BOR" />
+		<KeyWord name="OPCODE_BNOT" />
+		<KeyWord name="OPCODE_BXOR" />
+		<KeyWord name="OPCODE_LSHIFT" />
+		<KeyWord name="OPCODE_RSHIFT" />
+		<KeyWord name="OPCODE_ALLOW_ALIASES" />
+		<KeyWord name="OPCODE_ALLOW_TOKENS" />
+		<KeyWord name="OPCODE_ISCODE" />
+		<KeyWord name="OPCODE_ISSETCARD" />
+		<KeyWord name="OPCODE_ISTYPE" />
+		<KeyWord name="OPCODE_ISRACE" />
+		<KeyWord name="OPCODE_ISATTRIBUTE" />
+		<KeyWord name="OPCODE_GETCODE" />
+		<KeyWord name="OPCODE_GETSETCARD" />
+		<KeyWord name="OPCODE_GETTYPE" />
+		<KeyWord name="OPCODE_GETRACE" />
+		<KeyWord name="OPCODE_GETATTRIBUTE" />
+		<KeyWord name="DOUBLE_DAMAGE" />
+		<KeyWord name="HALF_DAMAGE" />
+		<KeyWord name="HINTMSG_RELEASE" />
+		<KeyWord name="HINTMSG_DISCARD" />
+		<KeyWord name="HINTMSG_DESTROY" />
+		<KeyWord name="HINTMSG_REMOVE" />
+		<KeyWord name="HINTMSG_TOGRAVE" />
+		<KeyWord name="HINTMSG_RTOHAND" />
+		<KeyWord name="HINTMSG_ATOHAND" />
+		<KeyWord name="HINTMSG_TODECK" />
+		<KeyWord name="HINTMSG_SUMMON" />
+		<KeyWord name="HINTMSG_SPSUMMON" />
+		<KeyWord name="HINTMSG_SET" />
+		<KeyWord name="HINTMSG_FMATERIAL" />
+		<KeyWord name="HINTMSG_SMATERIAL" />
+		<KeyWord name="HINTMSG_XMATERIAL" />
+		<KeyWord name="HINTMSG_FACEUP" />
+		<KeyWord name="HINTMSG_FACEDOWN" />
+		<KeyWord name="HINTMSG_ATTACK" />
+		<KeyWord name="HINTMSG_DEFENSE" />
+		<KeyWord name="HINTMSG_EQUIP" />
+		<KeyWord name="HINTMSG_REMOVEXYZ" />
+		<KeyWord name="HINTMSG_CONTROL" />
+		<KeyWord name="HINTMSG_DESREPLACE" />
+		<KeyWord name="HINTMSG_FACEUPATTACK" />
+		<KeyWord name="HINTMSG_FACEUPDEFENSE" />
+		<KeyWord name="HINTMSG_FACEDOWNATTACK" />
+		<KeyWord name="HINTMSG_FACEDOWNDEFENSE" />
+		<KeyWord name="HINTMSG_CONFIRM" />
+		<KeyWord name="HINTMSG_TOFIELD" />
+		<KeyWord name="HINTMSG_POSCHANGE" />
+		<KeyWord name="HINTMSG_SELF" />
+		<KeyWord name="HINTMSG_OPPO" />
+		<KeyWord name="HINTMSG_TRIBUTE" />
+		<KeyWord name="HINTMSG_DEATTACHFROM" />
+		<KeyWord name="HINTMSG_LMATERIAL" />
+		<KeyWord name="HINTMSG_ATTACKTARGET" />
+		<KeyWord name="HINTMSG_EFFECT" />
+		<KeyWord name="HINTMSG_TARGET" />
+		<KeyWord name="HINTMSG_COIN" />
+		<KeyWord name="HINTMSG_DICE" />
+		<KeyWord name="HINTMSG_CARDTYPE" />
+		<KeyWord name="HINTMSG_OPTION" />
+		<KeyWord name="HINTMSG_RESOLVEEFFECT" />
+		<KeyWord name="HINTMSG_SELECT" />
+		<KeyWord name="HINTMSG_POSITION " />
+		<KeyWord name="HINTMSG_ATTRIBUTE" />
+		<KeyWord name="HINTMSG_RACE" />
+		<KeyWord name="HINTMSG_CODE" />
+		<KeyWord name="HINTMSG_NUMBER" />
+		<KeyWord name="HINTMSG_EFFACTIVATE" />
+		<KeyWord name="HINTMSG_LVRANK" />
+		<KeyWord name="HINTMSG_RESOLVECARD" />
+		<KeyWord name="HINTMSG_ZONE" />
+		<KeyWord name="HINTMSG_DISABLEZONE" />
+		<KeyWord name="HINTMSG_TOZONE" />
+		<KeyWord name="HINTMSG_COUNTER" />
+		<KeyWord name="HINTMSG_NEGATE" />
+		<KeyWord name="HINTMSG_ATKDEF" />
+		<KeyWord name="SELECT_HEADS" />
+		<KeyWord name="SELECT_TAILS" />
+		<KeyWord name="REGISTER_FLAG_DETACH_XMAT" />
+		<KeyWord name="REGISTER_FLAG_CARDIAN" />
+		<KeyWord name="REGISTER_FLAG_THUNDRA" />
+		<KeyWord name="REGISTER_FLAG_ALLURE_LVUP" />
+		<KeyWord name="FUSPROC_NOTFUSION" />
+		<KeyWord name="FUSPROC_CONTACTFUS" />
+		<KeyWord name="FUSPROC_LISTEDMATS" />
+		<KeyWord name="FUSPROC_NOLIMIT" />
+		<KeyWord name="RITPROC_EQUAL" />
+		<KeyWord name="RITPROC_GREATER" />
+		<KeyWord name="MATERIAL_FUSION" />
+		<KeyWord name="MATERIAL_SYNCHRO" />
+		<KeyWord name="MATERIAL_XYZ" />
+		<KeyWord name="MATERIAL_LINK" />
+		<KeyWord name="EFFECT_SUPREME_CASTLE" />
+		<KeyWord name="EFFECT_WITCHCRAFTER_REPLACE" />
+		<KeyWord name="EFFECT_SYNSUB_NORDIC" />
+		<KeyWord name="EFFECT_ICEBARRIER_REPLACE" />
+		<KeyWord name="EFFECT_SECURITYFORCE_REPLACE" />
+		<KeyWord name="EFFECT_CYBERDARK_WORLD" />
+		<KeyWord name="ANNOUNCE_CARD" />
+		<KeyWord name="ANNOUNCE_CARD_FILTER" />
+		<KeyWord name="ACTIVITY_SUMMON" />
+		<KeyWord name="ACTIVITY_NORMALSUMMON" />
+		<KeyWord name="ACTIVITY_SPSUMMON" />
+		<KeyWord name="ACTIVITY_FLIPSUMMON" />
+		<KeyWord name="ACTIVITY_ATTACK" />
+		<KeyWord name="ACTIVITY_BATTLE_PHASE" />
+		<KeyWord name="ACTIVITY_CHAIN" />
+		<KeyWord name="EFFECT_COUNT_CODE_OATH" />
+		<KeyWord name="EFFECT_COUNT_CODE_DUEL" />
+		<KeyWord name="EFFECT_COUNT_CODE_SINGLE" />
+		<KeyWord name="GLOBALFLAG_DECK_REVERSE_CHECK" />
+		<KeyWord name="GLOBALFLAG_BRAINWASHING_CHECK" />
+		<KeyWord name="GLOBALFLAG_DELAYED_QUICKEFFECT" />
+		<KeyWord name="GLOBALFLAG_DETACH_EVENT" />
+		<KeyWord name="GLOBALFLAG_SPSUMMON_COUNT" />
+		<KeyWord name="GLOBALFLAG_SELF_TOGRAVE" />
+		<KeyWord name="GLOBALFLAG_SPSUMMON_ONCE" />
+		<KeyWord name="COUNTER_SPELL" />
+		<KeyWord name="COUNTER_BUSHIDO" />
+		<KeyWord name="COUNTER_A" />
+		<KeyWord name="COUNTER_FOG" />
+		<KeyWord name="COUNTER_KAIJU" />
+		<KeyWord name="COUNTER_PREDATOR" />
+		<KeyWord name="COUNTER_VENOM" />
+		<KeyWord name="TIMING_CHAIN_END" />
+	</AutoComplete>
+</NotepadPlus>
