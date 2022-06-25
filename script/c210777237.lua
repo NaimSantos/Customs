@@ -63,7 +63,7 @@ function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_EXTRA)
 	local g=Duel.GetFieldGroup(tp,LOCATION_ONFIELD,LOCATION_ONFIELD)
 	if #g>0 then
-		Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
+		Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,tp,0)
 	end
 end
 function s.tgop(e,tp,eg,ep,ev,re,r,rp)
@@ -89,15 +89,12 @@ function s.tpzfilter(c)
 	return c:IsSetCard(0xf13) and c:IsType(TYPE_PENDULUM) and not c:IsForbidden()
 		and (c:IsLocation(LOCATION_HAND+LOCATION_GRAVE)	or (c:IsLocation(LOCATION_REMOVED) and c:IsFaceup()))
 end
-function s.pzcheck(tp)
-	return Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1)
-end
 function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,s.tdfilter,tp,LOCATION_EXTRA,0,1,1,nil)
 	if #g>0 and Duel.SendtoDeck(g,tp,LOCATION_DECKSHF,REASON_EFFECT)>0 and Duel.GetOperatedGroup():GetFirst():IsLocation(LOCATION_DECK) then
-		if Duel.IsExistingMatchingCard(s.tpzfilter,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) and s.pzcheck(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
+		if Duel.IsExistingMatchingCard(s.tpzfilter,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) and aux.CheckPendulumzones(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
 			Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(id,4))
 			local tfg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.tpzfilter),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil)
 			if #tfg>0 then

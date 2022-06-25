@@ -44,7 +44,7 @@ function s.tpztg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	end
 end
 function s.tpzop(e,tp,eg,ep,ev,re,r,rp)
-	if not Duel.CheckLocation(tp,LOCATION_PZONE,0) and not Duel.CheckLocation(tp,LOCATION_PZONE,1) then return false end
+	if not aux.CheckPendulumzones(tp) then return false end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
 	local g=Duel.SelectMatchingCard(tp,s.tpzfilter,tp,LOCATION_DECK,0,1,1,nil)
 	if #g>0 then
