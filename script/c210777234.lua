@@ -71,7 +71,7 @@ function s.spop2(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,s.spfilter2,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)
 	if #g>0 and Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)>0 then
 		local c=e:GetHandler()
-		if c:IsRelateToEffect(e) and c:IsFaceup() and aux.(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
+		if c:IsRelateToEffect(e) and c:IsFaceup() and aux.CheckPendulumZones(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
 			Duel.BreakEffect()
 			Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)
 		end
