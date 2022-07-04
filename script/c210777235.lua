@@ -106,7 +106,7 @@ end
 function s.selfedop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) and Duel.SendtoExtraP(c,tp,REASON_EFFECT)>0 then
-		if Duel.IsExistingMatchingCard(s.tpzfilter,tp,LOCATION_HAND,0,1,nil) and aux.(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
+		if Duel.IsExistingMatchingCard(s.tpzfilter,tp,LOCATION_HAND,0,1,nil) and aux.CheckPendulumZones(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
 			Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(id,3))
 			local g=Duel.SelectMatchingCard(tp,s.tpzfilter,tp,LOCATION_HAND,0,1,1,nil)
 			if #g>0 then
