@@ -173,7 +173,7 @@ if not RandomDuel then
 
 		for p=z,o do
 			for team=1,counts[p] do
-				Duel.SendtoDeck(Duel.GetFieldGroup(tp,0xff,0xff),0,-2,REASON_RULE)
+				Duel.RemoveCards(Duel.GetFieldGroup(p,0xff,0),0,-2,REASON_RULE)
 				if counts[p]~=1 then
 					Duel.TagSwap(p)
 				end
@@ -206,19 +206,11 @@ if not RandomDuel then
 		local packs = generate_packs() --calls the function above
 		::exit::
 		for p=z,o do
-			for team=1,counts[p] do
-				local graveg=Duel.GetFieldGroup(p,LOCATION_GRAVE,0)
-				local tempg=Group.CreateGroup()
-				for tc in aux.Next(graveg) do
-					tc:Recreate(groups[p][team][#tempg+1],nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,true)
-					tempg:AddCard(tc)
-					if #tempg==#groups[p][team] then break end
-				end
-				Duel.SendtoDeck(tempg,nil,2,REASON_RULE)
-				Duel.ShuffleDeck(p)
-				if counts[p]~=1 then
-					Duel.TagSwap(p)
-				end
+			local graveg=Duel.GetFieldGroup(p,LOCATION_GRAVE,0)
+			Duel.SendtoDeck(graveg,nil,2,REASON_RULE)
+			Duel.ShuffleDeck(p)
+			if counts[p]~=1 then
+				Duel.TagSwap(p)
 			end
 		end
 		e:Reset()
