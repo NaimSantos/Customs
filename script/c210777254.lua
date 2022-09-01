@@ -32,6 +32,9 @@ function s.initial_effect(c)
 	e3:SetCode(EVENT_REMOVE)
 	c:RegisterEffect(e3)
 end
+s.listed_series={0x1093}
+s.listed_names={id}
+s.material_setcode={0x93,0x1093}
 function s.matfilter1(c,fc,sumtype,tp)
 	return c:IsType(TYPE_FUSION,fc,sumtype,tp) and c:IsRace(RACE_MACHINE)
 end
