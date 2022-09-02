@@ -42,15 +42,15 @@ end
 function s.spfilter(c,e,tp)
 	return c:IsSetCard(0x37) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
-function s.thfilter(c,e,tp)
+function s.rthfilter(c,e,tp)
 	return c:IsFaceup() and c:IsSetCard(0x37) and c:IsAbleToHand() and Duel.GetMZoneCount(tp,c)>0
 		and Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_GRAVE,0,1,nil,e,tp)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and s.thfilter(chkc,e,tp) end
-	if chk==0 then return Duel.IsExistingTarget(s.thfilter,tp,LOCATION_MZONE,0,1,nil,e,tp) end
+	if chkc then return chkc:IsLocation(LOCATION_MZONE) and s.rthfilter(chkc,e,tp) end
+	if chk==0 then return Duel.IsExistingTarget(s.rthfilter,tp,LOCATION_MZONE,0,1,nil,e,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND)
-	local tg=Duel.SelectTarget(tp,s.thfilter,tp,LOCATION_MZONE,0,1,1,nil,e,tp) 
+	local tg=Duel.SelectTarget(tp,s.rthfilter,tp,LOCATION_MZONE,0,1,1,nil,e,tp) 
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,tg,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,0,LOCATION_GRAVE)
 end
