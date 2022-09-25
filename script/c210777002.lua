@@ -95,7 +95,7 @@ function s.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
 function s.filter(c)
-	return (c:IsSetCard(0x18) or aux.HasCounterListed(c,0x1019)) and c:IsAbleToHand()
+	return (c:IsSetCard(0x18) or c:ListsCounter(0x1019)) and c:IsAbleToHand()
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_DECK,0,1,nil) end

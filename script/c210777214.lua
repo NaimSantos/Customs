@@ -66,7 +66,7 @@ function s.equipop(c,e,tp,tc)
 	if tc:IsType(TYPE_SPELL) then
 		return Duel.Equip(tp,tc,c)
 	end
-	if not aux.EquipByEffectAndLimitRegister(c,e,tp,tc,nil,true) then return end
+	if not c:EquipByEffectAndLimitRegister(e,tp,tc,nil,true) then return end
 	--atkup
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_EQUIP)
@@ -104,14 +104,14 @@ function s.descost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local dg1=Duel.GetMatchingGroup(aux.TRUE,tp,0,LOCATION_ONFIELD,nil)
-	local dg2=Duel.GetMatchingGroup(aux.disfilter1,tp,0,LOCATION_ONFIELD,nil)
+	local dg2=Duel.GetMatchingGroup(Card.IsNegatableMonster,tp,0,LOCATION_ONFIELD,nil)
 	if chk==0 then return #dg1>0 or #dg2>0 end
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,dg1,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_DISABLE,dg2,1,0,0)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local dg1=Duel.GetMatchingGroup(aux.TRUE,tp,0,LOCATION_ONFIELD,nil)
-	local dg2=Duel.GetMatchingGroup(aux.disfilter1,tp,0,LOCATION_ONFIELD,nil)
+	local dg2=Duel.GetMatchingGroup(Card.IsNegatableMonster,tp,0,LOCATION_ONFIELD,nil)
 	local opt
 	if #dg1>0 and #dg2>0 and e:GetLabel()==1 then
 		opt=Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3),aux.Stringid(id,4))

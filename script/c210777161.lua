@@ -117,7 +117,7 @@ function s.tfop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
 	local tc=Duel.SelectMatchingCard(tp,s.tffilter,tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,tp):GetFirst()
 	if tc then
-		aux.PlayFieldSpell(tc,e,tp,eg,ep,ev,re,r,rp)
+		Duel.ActivateFieldSpell(tc,e,tp,eg,ep,ev,re,r,rp)
 		--Cannot be destroyed by opponent's card effects
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetDescription(aux.Stringid(id,4))

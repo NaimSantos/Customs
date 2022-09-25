@@ -94,7 +94,7 @@ function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,s.tdfilter,tp,LOCATION_EXTRA,0,1,1,nil)
 	if #g>0 and Duel.SendtoDeck(g,tp,LOCATION_DECKSHF,REASON_EFFECT)>0 and Duel.GetOperatedGroup():GetFirst():IsLocation(LOCATION_DECK) then
-		if Duel.IsExistingMatchingCard(s.tpzfilter,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) and aux.CheckPendulumzones(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
+		if Duel.IsExistingMatchingCard(s.tpzfilter,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) and Duel.CheckPendulumZones(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
 			Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(id,4))
 			local tfg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.tpzfilter),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil)
 			if #tfg>0 then

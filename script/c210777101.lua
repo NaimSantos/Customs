@@ -125,10 +125,10 @@ function s.pencon(e,tp,eg,ep,ev,re,r,rp)
 	return c:IsPreviousLocation(LOCATION_MZONE) and c:IsFaceup()
 end
 function s.pentg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return aux.CheckPendulumzones(tp) end
+	if chk==0 then return Duel.CheckPendulumzones(tp) end
 end
 function s.penop(e,tp,eg,ep,ev,re,r,rp)
-	if not aux.CheckPendulumzones(tp) then return false end
+	if not Duel.CheckPendulumzones(tp) then return false end
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) then
 		Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true) 

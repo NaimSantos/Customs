@@ -28,7 +28,7 @@ end
 function s.desfilter(c,e,tp)
 	local g=Group.FromCards(e:GetHandler(),c)
 	return c:IsControler(tp)
-		and Duel.IsExistingTarget(aux.disfilter3,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,g)
+		and Duel.IsExistingTarget(Card.IsNegatable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,g)
 end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return false end
@@ -38,7 +38,7 @@ function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	e:SetLabelObject(g1:GetFirst())
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_NEGATE)
 	local g=Group.FromCards(e:GetHandler(),g1:GetFirst())
-	local g2=Duel.SelectTarget(tp,aux.disfilter3,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,g)
+	local g2=Duel.SelectTarget(tp,Card.IsNegatable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,g)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g1,#g1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_DISABLE,g2,#g2,0,0)
 end

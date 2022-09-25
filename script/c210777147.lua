@@ -46,7 +46,7 @@ function s.drop(e,tp,eg,ep,ev,re,r,rp)
 end
 
 function s.tdfilter(c)
-	return c:IsFaceup() and (c:IsRace(RACE_ROCK) or aux.IsCodeListed(c,CARD_FOSSIL_FUSION)) and c:IsAbleToDeck()
+	return c:IsFaceup() and (c:IsRace(RACE_ROCK) or c:ListsCode(CARD_FOSSIL_FUSION)) and c:IsAbleToDeck()
 end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_REMOVED) and chkc:IsControler(tp) and s.tdfilter(chkc) end

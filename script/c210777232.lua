@@ -52,7 +52,7 @@ function s.tedop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(id,2))
 	local g=Duel.SelectMatchingCard(tp,s.tedfilter,tp,LOCATION_DECK,0,1,1,nil)
-	if #g>0 and Duel.SendtoExtraP(g,tp,REASON_EFFECT) and c:IsRelateToEffect(e) and aux.CheckPendulumZones(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
+	if #g>0 and Duel.SendtoExtraP(g,tp,REASON_EFFECT) and c:IsRelateToEffect(e) and Duel.CheckPendulumZones(tp) and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
 		Duel.BreakEffect()
 		Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)
 	end
