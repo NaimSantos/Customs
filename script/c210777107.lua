@@ -29,7 +29,7 @@ function s.initial_effect(c)
 end
 s.listed_series={0xe1}
 function s.cfilter(c)
-	return c:IsType(TYPE_PENDULUM) and c:IsType(TYPE_MONSTER) and c:IsDiscardable()
+	return c:IsType(TYPE_PENDULUM) and c:IsMonster() and c:IsDiscardable()
 end
 function s.tpzcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.cfilter,tp,LOCATION_HAND,0,1,nil) end
@@ -44,7 +44,7 @@ function s.tpztg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	end
 end
 function s.tpzop(e,tp,eg,ep,ev,re,r,rp)
-	if not Duel.CheckPendulumzones(tp) then return false end
+	if not Duel.CheckPendulumZones(tp) then return false end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
 	local g=Duel.SelectMatchingCard(tp,s.tpzfilter,tp,LOCATION_DECK,0,1,1,nil)
 	if #g>0 then
