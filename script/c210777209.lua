@@ -61,7 +61,7 @@ end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local rg=Duel.GetMatchingGroup(Card.IsAbleToRemove,tp,0,LOCATION_HAND+LOCATION_EXTRA,nil,tp)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.eqpsfilter,tp,LOCATION_ONFIELD,0,1,nil,e) and #rg>0 end
-	local dg=Duel.GetMatchingGroup(nil,tp,LOCATION_ONFIELD,0,e:GetHandler())
+	local dg=Duel.GetMatchingGroup(s.eqpsfilter,tp,LOCATION_ONFIELD,0,e:GetHandler())
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,dg,nil,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,rg,nil,0,0)
 end

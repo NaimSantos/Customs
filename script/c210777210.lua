@@ -22,7 +22,7 @@ function s.filter(c,ft,check)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local ft,loc=Duel.GetLocationCount(tp,LOCATION_MZONE),LOCATION_SZONE
-	local check=Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_SYNCHRO),tp,LOCATION_MZONE,0,1,nil)
+	local check=Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsType,TYPE_SYNCHRO),tp,LOCATION_MZONE,0,1,nil)
 	if check then loc=LOCATION_ONFIELD end
 	if chkc then return chkc:IsLocation(loc) and chkc:IsControler(tp) and s.filter(chkc,ft,check) end
 	if chk==0 then return ft>-1 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false)
