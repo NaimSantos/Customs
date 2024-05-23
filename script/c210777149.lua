@@ -45,7 +45,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 			e1:SetCode(EFFECT_CHANGE_RACE)
 			e1:SetValue(RACE_ROCK)
 			e1:SetTarget(s.tg)
-			e1:SetReset(RESET_PHASE+PHASE_END)
+			e1:SetReset(RESET_PHASE|PHASE_END)
 			Duel.RegisterEffect(e1,tp)
 		end
 	end
@@ -53,4 +53,21 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ShuffleDeck(tp)
 		Duel.Draw(tp,1,REASON_EFFECT)
 	end
+end
+function s.tg(e,c)
+	if c:GetFlagEffect(1)==0 then
+		c:RegisterFlagEffect(1,0,0,0)
+		local eff
+		if c:IsLocation(LOCATION_MZONE) then
+			eff={Duel.GetPlayerEffect(c:GetControler(),EFFECT_NECRO_VALLEY)}
+		else
+			eff={c:GetCardEffect(EFFECT_NECRO_VALLEY)}
+		end
+		c:ResetFlagEffect(1)
+		for _,te in ipairs(eff) do
+			local op=te:GetOperation()
+			if not op or op(e,c) then return false end
+		end
+	end
+	return true
 end
