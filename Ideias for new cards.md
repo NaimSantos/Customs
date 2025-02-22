@@ -181,3 +181,54 @@ Continuous Spell
 ### Polychimera Fusion
 * Quick-Play Spell
 * Fusion Summon 1 Fiend monster form your Extra Deck using monster from your field or hand as Fusion Material
+
+
+
+################################ Paleozoic  ################################
+
+### archimated
+
+Mega Cambrian Ocean
+Field Spell Card
+(This card's name is always treated as "Umi".)
+Normal Monsters you control cannot be destroyed battle.
+Once per turn: You can reveal 3 "Paleozoic" Trap Cards with different names from your deck and/or banishment, then your opponent randomly chooses 1 card to add to your hand, also sent the rest to the GY.
+If a Trap Card is activated(except during the damage step) and this card is in your GY(Even if it was not there when it resolved): You can place this card face-up in your Field Zone, but banish it when it leaves the field.
+ 
+Paleozoic Paradoxides
+WATER/Level 2/Aqua/Effect
+ATK 0/DEF 1200
+If this card is Normal Summoned or Special Summoned: You can send 1 "Paleozoic" Trap card from your deck to your GY.
+Once while this card is face-up on the field, you can activate a "Paleozoic" Trap card from your hand.
+An Xyz Monster that was Xyz Summoned used this card on the field as Xyz material gains 1000 ATK.
+
+
+######### Moonrite's
+
+A Paleozoic Ocean
+[Field Spell]
+(This card's name is always treated as "Umi".)
+All "Paleozoic" monsters you control gain 500 ATK/DEF. You can only use each of the following effects of "A Paleozoic Ocean" once per turn.
+● You can discard 1 card; add 1 "Paleozoic" Trap from your Deck to your hand. 
+● During the End Phase: You can target 1 of your "Paleozoic" Traps that is banished or in your GY; Special Summon it, as if it were Special Summoned by its own effect. 
+
+Paleozoic Aysheaia
+[Normal Trap]
+Target 1 "Paleozoic" monster you control and 1 monster your opponent controls; switch control of those monsters. Once per Chain, when a Trap Card is activated while this card is in your GY: You can Special Summon this card as a Normal Monster (Aqua/WATER/Level 2/ATK 1200/DEF 0). (This card is NOT treated as a Trap.) If Summoned this way, this card is unaffected by monster effects, also banish it when it leaves the field. 
+Paleozoic Burgessia
+[Normal Trap]
+When your opponent would Summon a monster(s): Discard 1 "Paleozoic" card; negate the Summon, and if you do, destroy that monster(s). Once per Chain, when a Trap Card is activated while this card is in your GY: You can Special Summon this card as a Normal Monster (Aqua/WATER/Level 2/ATK 1200/DEF 0). (This card is NOT treated as a Trap.) If Summoned this way, this card is unaffected by monster effects, also banish it when it leaves the field. 
+
+Paleozoic Wiwaxia
+[Link 1⬇️/Water/Aqua/Effect]
+1 non-Link "Paleozoic" monster 
+Unaffected by other monsters' effects. You can send 1 "Paleozoic" Trap from your hand or Deck to the GY, then target 1 face-up monster you control; negate its effects, and if you do, its Level becomes 2, also it is treated as a "Paleozoic" monster. You can only use this effect of "Paleozoic Wiwaxia" once per turn. 
+ATK 600
+
+Paleozoic Waptia
+[Link 2↙️➡️/Water/Aqua/Effect]
+2 Level 2 monsters 
+Unaffected by other monsters' effects. You can only use each of the following effects of "Paleozoic Waptia" once per turn.
+● If this card was Link Summoned using only monsters that were originally Traps: You can discard 1 card; your opponent cannot activate cards or effects in response to your "Paleozoic" Trap Cards and effects until the end of the next turn.
+● If a "Paleozoic" monster is Special Summoned to a zone this card points to: You can Set 1 "Paleozoic" Trap directly from your Deck.
+ATK 1200
