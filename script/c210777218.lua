@@ -81,7 +81,7 @@ function s.lvop(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_UPDATE_LEVEL)
 	e1:SetValue(1)
-	e1:SetReset(RESET_EVENT+RESETS_STANDARD_DISABLE)
+	e1:SetReset(RESET_EVENT|RESETS_STANDARD_DISABLE)
 	c:RegisterEffect(e1)
 	local g=Duel.GetMatchingGroup(s.rmvfilter,tp,0,LOCATION_ONFIELD,nil)
 	if c:GetLevel()==lvl+1 and #g>0 and Duel.SelectYesNo(tp,aux.Stringid(id,1)) then

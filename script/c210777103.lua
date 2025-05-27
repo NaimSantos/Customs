@@ -18,27 +18,28 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--effect gain
 	local e2=Effect.CreateEffect(c)
+	e2:SetDescription(aux.Stringid(id,1))
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
 	e2:SetCode(EVENT_BE_MATERIAL)
 	e2:SetCondition(s.efcon)
 	e2:SetOperation(s.efop)
 	c:RegisterEffect(e2)
 end
-s.listed_series={0x11a,0xe1}
+s.listed_series={SET_METALFOES}
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetMatchingGroupCount(aux.FilterFaceupFunction(Card.IsSetCard,0xe1),tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,nil)>0 end
+	if chk==0 then return Duel.GetMatchingGroupCount(aux.FaceupFilter(Card.IsSetCard,SET_METALFOES),tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,nil)>0 end
 	Duel.SetTargetPlayer(tp)
 	Duel.SetOperationInfo(0,CATEGORY_RECOVER,nil,0,tp,0)
 end
 function s.operation(e,tp,eg,ep,ev,re,r,rp)
-	local rt=Duel.GetMatchingGroupCount(aux.FilterFaceupFunction(Card.IsSetCard,0xe1),tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,nil)*100
+	local rt=Duel.GetMatchingGroupCount(aux.FaceupFilter(Card.IsSetCard,SET_METALFOES),tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,nil)*100
 	local p=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER)
 	Duel.Recover(p,rt,REASON_EFFECT)
 end
 function s.efcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local rc=c:GetReasonCard()
-	return c:IsPreviousLocation(LOCATION_ONFIELD) and (rc:IsSetCard(0x11a) or rc:IsType(RACE_PSYCHIC) or rc:IsAttribute(ATTRIBUTE_FIRE))
+	return c:IsPreviousLocation(LOCATION_ONFIELD) and (rc:IsSetCard(SET_METALFOES) or rc:IsType(RACE_PSYCHIC) or rc:IsAttribute(ATTRIBUTE_FIRE))
 end
 function s.efop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
@@ -48,18 +49,18 @@ function s.efop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_ADD_TYPE)
 		e1:SetValue(TYPE_EFFECT)
-		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
+		e1:SetReset(RESET_EVENT|RESETS_STANDARD)
 		rc:RegisterEffect(e1,true)
 	end
 	if rc:IsAttribute(ATTRIBUTE_FIRE) then
 		local e2=Effect.CreateEffect(c)
+		e2:SetDescription(aux.Stringid(id,2))
 		e2:SetType(EFFECT_TYPE_SINGLE)
 		e2:SetProperty(EFFECT_FLAG_SINGLE_RANGE+EFFECT_FLAG_CLIENT_HINT)
-		e2:SetDescription(aux.Stringid(id,1))
 		e2:SetRange(LOCATION_MZONE)
 		e2:SetCode(EFFECT_INDESTRUCTABLE_BATTLE)
 		e2:SetValue(1)
-		e2:SetReset(RESET_EVENT+RESETS_STANDARD)
+		e2:SetReset(RESET_EVENT|RESETS_STANDARD)
 		rc:RegisterEffect(e2,true)
 	end
 	if rc:IsRace(RACE_PSYCHIC) then
@@ -67,24 +68,24 @@ function s.efop(e,tp,eg,ep,ev,re,r,rp)
 		e3:SetType(EFFECT_TYPE_SINGLE)
 		e3:SetCode(EFFECT_UPDATE_ATTACK)
 		e3:SetValue(1000)
-		e3:SetReset(RESET_EVENT+RESETS_STANDARD_DISABLE)
+		e3:SetReset(RESET_EVENT|RESETS_STANDARD_DISABLE)
 		rc:RegisterEffect(e3,true)
 	end
-	if rc:IsSetCard(0xe1) then
+	if rc:IsSetCard(SET_METALFOES) then
 		local e4=Effect.CreateEffect(c)
+		e4:SetDescription(aux.Stringid(id,3))
 		e4:SetType(EFFECT_TYPE_SINGLE)
 		e4:SetCode(EFFECT_IMMUNE_EFFECT)
 		e4:SetProperty(EFFECT_FLAG_SINGLE_RANGE+EFFECT_FLAG_CLIENT_HINT)
-		e4:SetDescription(aux.Stringid(id,3))
 		e4:SetRange(LOCATION_MZONE)
 		e4:SetCondition(s.imcon)
 		e4:SetValue(s.immval)
-		e4:SetReset(RESET_EVENT+RESETS_STANDARD)
+		e4:SetReset(RESET_EVENT|RESETS_STANDARD)
 		rc:RegisterEffect(e4,true)
 	end
 end
-function s.imcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetCurrentPhase()==PHASE_MAIN1 or Duel.GetCurrentPhase()==PHASE_MAIN2
+function s.imcon(e)
+	return Duel.IsMainPhase()
 end
 function s.immval(e,te)
 	local tc=te:GetHandler()

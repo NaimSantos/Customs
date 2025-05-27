@@ -50,7 +50,7 @@ function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.thfilter(c,tp)
 	return (c:IsSetCard(0xf19) or c:IsCode(8955148,72566043)) and (c:IsAbleToGrave()
-		or (c:IsAbleToHand() and Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)))
+		or (c:IsAbleToHand() and Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsType,TYPE_TRAP),tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)))
 end
 function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	local p=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER)
@@ -59,7 +59,7 @@ function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	if #g>0 and g:IsExists(s.thfilter,1,nil,tp) then
 		Duel.Hint(HINT_SELECTMSG,p,HINTMSG_TOGRAVE)
 		local sg=g:FilterSelect(p,s.thfilter,1,1,nil,tp)
-		if Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) and Duel.SelectYesNo(p,aux.Stringid(id,3)) then
+		if Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsType,TYPE_TRAP),tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) and Duel.SelectYesNo(p,aux.Stringid(id,3)) then
 			Duel.SendtoHand(sg,nil,REASON_EFFECT)
 			Duel.ConfirmCards(1-p,sg)
 			Duel.ShuffleHand(p)
@@ -100,5 +100,5 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.lvcond(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),e:GetHandlerPlayer(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
+	return Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsType,TYPE_TRAP),e:GetHandlerPlayer(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
 end

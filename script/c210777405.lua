@@ -24,9 +24,9 @@ function s.initial_effect(c)
 	e2:SetOperation(s.spop)
 	c:RegisterEffect(e2)
 end
-s.listed_series={0x37}
+s.listed_series={SET_MIST_VALLEY}
 function s.thfilter(c)
-	return c:IsSetCard(0x37) and c:IsLevelAbove(5) and c:IsAbleToHand()
+	return c:IsSetCard(SET_MIST_VALLEY) and c:IsLevelAbove(5) and c:IsAbleToHand()
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) end
@@ -34,10 +34,10 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetPossibleOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)
 end
 function s.spellfilter(c)
-	return c:IsType(TYPE_SPELL) and c:IsSetCard(0x37) and c:IsFaceup()
+	return c:IsType(TYPE_SPELL) and c:IsSetCard(SET_MIST_VALLEY) and c:IsFaceup()
 end
 function s.spfilter(c,e,tp)
-	return c:IsSetCard(0x37) and c:IsLevelBelow(4) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsSetCard(SET_MIST_VALLEY) and c:IsLevelBelow(4) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.operation(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
@@ -54,7 +54,7 @@ function s.operation(e,tp,eg,ep,ev,re,r,rp)
 			if sc then
 				Duel.SpecialSummon(sc,0,tp,tp,false,false,POS_FACEUP)
 				local fid=e:GetHandler():GetFieldID()
-				sc:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD,0,1,fid)
+				sc:RegisterFlagEffect(id,RESET_EVENT|RESETS_STANDARD,0,1,fid)
 				local e1=Effect.CreateEffect(e:GetHandler())
 				e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 				e1:SetCode(EVENT_PHASE+PHASE_END)
@@ -98,7 +98,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetProperty(EFFECT_FLAG_CLIENT_HINT)
 		e1:SetCode(EFFECT_INDESTRUCTABLE_BATTLE)
 		e1:SetValue(1)
-		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
+		e1:SetReset(RESET_EVENT|RESETS_STANDARD)
 		c:RegisterEffect(e1)
 	end
 end

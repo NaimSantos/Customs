@@ -39,7 +39,7 @@ end
 s.listed_series={0xfb}
 function s.regop(e,tp,eg,ep,ev,re,r,rp)
 	if not (ep~=tp or r&REASON_EFFECT~=0 or re:GetHandler():IsSetCard(0xfb)) then return end
-	e:GetHandler():RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD-RESET_TURN_SET+RESET_CHAIN,0,1)
+	e:GetHandler():RegisterFlagEffect(id,RESET_EVENT|RESETS_STANDARD-RESET_TURN_SET|RESET_CHAIN,0,1)
 end
 function s.reccond1(e,tp,eg,ep,ev,re,r,rp)
 	if not re then return end

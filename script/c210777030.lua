@@ -49,7 +49,7 @@ function s.edspcon(e,c)
 	local g2=rg:Filter(s.npendperf,nil)
 	local g=g1:Clone()
 	g:Merge(g2)
-	return Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_SPELL),e:GetHandlerPlayer(),LOCATION_ONFIELD,0,1,nil)
+	return Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsType,TYPE_SPELL),e:GetHandlerPlayer(),LOCATION_ONFIELD,0,1,nil)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>-2 and #g1>0 and #g2>0 and #g>1 
 		and aux.SelectUnselectGroup(g,e,tp,2,2,s.rescon,0)
 end

@@ -92,7 +92,7 @@ function s.target1(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetTargetPlayer(tp)
 	e:SetCategory(CATEGORY_TOHAND)
 	Duel.SetOperationInfo(tp,0,CATEGORY_TOHAND,nil,1,tp,nil)
-	Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,0,1)
+	Duel.RegisterFlagEffect(tp,id,RESET_PHASE|PHASE_END,0,1)
 end
 function s.oper1(e,tp,eg,ep,ev,re,r,rp)
 	local f1=Duel.SelectOption(tp,aux.Stringid(id,1),aux.Stringid(id,2))

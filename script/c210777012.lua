@@ -74,7 +74,7 @@ function s.tfop(e,tp,eg,ep,ev,re,r,rp)
 			e1:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)
 			e1:SetDescription(aux.Stringid(id,2))
 			e1:SetValue(1)
-			e1:SetReset(RESET_EVENT+RESETS_STANDARD)
+			e1:SetReset(RESET_EVENT|RESETS_STANDARD)
 			tc:RegisterEffect(e1)
 		end
 	end

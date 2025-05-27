@@ -38,7 +38,7 @@ function s.initial_effect(c)
 	e3:SetOperation(s.thop)
 	c:RegisterEffect(e3)
 end
-s.listed_series={0xe1}
+s.listed_series={SET_METALFOES}
 function s.filter1(c,tp)
 	if c:IsFacedown() then return false end
 	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
@@ -49,7 +49,7 @@ function s.filter1(c,tp)
 	end
 end
 function s.filter2(c,ignore)
-	return c:IsSetCard(0xe1) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable(ignore)
+	return c:IsSetCard(SET_METALFOES) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable(ignore)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and chkc:IsControler(tp) and s.filter1(chkc,tp) and chkc~=e:GetHandler() end
@@ -71,7 +71,7 @@ function s.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.filter3(c,tp)
-	return c:IsFaceup() and c:IsSetCard(0xe1) and Duel.GetMZoneCount(tp,c)>0
+	return c:IsFaceup() and c:IsSetCard(SET_METALFOES) and Duel.GetMZoneCount(tp,c)>0
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and s.filter3(chkc,tp) end
@@ -90,14 +90,14 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.filter4(c)
-	return c:IsFaceup() and c:IsSetCard(0xe1)
+	return c:IsFaceup() and c:IsSetCard(SET_METALFOES)
 end
 function s.thcond(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(s.filter4,tp,LOCATION_ONFIELD,0,nil)
 	return g:GetClassCount(Card.GetCode)>=3
 end
 function s.filter5(c)
-	return c:IsSetCard(0xe1) and c:IsAbleToHand() and c:IsFaceup()
+	return c:IsSetCard(SET_METALFOES) and c:IsAbleToHand() and c:IsFaceup()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.filter5,tp,LOCATION_GRAVE+LOCATION_EXTRA+LOCATION_REMOVED,0,1,nil) end

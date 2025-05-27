@@ -20,12 +20,12 @@ function s.initial_effect(c)
 	e2:SetOperation(s.spop)
 	c:RegisterEffect(e2)
 end
-s.listed_series={0x37}
+s.listed_series={SET_MIST_VALLEY}
 function s.thfilter(c,fspell,maxlv)
-	return c:IsType(TYPE_MONSTER) and c:IsSetCard(0x37) and c:IsAbleToHand() and (fspell or c:IsLevelBelow(maxlv))
+	return c:IsType(TYPE_MONSTER) and c:IsSetCard(SET_MIST_VALLEY) and c:IsAbleToHand() and (fspell or c:IsLevelBelow(maxlv))
 end
 function s.spellfilter(c)
-	return c:IsType(TYPE_SPELL) and c:IsType(TYPE_FIELD) and c:IsSetCard(0x37) and c:IsFaceup()
+	return c:IsType(TYPE_SPELL) and c:IsType(TYPE_FIELD) and c:IsSetCard(SET_MIST_VALLEY) and c:IsFaceup()
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
@@ -40,10 +40,10 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.spfilter(c,e,tp)
-	return c:IsSetCard(0x37) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsSetCard(SET_MIST_VALLEY) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.rthfilter(c,e,tp)
-	return c:IsFaceup() and c:IsSetCard(0x37) and c:IsAbleToHand() and Duel.GetMZoneCount(tp,c)>0
+	return c:IsFaceup() and c:IsSetCard(SET_MIST_VALLEY) and c:IsAbleToHand() and Duel.GetMZoneCount(tp,c)>0
 		and Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_GRAVE,0,1,nil,e,tp)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
@@ -66,7 +66,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 			local c=e:GetHandler()
 			if Duel.SpecialSummon(sc,0,tp,tp,true,false,POS_FACEUP)>0 then
 				local fid=c:GetFieldID()
-				sc:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD,0,1,fid)
+				sc:RegisterFlagEffect(id,RESET_EVENT|RESETS_STANDARD,0,1,fid)
 				--Return it to the hand during the End Phase
 				local e1=Effect.CreateEffect(c)
 				e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)

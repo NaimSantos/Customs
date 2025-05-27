@@ -32,13 +32,13 @@ function s.initial_effect(c)
 	e4:SetOperation(s.setop)
 	c:RegisterEffect(e4)
 end
-s.listed_series={0xe1}
+s.listed_series={SET_METALFOES}
 function s.matfilter(c)
 	return (c:IsLocation(LOCATION_HAND+LOCATION_MZONE+LOCATION_PZONE) and c:IsAbleToGrave())
 		or (c:IsLocation(LOCATION_GRAVE) and c:IsAbleToRemove())
 end
 function s.checkmat(tp,sg,fc)
-	return (fc:IsSetCard(0xe1) or not sg:IsExists(Card.IsLocation,1,nil,LOCATION_GRAVE+LOCATION_PZONE)) and sg:IsExists(Card.IsSetCard,1,nil,0xe1)
+	return (fc:IsSetCard(SET_METALFOES) or not sg:IsExists(Card.IsLocation,1,nil,LOCATION_GRAVE+LOCATION_PZONE)) and sg:IsExists(Card.IsSetCard,1,nil,SET_METALFOES)
 end
 function s.orgmonster(c)
 	return c:IsOriginalType(TYPE_MONSTER) and c:IsAbleToRemove()
@@ -61,13 +61,13 @@ function s.regcon(e,tp,eg,ep,ev,re,r,rp)
 	return c:IsReason(REASON_EFFECT) and c:IsPreviousLocation(LOCATION_ONFIELD)
 end
 function s.regop(e,tp,eg,ep,ev,re,r,rp)
-	e:GetHandler():RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
+	e:GetHandler():RegisterFlagEffect(id,RESET_EVENT|RESETS_STANDARD|RESET_PHASE|PHASE_END,0,1)
 end
 function s.setcond(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetFlagEffect(id)>0
 end
 function s.filter(c)
-	return c:IsSetCard(0xe1) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable(true)
+	return c:IsSetCard(SET_METALFOES) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable(true)
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_DECK,0,1,nil,false) end

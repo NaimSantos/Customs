@@ -40,7 +40,7 @@ function s.contactcon(tp)
 end
 function s.contactop(g,tp)
 	Duel.Remove(g,POS_FACEUP,REASON_COST+REASON_MATERIAL)
-	Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,0,1)
+	Duel.RegisterFlagEffect(tp,id,RESET_PHASE|PHASE_END,0,1)
 end
 function s.splimit(e,se,sp,st)
 	return not e:GetHandler():IsLocation(LOCATION_EXTRA)

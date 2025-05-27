@@ -64,8 +64,8 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.actcon(e)
-	return not Duel.IsExistingMatchingCard(aux.FilterFaceupFunction(Card.IsType,TYPE_TRAP),e:GetHandlerPlayer(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
+	return not Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsType,TYPE_TRAP),e:GetHandlerPlayer(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
 end
 function s.atkval(e,c)
-	return Duel.GetMatchingGroupCount(aux.FilterFaceupFunction(Card.IsRace,RACE_WARRIOR),0,LOCATION_ONFIELD,0,nil)*-200
+	return Duel.GetMatchingGroupCount(aux.FaceupFilter(Card.IsRace,RACE_WARRIOR),0,LOCATION_ONFIELD,0,nil)*-200
 end

@@ -27,7 +27,7 @@ function s.initial_effect(c)
 	e2:SetOperation(s.thop)
 	c:RegisterEffect(e2)
 end
-s.listed_series={0xe1}
+s.listed_series={SET_METALFOES}
 function s.cfilter(c)
 	return c:IsType(TYPE_PENDULUM) and c:IsMonster() and c:IsDiscardable()
 end
@@ -36,7 +36,7 @@ function s.tpzcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.DiscardHand(tp,s.cfilter,1,1,REASON_COST+REASON_DISCARD)
 end
 function s.tpzfilter(c)
-	return c:IsSetCard(0xe1) and c:IsType(TYPE_PENDULUM) and not c:IsForbidden()
+	return c:IsSetCard(SET_METALFOES) and c:IsType(TYPE_PENDULUM) and not c:IsForbidden()
 end
 function s.tpztg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return (Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1))
@@ -62,7 +62,7 @@ function s.thcond(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.sfilter,1,nil,tp)
 end
 function s.thfilter(c)
-	return c:IsSetCard(0xe1) and c:IsType(TYPE_PENDULUM) and c:IsFaceup() and c:IsAbleToHand()
+	return c:IsSetCard(SET_METALFOES) and c:IsType(TYPE_PENDULUM) and c:IsFaceup() and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_EXTRA,0,1,nil) end

@@ -5,7 +5,7 @@ function s.initial_effect(c)
 	c:EnableReviveLimit()
 	Pendulum.AddProcedure(c,false)
 	Link.AddProcedure(c,aux.FilterBoolFunctionEx(Card.IsAttribute,ATTRIBUTE_FIRE),2,nil,s.matcheck)
-	--destroy and set
+	--Destroy 1 card and Set 1 "Metalfoes" Spell/Trap
 	local e0=Effect.CreateEffect(c)
 	e0:SetDescription(aux.Stringid(id,0))
 	e0:SetCategory(CATEGORY_DESTROY)
@@ -17,7 +17,7 @@ function s.initial_effect(c)
 	e0:SetTarget(s.target)
 	e0:SetOperation(s.operation)
 	c:RegisterEffect(e0)
-	--atk gain
+	--This card and monsters it points to gain 100 ATK/DEF for each "Metalfoes" card you control
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_UPDATE_ATTACK)
@@ -27,23 +27,23 @@ function s.initial_effect(c)
 	e1:SetTarget(s.atktg)
 	e1:SetValue(s.val)
 	c:RegisterEffect(e1)
-	--def gain
 	local e2=e1:Clone()
 	e2:SetCode(EFFECT_UPDATE_DEFENSE)
 	c:RegisterEffect(e2)
-	--banish
+	--Banish 1 card your opponent controls
 	local e3=Effect.CreateEffect(c)
-	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetCategory(CATEGORY_REMOVE)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
-	e3:SetCountLimit(1,id)
 	e3:SetRange(LOCATION_MZONE)
+	e3:SetCountLimit(1,id)
 	e3:SetCondition(s.rmvcond)
 	e3:SetTarget(s.rmvtg)
 	e3:SetOperation(s.rmvop)
 	c:RegisterEffect(e3)
-	--place in pendulum zone
+	--Place this card in your Pendulum Zone
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(id,2))
 	e4:SetCategory(CATEGORY_DRAW)
@@ -55,9 +55,12 @@ function s.initial_effect(c)
 	e4:SetOperation(s.penop)
 	c:RegisterEffect(e4)
 end
-s.listed_series={0xe1}
+s.listed_series={SET_METALFOES}
 function s.matcheck(g,lc,tp)
-	return g:IsExists(Card.IsSetCard,1,nil,0xe1,lc,SUMMON_TYPE_LINK,tp)
+	return g:IsExists(Card.IsSetCard,1,nil,SET_METALFOES,lc,SUMMON_TYPE_LINK,tp)
+end
+function s.filter(c,ignore)
+	return c:IsSetCard(SET_METALFOES) and c:IsSpellTrap() and c:IsSSetable(ignore)
 end
 function s.desfilter(c,tp)
 	if c:IsFacedown() then return false end
@@ -67,9 +70,6 @@ function s.desfilter(c,tp)
 	else
 		return Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_DECK,0,1,nil,false)
 	end
-end
-function s.filter(c,ignore)
-	return c:IsSetCard(0xe1) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable(ignore)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and chkc:IsControler(tp) and s.desfilter(chkc,tp) and chkc~=e:GetHandler() end
@@ -81,7 +81,7 @@ end
 function s.operation(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) and Duel.Destroy(tc,REASON_EFFECT)~=0 then
+	if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) and Duel.Destroy(tc,REASON_EFFECT)>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
 		local g=Duel.SelectMatchingCard(tp,s.filter,tp,LOCATION_DECK,0,1,1,nil,false)
 		if #g>0 then
@@ -98,7 +98,7 @@ function s.atktg(e,c)
 	return c==e:GetHandler() or g:IsContains(c)
 end
 function s.val(e,c)
-	return Duel.GetMatchingGroupCount(aux.FilterFaceupFunction(Card.IsSetCard,0xe1),c:GetControler(),LOCATION_ONFIELD,0,nil)*100
+	return Duel.GetMatchingGroupCount(aux.FaceupFilter(Card.IsSetCard,SET_METALFOES),c:GetControler(),LOCATION_ONFIELD,0,nil)*100
 end
 function s.setcfilter(c,tp,lg)
 	return c:IsFaceup() and c:IsControler(tp) and c:IsType(TYPE_FUSION) and lg:IsContains(c)
@@ -116,7 +116,7 @@ function s.rmvtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.rmvop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) then
+	if tc:IsRelateToEffect(e) then
 		Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)
 	end
 end
@@ -131,8 +131,8 @@ function s.penop(e,tp,eg,ep,ev,re,r,rp)
 	if not Duel.CheckPendulumzones(tp) then return false end
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) then
-		Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true) 
-		if Duel.IsPlayerCanDraw(tp,1) 
+		Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)
+		if Duel.IsPlayerCanDraw(tp,1)
 			and Duel.GetFieldGroupCount(tp,0,LOCATION_ONFIELD)>Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)
 			and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
 			Duel.BreakEffect()

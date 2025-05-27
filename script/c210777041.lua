@@ -3,7 +3,7 @@
 local s,id=GetID()
 function s.initial_effect(c)
 	c:EnableReviveLimit()
-	Fusion.AddProcMixN(c,true,true,aux.FilterBoolFunction(Card.IsType,TYPE_FUSION),1,aux.FilterBoolFunctionEx(Card.IsSetCard,0xe1),2)
+	Fusion.AddProcMixN(c,true,true,aux.FilterBoolFunction(Card.IsType,TYPE_FUSION),1,aux.FilterBoolFunctionEx(Card.IsSetCard,SET_METALFOES),2)
 	--Prevent target
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
@@ -36,9 +36,9 @@ function s.initial_effect(c)
 	e3:SetOperation(s.thop)
 	c:RegisterEffect(e3)
 end
-s.listed_series={0xe1}
+s.listed_series={SET_METALFOES}
 function s.target(e,c)
-	return c:IsSetCard(0xe1)
+	return c:IsSetCard(SET_METALFOES)
 end
 function s.filter(c)
 	return c:IsFaceup()
@@ -58,7 +58,7 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.filter1(c)
-	return c:IsAbleToHand() and c:IsSetCard(0xe1) and (c:IsLocation(LOCATION_GRAVE) or c:IsFaceup())
+	return c:IsAbleToHand() and c:IsSetCard(SET_METALFOES) and (c:IsLocation(LOCATION_GRAVE) or c:IsFaceup())
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.filter1,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil)

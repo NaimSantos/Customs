@@ -26,9 +26,9 @@ function s.initial_effect(c)
 	e2:SetOperation(s.setop)
 	c:RegisterEffect(e2)
 end
-s.listed_series={0x37}
+s.listed_series={SET_MIST_VALLEY}
 function s.thfilter(c)
-	return c:IsSetCard(0x37) and c:IsFaceup() and c:IsAbleToHand()
+	return c:IsSetCard(SET_MIST_VALLEY) and c:IsFaceup() and c:IsAbleToHand()
 end
 function s.rettg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return false end
@@ -55,7 +55,7 @@ function s.retop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.mvfilter(c,tp)
-	return c:IsSetCard(0x37) and c:IsControler(tp) and c:IsPreviousLocation(LOCATION_ONFIELD) and c:IsPreviousPosition(POS_FACEUP)
+	return c:IsSetCard(SET_MIST_VALLEY) and c:IsControler(tp) and c:IsPreviousLocation(LOCATION_ONFIELD) and c:IsPreviousPosition(POS_FACEUP)
 end
 function s.setcond(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.mvfilter,1,nil,tp)

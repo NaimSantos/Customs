@@ -51,7 +51,7 @@ function s.setop(e,tp,eg,ep,ev,re,r,rp)
 			else
 				e1:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)
 			end
-			e1:SetReset(RESET_EVENT+RESETS_STANDARD)
+			e1:SetReset(RESET_EVENT|RESETS_STANDARD)
 			tc:RegisterEffect(e1)
 		end
 	end

@@ -33,7 +33,7 @@ function s.initial_effect(c)
 	e4:SetOperation(s.tdop)
 	c:RegisterEffect(e4)
 end
-s.listed_series={0x9c}
+s.listed_series={SET_PERFORMAPAL}
 s.listed_names={id}
 function s.filter(c)
 	return c:IsSetCard(0x9f) and c:IsType(TYPE_MONSTER) and not c:IsType(TYPE_PENDULUM) and c:IsAbleToHand()

@@ -2,7 +2,7 @@
 --designed and scripted by Naim
 local s,id=GetID()
 function s.initial_effect(c)
-	Link.AddProcedure(c,aux.FilterBoolFunction(Card.IsLinkSetCard,0x9c),2,2)
+	Link.AddProcedure(c,aux.FilterBoolFunction(Card.IsLinkSetCard,SET_PERFORMAPAL),2,2)
 	c:EnableReviveLimit()
 	--summon
 	local e1=Effect.CreateEffect(c)
@@ -16,9 +16,9 @@ function s.initial_effect(c)
 	e1:SetOperation(s.operation)
 	c:RegisterEffect(e1)
 end
-s.listed_series={0x9c}
+s.listed_series={SET_PERFORMAPAL}
 function s.filter(c)
-	return c:IsSetCard(0x9c) and c:IsSummonable(true,nil)
+	return c:IsSetCard(SET_PERFORMAPAL) and c:IsSummonable(true,nil)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
