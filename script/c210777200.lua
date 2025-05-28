@@ -78,7 +78,7 @@ function s.pcfilter(c)
 		and c:IsType(TYPE_PENDULUM) and not c:IsForbidden()
 end
 function s.pctg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.CheckPendulumzones(tp)
+	if chk==0 then return Duel.CheckPendulumZones(tp)
 		and Duel.IsExistingMatchingCard(s.pcfilter,tp,LOCATION_EXTRA,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
 	local g=Duel.SelectTarget(tp,s.pcfilter,tp,LOCATION_GRAVE,0,1,1,nil)
